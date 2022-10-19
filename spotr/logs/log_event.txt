@@ -1,46 +1,4 @@
 
-<<<<<<< HEAD
-2022-10-18 21:32:59.083900 msg - _import.py - import_main load data --> button load access table pressed :E:\docs\python projects\SpotifyWebAppV3.0\test_database.db.
-2022-10-18 21:33:27.594672 Done ListenedTrack table
-2022-10-18 21:33:35.197355 Done ToListenTrack table
-2022-10-18 21:33:42.764333 Done WatchList table
-2022-10-18 21:34:02.585181 Done FavoriteTrack table
-2022-10-18 21:34:18.463332 Done LikedTrack table
-2022-10-18 21:34:32.811601 Done EverynoiseGenre table
-2022-10-18 21:45:55.421335 msg - _import.py - import_main load page --> import.html page loaded.
-2022-10-18 21:46:05.700241 msg - _import.py - import_main load data --> button load access table pressed :E:\docs\python projects\SpotifyWebAppV3.0\test_database.db.
-2022-10-18 21:46:37.340032 Done ListenedTrack table
-2022-10-18 21:46:44.298697 Done ToListenTrack table
-2022-10-18 21:46:52.059296 Done WatchList table
-2022-10-18 21:47:12.815576 Done FavoriteTrack table
-2022-10-18 21:47:30.089552 Done LikedTrack table
-2022-10-18 21:47:41.925863 Done EverynoiseGenre table
-2022-10-18 21:51:19.953103 msg - _import.py - import_main load page --> import.html page loaded.
-2022-10-18 21:51:23.953027 msg - _import.py - import_main load data --> button load access table pressed :E:\docs\python projects\SpotifyWebAppV3.0\test_database.db.
-2022-10-18 21:51:59.218146 Done ListenedTrack table
-2022-10-18 21:52:08.033238 Done ToListenTrack table
-2022-10-18 21:52:15.993996 Done WatchList table
-2022-10-18 21:52:37.412091 Done FavoriteTrack table
-2022-10-18 21:52:58.426733 Done LikedTrack table
-2022-10-18 21:53:13.069184 Done EverynoiseGenre table
-2022-10-18 21:56:26.627776 msg - _import.py - import_main load page --> import.html page loaded.
-2022-10-18 21:56:30.816562 msg - _import.py - import_main load data --> button load access table pressed :E:\docs\python projects\SpotifyWebAppV3.0\test_database.db.
-2022-10-18 21:57:06.090554 Done ListenedTrack table
-2022-10-18 21:57:13.657192 Done ToListenTrack table
-2022-10-18 21:57:21.988762 Done WatchList table
-2022-10-18 21:57:42.648539 Done FavoriteTrack table
-2022-10-18 21:58:00.307533 Done LikedTrack table
-2022-10-18 21:58:14.885702 Done EverynoiseGenre table
-2022-10-18 21:58:24.109616 Done ScrapedTracks table
-=======
-2022-10-16 23:44:57.001235 msg - _import.py - import_main load data --> button load access table pressed :E:\docs\phyton projects\SpotifyWebAppV1.1\website\database.db.
-2022-10-16 23:44:57.002238 err - _import.py - import_main load data 100 --> <class 'sqlite3.OperationalError'> - ('no such table: everynoise_genre',) - no such table: everynoise_genre
-2022-10-16 23:44:57.003238 TRACEBACK --> Traceback (most recent call last):
-  File "E:\docs\python projects\SpotifyWebAppV3.0\spotr\_import.py", line 79, in import_main
-    copyTableRowToTableRow(row, "everynoise_genre")
-  File "E:\docs\python projects\SpotifyWebAppV3.0\spotr\_import.py", line 104, in copyTableRowToTableRow
-    get_db().execute('INSERT INTO ' + input_tableName +  ' (genre, link) VALUES (?,?)',(input_row[0], input_row[1]))
-sqlite3.OperationalError: no such table: everynoise_genre
-
-2022-10-16 23:45:41.457071 msg - _import.py - import_main load data --> button load access table pressed :E:\docs\phyton projects\SpotifyWebAppV1.1\website\database.db.
->>>>>>> 5a204ae5f5d0a3cef3e99e8dd9a70619111ac3ae
+2022-10-19 22:50:23.492763 msg - autosearch.py - syncToAnalyzeTracks()  --> Started
+2022-10-19 22:50:23.493763 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4wC748pDf0gHnJRFyzb4l9.
+2022-10-19 22:50:24.053837 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 1 tracks from playlist that contains 1 tracks.

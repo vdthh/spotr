@@ -57,7 +57,7 @@ def create_app():
         app.gv_socketio = gv_socketio
 
         #register blueprint(s)
-        from . import watchlist, home, database, search, everynoise, discover, create, _import   #blueprints
+        from . import watchlist, home, database, search, everynoise, discover, create, _import, autosearch   #blueprints
 
         app.register_blueprint(watchlist.bp_watchlist)
         app.register_blueprint(home.bp_home)
@@ -67,6 +67,7 @@ def create_app():
         app.register_blueprint(discover.bp_discover)
         app.register_blueprint(create.bp_create)
         app.register_blueprint(_import.bp_import)
+        app.register_blueprint(autosearch.bp_autosearch)
 
     return app
 ########################################################################################

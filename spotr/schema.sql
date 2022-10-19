@@ -94,9 +94,10 @@ CREATE TABLE ScrapedTracks(
 CREATE TABLE ToAnalyzeTracks(   --these tracks are used to perform automated playlists search jobs etc. 
     id TEXT PRIMARY KEY,
     album TEXT,
-    artists TEXT,
+    artists TEXT,       --list of {"artist": , "artistid": }
     title TEXT,
     href TEXT,
     date_added TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     times_searched INTEGER
+    --('INSERT INTO ToAnalyzeTracks (id, album, artists, title, href, times_searched) VALUES (?,?,?,?,?,?,?)',(...,...,...,)))
 );

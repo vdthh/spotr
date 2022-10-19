@@ -71,7 +71,7 @@ gv_total                   = 0
 @bp_watchlist.route("/", methods=["GET","POST"])
 def watchlist_main():
     '''--> main routine'''
-    '''--> initialize gloval variables'''
+    '''--> initialize global variables'''
     global gv_artistList        
     global gv_playlistList     
     global gv_watchlistItems    
