@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %} Create
+
+{% endblock %}
+
+{% block content %}
+<div class="container-sm border">
+
+  <h4>Create playlist</h4>
+  <br>
+
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="nav-database-tab" data-bs-toggle="tab" data-bs-target="#nav-database" type="button" role="tab" aria-controls="nav-database" aria-selected="true">Database</button>
+      <button class="nav-link" id="nav-playlistid-tab" data-bs-toggle="tab" data-bs-target="#nav-playlistid" type="button" role="tab" aria-controls="nav-playlistid" aria-selected="false">Playlist ID</button>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-database" role="tabpanel" aria-labelledby="nav-database-tab">
+        {% if database_total %}
+            <p>Create playlist from 'ToListen' database tracks (total {{ database_total }} in database)</p>
+        {% else %}
+            <p>Create playlist from 'ToListen' database tracks.</p>
+        {% endif %}
+        
+        <form method="post" required>
+          <div class="mb-3">
+              <label for="inputtotal" class="form-label">Number of tracks in playlist to create</label>
+              <input type="number" class="form-control" id="inputtotal" name="input_total" required>
+          </div>     
+          <div class="mb-3">
+              <label for="inputname" class="form-label">Playlist name</label>
+              <input type="text" class="form-control" id="inputname" value="{{ suggestedPlaylistName }}" placeholder="{{ suggestedPlaylistName }}" name="input_name" required>
+          </div>
+          <div class="mb-3">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="true" id="check_move_to_listened_db" name="moveToListeneddb" checked>
+              <label class="form-check-label" for="check_move_to_db">
+                Move tracks to listened db
+              </label>
+            </div>
+         </div>
+          <button type="submit" name="frm_create_playlist_from_db" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+    <div class="tab-pane fade" id="nav-playlistid" role="tabpanel" aria-labelledby="nav-playlistid-tab">
+        <p>Create playlist from a playlist ID</p>
+        <form method="post" required>
+          <div class="mb-3">
+              <label for="input_playlist_id" class="form-label">ID of playlist</label>
+              <input type="text" class="form-control" id="input_playlist_id" name="input_playlistid" required>
+          </div>     
+          <div class="mb-3">
+              <label for="inputname" class="form-label">Playlist name</label>
+              <input type="text" class="form-control" id="inputname" name="input_name" required>
+          </div>
+          <div class="mb-3">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="true" id="check_save_to_db" name="saveTodb" checked>
+              <label class="form-check-label" for="check_save_to_db">
+                Save tracks to listened db
+              </label>
+            </div>
+         </div>
+          <button type="submit" name="frm_create_playlist_from_id" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+
+  </div>
+
+  <br>
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+label,p, th, td, h2, h1, h3, h4, div{
+    color: white !important;  
+}
+
+th, td, p{
+    font-size:small
+}

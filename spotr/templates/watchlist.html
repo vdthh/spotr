@@ -1,0 +1,325 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    Watchlist
+{% endblock %}
+
+<br>
+
+{% block content %}
+
+
+        <!-- socketio interface -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
+        <script>
+            socket = io();
+            socket.connect('http://' + document.domain + ':' + location.port + '/watchlist');
+            // socket.connect('http://' + document.domain + ':' + location.port);
+            // socket.connect('http://127.0.0.1:5000');
+
+            socket.on('updateStatus',function(){
+                console.log('HEY');
+            })
+
+            socket.on('connect',function(){
+                console.log('CONNECT');
+                socket.emit("done")
+            })
+
+            socket.on('message',function(msg){
+              console.log("MESSAGE");
+              // console.log("MESSAGE + " + msg);
+            })
+        </script>
+        <!--  -->
+
+
+<div class="container overflow-hidden">
+  <!-- WATCHLIST CONTENT SECTION -->
+  <div class="row mb-5">
+    <div class="col">
+      
+    </div>
+    <div class="col-5 text-center">
+      <h3>Watchlist items</h3>
+    </div>
+    <div class="col">
+      
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col">   
+
+    </div>
+    <div class="col-5 text-center">
+      <a class="btn btn-primary" href="/watchlist/checkForNewTracks" role="button">Check watchlist items for new tracks</a>
+    </div>
+    <div class="col">   
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <!-- Show in endless scroll window -->
+      <div style="height:800px;overflow:auto;">
+        <div class="container-sm">
+          {% for item in watchlistItems %} <!--  list of {"id:" , "type": , "name": , "image": , "dateAdded": , "dateLastCheck": , "noOfNewItems": , "listOfNewItemsID": } -->           
+            {% if (loop.index0 % 4) == 0 %}
+              <!-- 4 times passed , start new row (4 items displayed per row)-->
+              {% if loop.index0 == 0 %}
+                <!-- First pass, html code a bit different here -->
+                <div class="row">
+                  <div class="col-3">
+                    <div class="row text-center">
+                    <a href="{{ item['href'] }}" target="_blank"><h5><u>{{ item["type"] }}: {{ item["name"] }}</u></h5></a>
+                      <!-- <h6>New tracks <span class="badge bg-success">{{ item["noOfNewItems"] }}</span></h6>        -->
+                    </div>
+                    <div class="row justify-content-center">
+                      <a class="btn btn-primary btn-sm mb-2 w-50" href="/watchlist?delItem={{ item['id'] }}" role="button">Delete</a>
+                    </div>
+                    <div class="row justify-content-center">
+                      {% if item['image']|length > 0 %} 
+                        <img src="{{ item['image'] }}" class="img-thumbnail rounded mx-auto d-block" style="width:100px;height:100px" alt="image_{{  item['name'] }}">
+                      {% else %}
+                        <div style="width:100px;height:100px;border:1px solid #000;"></div>
+                      {% endif %}
+                    </div>
+                    <div class="row text-center">
+                      <p><em>Added: {{ item["dateAdded"] }}</em></p>
+                      <!-- <p><em>Last check: {{ item["dateLastCheck"] }}</em></p> -->
+                    </div>
+                  </div>
+
+              {% else %}
+                  <!-- Not first pass, close previous row -->
+                </div>
+                  <div class="row">
+                    <div class="col-3">
+                      <div class="row text-center">
+                        <a href="{{ item['href'] }}" target="_blank"><h5><u>{{ item["type"] }}: {{ item["name"] }}</u></h5></a>                    
+                        <!-- <h6>New tracks <span class="badge bg-success">{{ item["noOfNewItems"] }}</span></h6> -->
+                      </div>
+                      <div class="row justify-content-center">
+                        <a class="btn btn-primary btn-sm mb-2 w-50" href="/watchlist?delItem={{ item['id'] }}" role="button">Delete</a>
+                      </div>
+                      <div class="row justify-content-center">
+                        {% if item['image']|length > 0 %}
+                          <img src="{{ item['image'] }}" class="img-thumbnail rounded mx-auto d-block" style="width:100px;height:100px" alt="image_{{  item['name'] }}">
+                        {% else %}
+                          <div style="width:100px;height:100px;border:1px solid #000;"></div>
+                        {% endif %}
+                      </div>
+                      <div class="row text-center">
+                        <p><em>Added: {{ item["dateAdded"] }}</em></p>
+                        <!-- <p><em>Last check: {{ item["dateLastCheck"] }}</em></p> -->
+                      </div>
+                    </div>
+              {% endif %}
+
+            {% else %}
+            <!-- In between 4 passes, place items in one row next to each other -->
+                    <div class="col-3">
+                      <div class="row text-center">
+                        <a href="{{ item['href'] }}" target="_blank"><h5><u>{{ item["type"] }}: {{ item["name"] }}</u></h5></a>
+                        <!-- <h6>New tracks <span class="badge bg-success">{{ item["noOfNewItems"] }}</span></h6> -->
+                      </div>
+                      <div class="row justify-content-center">
+                        <a class="btn btn-primary btn-sm mb-2 w-50" href="/watchlist?delItem={{ item['id'] }}" role="button">Delete</a>             
+                      </div>
+                      <div class="row justify-content-center">
+                        {% if item['image']|length > 0 %}
+                          <img src="{{ item['image'] }}" class="img-thumbnail rounded mx-auto d-block" style="width:100px;height:100px" alt="image_{{  item['name'] }}">
+                        {% else %}
+                          <div style="width:100px;height:100px;border:1px solid #000;"></div>
+                        {% endif %}
+                      </div>
+                      <div class="row text-center">
+                        <p><em>Added: {{ item["dateAdded"] }}</em></p>
+                        <!-- <p><em>Last check: {{ item["dateLastCheck"] }}</em></p> -->
+                      </div>
+                    </div>
+            {% endif %}
+
+            {% if loop.last %}
+              <!-- check for last loop ) close row in that case-->
+                  </div>
+            {% endif %}
+
+          {% endfor %}
+          
+        </div>  <!-- #container-sm -->
+      </div>  <!-- #autoscroll watchlist items -->
+    </div>  <!-- #col -->
+  </div>  <!-- #row -->
+
+  <!-- SEARCH ITEMS SECTION -->
+  <div class="row">
+    <div class="col">
+      <h5>Search items</h5>
+
+      <!-- nav bar buttons -->
+      <ul class="nav nav-tabs" id="tabcol" role="tablist">
+          <li class="nav-item" role="role-artist">
+            <button class="nav-link {{ showArtistBtn }}" id="artist-tab" data-bs-toggle="tab" data-bs-target="#artist" type="button" role="tab" aria-controls="artist" aria-selected="true">Artist</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link {{ showPlaylistBtn }}" id="playlist-tab" data-bs-toggle="tab" data-bs-target="#playlist" type="button" role="tab" aria-controls="playlist" aria-selected="false">Playlist</button>
+          </li>
+          <li class=-nav-item role="presentation">
+            <button class="nav-link {{ showUserBtn }}" id="user-tab" data-bs-toggle="tab" data-bs-target="#user" type="button" role="tab" aria-controls="user" aria-selected="false">User (not working)</button>
+          </li>
+      </ul>
+
+      <!-- nav tab content -->
+      <div class="tab-content" id="tabcolcontent">
+
+        <!-- Search artist tab -->
+        <div class="tab-pane fade {{ showArtistTab }}" id="artist" role="tabpanel" aria-labelledby="artist-tab">
+
+          <br>
+
+          <h6>Search for artist name</h6>
+          <form method="post" required>
+            <div class="input-group mb-1">
+              <button class="btn btn-outline-secondary bg-dark" type="submit" id="searchartist_btn" name="artist_search">Search</button>
+              <input type="text" class="form-control" id="searchartistinput" name="searchartistinput" placeholder="Enter artist name" required>
+            </div>                                 
+          </form>
+
+          <br>
+          <!-- Show artist search results in endless scroll window -->
+          <div style="height:800px;overflow:auto;">
+            {% if artistList %}
+              {% if artistList|length != 0 %}
+                <h6>Searched for '{{ searchTerm }}':</h6>
+                <table class="table table-striped table-hover table-sm table-responsive">
+                  <!-- artist search result table -->
+                  <tr>
+                    <th>Add</th>
+                    <th>Img</th>
+                    <th>Name</th>
+                    <th>ID</th>
+                  </tr>
+                  {% for item in artistList %}    <!-- {artist: artist, id: id, image: image} -->
+                    <tr>
+                      <td><a class="btn btn-primary" href="/watchlist?addArtist={{ item.id }}&artistName={{ item.artist }}" role="button">+</a></td>
+                      {% if item.image != "" %}
+                        <td><img src="{{ item.image }}" class="img-thumbnail" style="width:100px;height:100px" alt="image_{{ item.artist }}"></td>
+                      {% else %}
+                        <td><p style="font-style: italic !important;">no pic</p></td>
+                      {% endif %}
+                      <td>{{ item.artist }}</td>
+                      <td>{{ item.id }}</td>
+                    </tr>
+                  {% endfor %}
+                </table>
+              {% endif %}                  
+
+              <br>
+              <!-- Search artist tab - pagination -->
+              <div class="div_search_pagination">
+                {% if artistList|length > 1 and tot is defined %}
+                  <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                      {% if tot > lim %}
+                          <!-- prev -->
+                        {% if offs !=0 %}
+                          <li class="page-item"><a class="page-link" href="/watchList?offs={{ offs - lim }}&lim={{ lim }}&searchTerm={{ searchTerm }}&searchType={{ searchType }}">Previous</a></li>
+                        {% endif %}
+    
+                        <!-- page numbers -->
+                        {% if offs == 0 %}
+                          <li class="page-item active"><a class="page-link" href="/watchlist?offs={{ offs }}&lim={{ lim }}&searchTerm={{ searchTerm }}&searchType={{ searchType }}">1</a></li>
+                          {% if tot > lim %}
+                            <li class="page-item"><a class="page-link" href="/watchlist?offs={{ lim }}&lim={{ lim }}&searchTerm={{ searchTerm }}&searchType={{ searchType }}">2</a></li>
+                          {% endif %}
+                          {% if tot > 2 * lim %}
+                            <li class="page-item"><a class="page-link" href="/watchlist?offs={{ 2*lim }}&lim={{ lim }}&searchTerm={{ searchTerm }}&searchType={{ searchType }}">3</a></li>
+                          {% endif %}
+                        {% else %}
+                          <li class="page-item"><a class="page-link" href="/watchlist?offs={{ offs - lim }}&lim={{ lim }}&searchTerm={{ searchTerm }}&searchType={{ searchType }}">{{ offs // lim }}</a></li>
+                          <li class="page-item active"><a class="page-link" href="/watchlist?offs={{ offs }}&lim={{ lim }}&searchTerm={{ searchTerm }}&searchType={{ searchType }}">{{ (offs + lim) // lim }}</a></li>
+                          {% if (offs + (2 * lim)) <= tot %}
+                            <li class="page-item"><a class="page-link" href="/watchlist?offs={{ offs + lim }}&lim={{ lim }}&searchTerm={{ searchTerm }}&searchType={{ searchType }}">{{ (offs + (2*lim)) // lim }}</a></li>
+                          {% endif %}
+                        {% endif %}
+    
+                        <!-- next -->
+                        {% if (offs + lim) <= tot %}
+                          <li class="page-item"><a class="page-link" href="/watchlist?offs={{ offs + lim }}&lim={{ lim }}&searchTerm={{ searchTerm }}&searchType={{ searchType }}">Next</a></li>
+                        {% endif %}
+                      {% endif %}
+                    </ul>
+                  </nav>
+                  <p class="text-left mt-3">
+                      {% if tot % lim == 0 %}
+                          Showing page {{ (offs // lim) + 1 }} of {{ tot // lim }} - total {{ tot }} results for {{ searchType }}s '{{ searchTerm }}'
+                      {% else %}
+                          Showing page {{ (offs // lim) + 1 }} of {{ (tot // lim) + 1 }} - total {{ tot }} results for {{ searchType }}s '{{ searchTerm }}'
+                      {% endif %}
+                  </p>
+                {% endif %}
+              </div>   <!-- #pagination -->
+            {% endif %}             
+          </div>  <!-- #autoscroll artist-->
+        </div>   <!-- #tab-pane fade artist-->
+
+        <!-- Search playlist tab -->
+        <div class="tab-pane fade {{ showPlaylistTab }}" id="playlist" role="tabpanel" aria-labelledby="playlist-tab">
+          <br>
+          <h6>Search for playlists</h6>
+          <form method="post" required>
+            <div class="input-group mb-1">
+              <button class="btn btn-outline-secondary bg-dark" type="submit" id="searchplaylist_btn" name="playlist_search">Search</button>
+              <input type="text" class="form-control" id="searchplaylistinput" name="searchplaylistinput" placeholder="Enter keywords" required>
+            </div>                                 
+          </form>
+
+          <div style="height:800px;overflow:auto;">
+            {% if playlistList %}
+              {% if playlistList|length != 0 %}
+                <h6>Searched for '{{ searchTerm }}':</h6>
+                <table class="table table-striped table-hover table-sm table-responsive">
+                  <!-- playlist search result table -->
+                  <tr>
+                    <th></th> 
+                    <th></th>
+                    <th>Data</th>
+                    
+                    
+                  </tr>
+                  {% for item in playlistList %}    <!-- {"name": , "id": , "description": , "image": , "owner": , "totaltracks": } -->
+                    <tr>      
+                      <td><a class="btn btn-primary" href="/watchlist?addPlaylist={{ item.id }}&playlistName={{ item.name }}" role="button">+</a></td>
+                      {% if item.image != "" %}
+                        <td><img src="{{ item.image }}" class="img-thumbnail" style="width:100px;height:100px" alt="image_{{ item.name }}"></td>
+                      {% else %}
+                        <td><p style="font-style: italic !important;">no pic</p></td>
+                      {% endif %}
+                      <td>
+                        <!-- https://social.msdn.microsoft.com/Forums/en-US/f99bcfc1-f004-4740-9810-fe0a1a528b34/force-a-breakline-in-a-html-table-lttdgt?forum=asphtmlcssjavascript -->
+                        Title: {{ item.name }} <br/>   
+                        ID: {{ item.id }} <br/>
+                        # tracks: {{ item.totaltracks }} <br/>
+                        description: {{ item.description }}                      
+                      </td>                   
+                    </tr>
+                  {% endfor %}
+                </table>
+              {% endif %}
+            {% endif %}
+
+          </div>  <!-- #autoscroll playlist-->
+
+
+
+
+        </div>  <!-- #tab-pane fade playlist-->
+      </div>   <!-- #tab-content -->
+    </div>  <!-- #col -->
+  </div>  <!-- #row -->
+</div>  <!-- #container -->
+
+{% endblock %}

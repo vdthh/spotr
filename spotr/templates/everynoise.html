@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %} Everynoise
+
+{% endblock %}
+
+<br>
+
+{% block content %}
+<div class=div_everynoise_main>
+  <form action="" method="post" required>
+    <div class="form-group">
+      <div class="input-group mb-3">
+        <button class="btn btn-outline-secondary bg-dark" type="submit" id="searcheverynoise_btn" name="submit_everynoise_search">Search</button>
+        <input type="text" class="form-control" id="search_everynoise_input" name="search_everynoiseinput" placeholder="Enter artist name" required>
+      </div>
+    </div>
+  </form>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+        {% if searchResultList|length >= 1 %}
+          <h5>Search results</h5>
+            <p class="text-left mt-3">
+              {{ searchResultList|length }} genres found for '{{ searchedArtistName }}'
+            </p>
+
+            <table class="table table-striped table-hover table-sm table-responsive">
+              <tr>
+                <th>Genre</th>
+                <th>Link</th>
+                <th></th>
+              </tr>
+              {% for item in searchResultList %} 
+                {% for k, v in item.items() %}
+                <tr>
+                    <td>{{ k }}</td>
+                    <td><a href="{{ v }}" target="_blank">{{ k }}</a></td>
+                    <td><a class="btn btn-light btn-sm" href="/everynoise?genre={{ k }}&link={{ v }}" role="button">Add</a></td>
+                </tr>
+                {% endfor %}
+              {% endfor %}
+            </table>
+        {% endif %}
+     </div>
+  
+     <div class="col">
+       <h5>List of saved genres</h5>
+       <ul class="list-group">
+
+        {% for item in savedList %}   <!-- #list of dict: {"genre":, "link": } -->
+
+          <li class="list-group-item">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading{{ loop.index }}">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}" aria-expanded="false" aria-controls="collapse{{ loop.index }}">
+                  {{ item.genre }}
+                </button>
+                
+              </h2>
+              <div id="collapse{{ loop.index }}" class="accordion-collapse collapse bg-dark" aria-labelledby="heading{{ loop.index }}" data-bs-parent="#accordionSavedGenre">
+                <div class="accordion-body">
+                  
+                  <div class="container">
+                    <div class="row">
+                      <a class="btn btn-danger btn-sm" href="/everynoise?toDelete={{ item.genre }}" role="button">Delete genre</a>
+                      <br>
+                    </div>
+                      {% for item2 in playlists %}    <!-- list of dict: {"name":, "description":, "genre":, "link":} -->
+                        {% if item.genre == item2.genre %}
+
+                        <div class="row">
+                          <!-- <a class="btn btn-primary btn-sm" href="/everynoise?toDelete={{ item.genre }}" role="button">Generate '{{ key|e }}' playlist</a>   -->
+                          <a href="/everynoise?linkToPlaylist={{ item2.link|e }}&nameOfPlaylist={{ item2.name|e }}&genreName={{ item2.genre|e }}">Generate '{{ item2.name|e }}' playlist</a>   
+                          <a class="btn btn-primary btn-sm" href="/everynoise?linkToPlaylist_addToWatchlist={{ item2.link|e }}&nameOfPlaylist={{ item2.name|e }}&genreName={{ item2.genre|e }}" role="button">Add to watchlist</a>              
+                        </div> 
+
+                        {% endif %}
+                      {% endfor %}
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+        {% endfor %}
+      </ul>
+     </div>
+    </div>
+  </div>
+{% endblock %}

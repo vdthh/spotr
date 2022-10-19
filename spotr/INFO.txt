@@ -1,0 +1,7 @@
+Om app te runnen vanuit VS code:
+- navigeer naar E:\docs\python projects\SpotifyWebAppV3.0\spotr> in terminal
+- Flask environment instellen: $ENV:FLASK_APP = 'spotr'
+- venv starten: venv\Scripts\activate
+- naar bovenliggende map gaan: cd..
+- E:\docs\python projects\SpotifyWebAppV3.0>
+- flask --app spotr --debug run om te starten

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} Import
+
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h5>Load data from access database</h5>
+                <form action="" method="post" required>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="sourcepath" id="pathselector" value="{{ location }}" required>
+                        <button class="btn btn-outline-secondary bg-dark" type="submit" name="frm_load_access_file">Load tables from access file</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% if result_message %}
+            <div class="row">
+                <div class="col">
+                    <p style="font-size:15px; font-style:italic; color:aqua !important">
+                        {{ result_message }}
+                    </p>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+
+{% block title %} Discover
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container-sm border">
+
+    <h4>Discover playlists</h4>
+    <p style="font-style:italic">Search for playlists containing tracks selected from:</p>
+    <br>
+  
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link {{showFavButton}}" id="nav-fromFavorite-tab" data-bs-toggle="tab" data-bs-target="#nav-fromFav" type="button" role="tab" aria-controls="nav-fromFav" aria-selected="true">Favorite tracks</button>
+                    <button class="nav-link {{showSearchButton}}" id="nav-fromSearch-tab" data-bs-toggle="tab" data-bs-target="#nav-fromSearch" type="button" role="tab" aria-controls="nav-fromSearch" aria-selected="false">Search</button>
+                </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade {{showFavTab}}" id="nav-fromFav" role="tabpanel" aria-labelledby="nav-fromFavorite-tab">
+                        <div style="height:400px;overflow:auto;">
+                            {% if favList %}
+                                {% if favList|length != 0 %}                                                                                                     
+                                    <table class="table table-striped table-hover table-sm table-responsive">
+                                        <tr>
+                                            <!-- column headers -->
+                                            <th></th>
+                                            <th>Artist</th>
+                                            <th>Title</th>
+                                            <th>Album</th>                                          
+                                            <th>Spotify ID</th>
+                                        </tr>
+                                        {% for item in favList %} 
+                                        <!-- actual data -->
+                                            <tr>
+                                                <td>
+                                                    <a class="btn btn-primary" href="/discover?addFavTrackID={{ item.spotify_id }}" role="button">+</a>
+                                                </td>                                               
+                                                <td>{{ item.artists }} </td>
+                                                <td> <a href="{{ item.href }}" target="_blank">{{ item.title }}</a>  </td>
+                                                <td>{{ item.album }}</td>
+                                                <td>{{ item.spotify_id }} </td>          
+                                            </tr>
+                                        {% endfor %}
+                                    </table>                                
+                                {% endif %}
+                            {% endif %} 
+                        </div>
+                    </div>
+               
+                    <div class="tab-pane fade {{showSearchTab}}" id="nav-fromSearch" role="tabpanel" aria-labelledby="nav-fromSearch-tab">
+                        <!-- <h5>Search for playlists containing selected searched tracks</h5> -->
+                        <br>
+                        <form action="" method="post" required>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary bg-dark" type="submit" id="searchinput_btn" name="submit_search">Search</button>
+                                <input type="text" class="form-control" id="searchinput" name="searchinput" placeholder="Enter track to search" required>
+                            </div>                                 
+                        </form>
+                        <div style="height:400px;overflow:auto;">
+                            {% if searchList %}
+                                {% if searchList|length != 0 %}
+                                    
+                                    <table class="table table-striped table-hover table-sm table-responsive">
+                                        <tr>
+                                            <th></th>
+                                            <th>Artist</th>
+                                            <th>Title</th>
+                                            <th>Album</th>
+                                            <th>Spotify ID</th>
+                                        </tr>
+                                        {% for item in searchList %}
+                                        <tr>
+                                            <td>
+                                                <a class="btn btn-primary" href="/discover?addSearchedTrackID={{ item.id }}" role="button">+</a>
+                                            </td>
+                                            <td>{{ item.artist }}</td>
+                                            <td>{{ item.title }}</td>
+                                            <td>{{ item.album }}</td>
+                                            <td>{{ item.id }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <h4>Search settings</h4>
+                <br>
+                <!-- Show tracks in jobList, together with a delete button to delete tracks from jobList -->
+                <!-- Joblist has items in following structure {artist:artist, title:title, id:id} -->
+                <p style="font-style:italic">Search for playlists containing ({{ jobList|length }} track(s)):</p>
+                <div style="height:300px;overflow:auto;">
+                    <!-- Maybe this representation of the joblist tracks can be done prettier in a table? 20211125 -->
+                    {% if jobList %}
+                        {% if jobList|length != 0 %}
+                            <div class="container">
+                                 {% for item in jobList %}  <!-- First pass to add '-' button -->
+                                    <div class="row">
+                                        {% for key, value in item.items() %}                                      
+                                            {% if key == 'id' %}
+                                                <div class="col-md-auto">
+                                                    <a class="btn btn-primary" href="/discover?delTrackFromSearchJob={{ value|e }}" role="button">-</a>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% for key, value in item.items() %}  <!-- Second pass to add artist - title -->                                        
+                                            {% if key != 'id' %}
+                                                <div class="col-md-auto">
+                                                    <p>{{ value|e }}</p>
+                                                </div>
+                                            {% endif %}
+                                    {% endfor %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <br>
+                <form class="form-check" action="" method="post" required>
+                    <!-- <input class="form-check-input" type="checkbox" value="" name="checkboxsavetodb" id="checkbox_savetodb" checked>
+                    <label class="form-check-label" for="checkbox_savetodb">Save found tracks to toListen DB</label>
+                    <br> -->
+                    <label class="form-check-label" for="maxitemsinput">Maximum search results:</label>
+                    <input type="number" class="form-control" id="maxitemsinput" name="maxitemsinput" placeholder="Enter max search results" min="10" max="1000" value ="10" required>
+                    <br>
+                    <button class="btn btn-primary" type="submit" id="searchWithGoogle" name="search_google">Search with Google</button>
+                    <button class="btn btn-primary" type="submit" id="searchWithBing" name="search_bing">Search with Bing</button>
+                </form>
+            </div>
+        </div>
+    </div>
+        <div class="row">
+            <!-- Show playlist search results details -->
+            {% if validPlaylistList %}           
+                {% if validPlaylistList|length != 0 %}
+                    <h4>Search results</h4>
+                    <div class = "col">
+                        <ul>
+                            <li><p style="font-style:italic">Searchterm: {{ searchTerm }}</p></li>
+                            <li><p style="font-style:italic"></p>Maximum results: {{ maxResults }}</p></li>
+                            <li><p style="font-style:italic"></p>Found playlists: {{ foundPlaylists }}</p></li>
+                            <li><p style="font-style:italic"></p>Valid playlists (containing all searched tracks): {{ validPlaylists }}</p></li>
+                            <li><p style="font-style:italic"></p>Total tracks found: {{ noOfFoundTracks }}</p></li>
+                        </ul>
+                    </div>
+                {% endif %}                 
+            {% endif %} 
+        </div>
+
+            <div class="row">
+                <!-- Show found playlists for selected tracks -->
+                <div class = "col">
+                    {% if validPlaylistList %}           
+                        {% if validPlaylistList|length != 0 %}  
+                            <h3>List of found playlists</h3>
+                            <div style="height:400px;overflow:auto;">                                                                                                   
+                                <table class="table table-striped table-hover table-sm table-responsive">
+                                    <tr>
+                                        <!-- column headers -->
+                                        <th>View</th>
+                                        <th>Name</th>
+                                        <th>Tracks</th>
+                                        <th></th>
+                                    </tr>
+                                    {% for item in validPlaylistList %} <!-- {id: id, name: name, imageurl: imageURL, nooftracks=: } -->
+                                        <tr>
+                                            <!-- show playlists -->                                               
+                                            <td>           
+                                            <!-- previtem is id: id, nextitem : imageurl                                -->
+                                            <a class="btn btn-primary" href="/discover?showPlaylistTracks={{ item.id }}" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                                </svg>
+                                            </a>
+                                            </td>   
+                                            <td><a href="https://open.spotify.com/playlist/{{ item.id }}" target="_blank">{{ item.name }}</a></td>
+                                            <td><p>{{ item.nooftracks }}</p></td>
+                                            <td><img src="{{ item.imageurl }}" class="img-thumbnail" style="width:100px;height:100px" alt="image_{{ item.name }}"></td>
+                                        </tr>
+                                    {% endfor %}
+                                </table> 
+                            </div>                               
+                        {% endif %}                 
+                    {% endif %} 
+                </div>
+
+                <!-- Show tracks from playlist - button press -->
+                <div class = "col">
+                    {% if playlistDetails %}
+                        <h4>{{ playlistDetails.tracks|length }} tracks in {{ playlistDetails.playlistName }}</h4>
+                        <p><a class="btn btn-primary" href="/discover?addPlaylistTracksToDB={{ playlistDetails.playlistID }}" role="button">Add tracks to ToListen DB</a></p>
+                        <p><a class="btn btn-primary" href="/discover?copyPlaylist={{ playlistDetails.playlistID }}" role="button">Create copy of playlist</a></p>
+                        <p style="font-style: italic; color:green !important">Green = not in database yet</p>
+                        <p style="font-style: italic; color:red !important">Red = already in toListen/Listened database</p>
+                        <div style="height:400px;overflow:auto;">
+                            {% if playlistDetails.tracks|length != 0 %}                                                                                                     
+                                <table class="table table-striped table-hover table-sm table-responsive">
+                                    <tr>
+                                        <!-- column headers -->
+                                        <th>Artist</th>
+                                        <th>Title</th>
+                                    </tr>
+                                    {% for item in playlistDetails.tracks %} 
+                                        <tr>
+                                            {% if item.inDB %}
+                                                <td><p style="color:red !important">{{ item.artist }}</p></td>   
+                                                <td><p style="color:red !important">{{ item.title }}</p></td>
+                                            {% else %}
+                                                <td><p style="color:green !important">{{ item.artist }}</p></td>   
+                                                <td><p style="color:green !important">{{ item.title }}</p></td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                </table>                                
+                            {% endif %}
+                        </div>
+                    {% endif %}                    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
