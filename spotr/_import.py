@@ -45,11 +45,6 @@ bp_import = Blueprint('_import', __name__, url_prefix="/import")
 ########################################################################################
 gv_suggestedPlaylistName        = "sport_create_playlist_" + str(datetime.now().year)  + str(datetime.now().month) + str(datetime.now().day) + "_" + str(datetime.now().hour) + str(datetime.now().minute) + "_"
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 5a204ae5f5d0a3cef3e99e8dd9a70619111ac3ae
 ########################################################################################
 
 
@@ -93,7 +88,6 @@ def import_main():
             con         = sqlite3.connect(locationPath)
             cur         = con.cursor()
 
-<<<<<<< HEAD
 
             '''--> ListenedTrack table'''
             for source_row in cur.execute("SELECT * FROM listened_track;"):        #result is tupple --> ('5S8YHkYgbbdvjXDlMkePyI', '5S8YHkYgbbdvjXDlMkePyI', 'Strange Secrets Worth Knowing', 'Improvement Movement', 'Strange Secrets Worth Knowing', '5S8YHkYgbbdvjXDlMkePyI', 9, 'No', '2022-04-15 22:36:20.862484', 0)
@@ -178,11 +172,6 @@ def import_main():
                 get_db().commit()
 
             logAction("msg - _import.py - import_main load data 70 --> Done ScrapedTracks table")
-=======
-            for row in cur.execute("SELECT * FROM everynoise_genre;"):
-                copyTableRowToTableRow(row, "EverynoiseGenre")
-                # print(row)
->>>>>>> 5a204ae5f5d0a3cef3e99e8dd9a70619111ac3ae
 
 
             '''--> close connection'''
@@ -190,10 +179,7 @@ def import_main():
 
 
             '''--> return html'''
-<<<<<<< HEAD
             flash("Finished importing data from " + locationPath + "!", category="message")
-=======
->>>>>>> 5a204ae5f5d0a3cef3e99e8dd9a70619111ac3ae
             return render_template("import.html")
     
         except Exception as ex:
@@ -201,7 +187,6 @@ def import_main():
             logAction("TRACEBACK --> " + traceback.format_exc())
             flash("Error loading data from .db file. See log for details.", category="error")
 
-<<<<<<< HEAD
             
             '''--> close connection'''
             con.close()
@@ -209,20 +194,4 @@ def import_main():
             return render_template("import.html")
 ########################################################################################
 
-=======
-            return render_template("import.html")
-########################################################################################
-
-
-########################################################################################
-######################################## FUNCTIONS #####################################
-########################################################################################
-def copyTableRowToTableRow(input_row, input_tableName):
-    '''--> copy columns from input table to output table'''
-    get_db().execute('INSERT INTO ' + input_tableName +  ' (genre, link) VALUES (?,?)',(input_row[0], input_row[1]))
-    get_db().commit()
-
-
-########################################################################################
->>>>>>> 5a204ae5f5d0a3cef3e99e8dd9a70619111ac3ae
         
