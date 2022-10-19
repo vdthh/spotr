@@ -1,24 +1,17 @@
 ########################################################################################
 ###################################### import.py #######################################
 ################ Handles all functions related to the import section ###################
-<<<<<<< HEAD
 ########################### VERY basic functionality here!!  ###########################
 # Always start after 'flask init-db' command as no unique constraint-check id done here! 
 # So this can only be ran once after a new sqlite db has been initialized ##############
 ########## This only works when columns of source/target tables are identical ##########
-=======
->>>>>>> 5a204ae5f5d0a3cef3e99e8dd9a70619111ac3ae
 ########################################################################################
 
 
 ########################################################################################
 ######################################### IMPORTS ######################################
 ########################################################################################
-<<<<<<< HEAD
 # from lib2to3.pgen2.pgen import DFAState
-=======
-from lib2to3.pgen2.pgen import DFAState
->>>>>>> 5a204ae5f5d0a3cef3e99e8dd9a70619111ac3ae
 from flask import Blueprint, render_template, redirect, request, flash, current_app
 from .db import get_db
 import sqlite3
@@ -26,10 +19,7 @@ from .common import logAction
 import traceback
 import os
 from datetime import datetime
-<<<<<<< HEAD
 import json
-=======
->>>>>>> 5a204ae5f5d0a3cef3e99e8dd9a70619111ac3ae
 ########################################################################################
 
 
