@@ -57,7 +57,7 @@ def waitForGivenTimeIns(secondsMin, secondsMax):
 ########################################################################################
 ######################################## FUNCTIONS #####################################
 def returnSearchResults(apiResponse, type):
-    '''--> return list of dicts in desired format, starting from a raw json response'''
+    '''--> return list of dicts in desired format, starting from a raw Spotify json response'''
     resList = []
     for item in apiResponse[type + 's']['items']:
         if type  == 'track':
@@ -436,7 +436,14 @@ def checkIfTracksInPlaylist(tracksToCheck, listToCheck, listInDetail):
                 if ((track_info["artists"] == list_track["artists"]) and (track_info["title"] == list_track["title"])) or (trackId == list_track["id"]):
                     #track appears in listToCheck
                     resultCnt = resultCnt + 1
-
+    else:
+        #only id check
+        for trackToCheck in tracksToCheck:
+            if trackToCheck in listToCheck:
+                pass
+            else:
+                return False 
+        return True
     
     '''--> final check'''
     if resultCnt == len(tracksToCheck):
@@ -1455,9 +1462,6 @@ def checkGoogleResponse(input_json):
             toReturnResult      = True
             toReturn            = {"result": toReturnResult, "message": toReturnMessage}
             return toReturn
-
-
-
 
 ########################################################################################
 

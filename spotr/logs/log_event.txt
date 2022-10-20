@@ -1,4 +1,96 @@
 
-2022-10-19 22:50:23.492763 msg - autosearch.py - syncToAnalyzeTracks()  --> Started
-2022-10-19 22:50:23.493763 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4wC748pDf0gHnJRFyzb4l9.
-2022-10-19 22:50:24.053837 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 1 tracks from playlist that contains 1 tracks.
+2022-10-20 21:52:24.308382 msg - autosearch.py - syncToAnalyzeTracks()  --> Started
+2022-10-20 21:52:24.309378 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4wC748pDf0gHnJRFyzb4l9.
+2022-10-20 21:52:24.931660 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 2 tracks from playlist that contains 2 tracks.
+2022-10-20 21:52:24.932659 msg - autosearch.py - syncToAnalyzeTracks() 70 --> start google search job for searchterm: Real Estate Crime Real Estate It's Real, i1=0, i2=1, item1_timessearched=1.
+2022-10-20 21:52:25.417884 msg - common.py - extractItemsFromGoogleResponse20 --> from google search response: searchTerm=Real Estate Crime Real Estate It's Real, totalResults=1640, counted items=10, start index=1.
+2022-10-20 21:52:25.417884 msg - common.py - extractItemsFromGoogleResponse30 --> Starting search job for Real Estate Crime Real Estate It's Real, max 15 results
+2022-10-20 21:52:27.462416 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1E4Bl8cN3fVy7i.
+2022-10-20 21:52:28.427711 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 50 tracks from playlist that contains 50 tracks.
+2022-10-20 21:52:28.428709 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4lkion0cIckUSnmcn8H0CO.
+2022-10-20 21:52:30.119125 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 154 tracks from playlist that contains 154 tracks.
+2022-10-20 21:52:30.120122 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0uyOhsIFGSASncg4p6j6J9.
+2022-10-20 21:52:32.103078 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 216 tracks from playlist that contains 216 tracks.
+2022-10-20 21:52:32.104077 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 23TPP4YRkD3hUtO1gQyLUr.
+2022-10-20 21:52:32.723924 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 69 tracks from playlist that contains 69 tracks.
+2022-10-20 21:52:32.724919 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1CyNaABE0mkGG6.
+2022-10-20 21:52:33.923680 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 101 tracks from playlist that contains 101 tracks.
+2022-10-20 21:52:33.923680 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0KGH3YuIo7xH5oQJ11hL2g.
+2022-10-20 21:52:35.115865 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 100 tracks from playlist that contains 100 tracks.
+2022-10-20 21:52:35.117865 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0upKw1mck2K1qWEnny1Gwm.
+2022-10-20 21:52:35.819297 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 90 tracks from playlist that contains 90 tracks.
+2022-10-20 21:52:35.821521 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 005woyBJwwXN7kpR4otxkN.
+2022-10-20 21:52:37.971893 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 247 tracks from playlist that contains 247 tracks.
+2022-10-20 21:52:37.973597 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 21lO8DJJHCuQGwDOiiFP05.
+2022-10-20 21:52:38.768327 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 99 tracks from playlist that contains 99 tracks.
+2022-10-20 21:52:38.769327 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0iBfuXFTGZxMSruhnMP7XY.
+2022-10-20 21:52:40.694701 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 256 tracks from playlist that contains 256 tracks.
+2022-10-20 21:52:40.695705 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0LYQO2g0bbJNbOifXmYszF.
+2022-10-20 21:52:41.962790 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 155 tracks from playlist that contains 155 tracks.
+2022-10-20 21:52:41.963788 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 2rIFNzhy7bLM2qLTV67vrA.
+2022-10-20 21:52:47.509213 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 728 tracks from playlist that contains 728 tracks.
+2022-10-20 21:52:47.510213 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 1l1zf9xDrqMaKsIaiVJwSa.
+2022-10-20 21:52:50.272736 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 260 tracks from playlist that contains 260 tracks.
+2022-10-20 21:52:50.273987 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4oFuR0Pe7AqZFBdO51L3gG.
+2022-10-20 21:52:51.526811 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 133 tracks from playlist that contains 133 tracks.
+2022-10-20 21:52:51.526811 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 1GYGmr1cXE3ypugbKqFA25.
+2022-10-20 21:52:53.430786 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 171 tracks from playlist that contains 171 tracks.
+2022-10-20 21:52:53.431783 msg - autosearch.py - autosearch_main load page --> autosearch.html page loaded.
+2022-10-20 21:54:08.933795 msg - autosearch.py - syncToAnalyzeTracks()  --> Started
+2022-10-20 21:54:08.934793 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4wC748pDf0gHnJRFyzb4l9.
+2022-10-20 21:54:09.483526 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 2 tracks from playlist that contains 2 tracks.
+2022-10-20 21:54:09.484526 msg - autosearch.py - syncToAnalyzeTracks() 70 --> start google search job for searchterm: Real Estate Crime Real Estate It's Real, i1=0, i2=1, item1_timessearched=1.
+2022-10-20 21:54:09.940251 msg - common.py - extractItemsFromGoogleResponse20 --> from google search response: searchTerm=Real Estate Crime Real Estate It's Real, totalResults=1380, counted items=10, start index=1.
+2022-10-20 21:54:09.941250 msg - common.py - extractItemsFromGoogleResponse30 --> Starting search job for Real Estate Crime Real Estate It's Real, max 15 results
+2022-10-20 21:54:12.208036 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1E4Bl8cN3fVy7i.
+2022-10-20 21:54:12.902147 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 50 tracks from playlist that contains 50 tracks.
+2022-10-20 21:54:12.903539 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4lkion0cIckUSnmcn8H0CO.
+2022-10-20 21:54:14.428452 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 154 tracks from playlist that contains 154 tracks.
+2022-10-20 21:54:14.429455 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0uyOhsIFGSASncg4p6j6J9.
+2022-10-20 21:54:16.392576 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 216 tracks from playlist that contains 216 tracks.
+2022-10-20 21:54:16.393576 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 23TPP4YRkD3hUtO1gQyLUr.
+2022-10-20 21:54:17.007228 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 69 tracks from playlist that contains 69 tracks.
+2022-10-20 21:54:17.008228 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1CyNaABE0mkGG6.
+2022-10-20 21:54:18.171235 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 101 tracks from playlist that contains 101 tracks.
+2022-10-20 21:54:18.172231 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0KGH3YuIo7xH5oQJ11hL2g.
+2022-10-20 21:54:18.811381 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 100 tracks from playlist that contains 100 tracks.
+2022-10-20 21:54:18.813380 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0upKw1mck2K1qWEnny1Gwm.
+2022-10-20 21:54:19.477738 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 90 tracks from playlist that contains 90 tracks.
+2022-10-20 21:54:19.479889 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 005woyBJwwXN7kpR4otxkN.
+2022-10-20 21:54:21.398589 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 247 tracks from playlist that contains 247 tracks.
+2022-10-20 21:54:21.399586 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 21lO8DJJHCuQGwDOiiFP05.
+2022-10-20 21:54:22.147090 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 99 tracks from playlist that contains 99 tracks.
+2022-10-20 21:54:22.148091 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0iBfuXFTGZxMSruhnMP7XY.
+2022-10-20 21:54:24.024983 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 256 tracks from playlist that contains 256 tracks.
+2022-10-20 21:54:24.025646 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0LYQO2g0bbJNbOifXmYszF.
+2022-10-20 21:54:25.242169 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 155 tracks from playlist that contains 155 tracks.
+2022-10-20 21:54:25.243170 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 2rIFNzhy7bLM2qLTV67vrA.
+2022-10-20 21:54:30.614197 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 728 tracks from playlist that contains 728 tracks.
+2022-10-20 21:54:30.615219 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 1l1zf9xDrqMaKsIaiVJwSa.
+2022-10-20 21:54:32.819782 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 260 tracks from playlist that contains 260 tracks.
+2022-10-20 21:54:32.821783 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4oFuR0Pe7AqZFBdO51L3gG.
+2022-10-20 21:54:34.067321 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 133 tracks from playlist that contains 133 tracks.
+2022-10-20 21:54:34.068431 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 1GYGmr1cXE3ypugbKqFA25.
+2022-10-20 21:54:35.329751 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 171 tracks from playlist that contains 171 tracks.
+2022-10-20 21:54:35.331532 msg - autosearch.py - autosearch_main load page --> autosearch.html page loaded.
+2022-10-20 21:55:37.172260 msg - autosearch.py - syncToAnalyzeTracks()  --> Started
+2022-10-20 21:55:37.174259 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4wC748pDf0gHnJRFyzb4l9.
+2022-10-20 21:55:37.718568 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 2 tracks from playlist that contains 2 tracks.
+2022-10-20 21:55:37.719570 msg - autosearch.py - syncToAnalyzeTracks() 70 --> start google search job for searchterm: Real Estate Crime Real Estate It's Real, i1=0, i2=1, item1_timessearched=1.
+2022-10-20 21:55:38.107434 msg - common.py - extractItemsFromGoogleResponse20 --> from google search response: searchTerm=Real Estate Crime Real Estate It's Real, totalResults=1380, counted items=10, start index=1.
+2022-10-20 21:55:38.107434 msg - common.py - extractItemsFromGoogleResponse30 --> Starting search job for Real Estate Crime Real Estate It's Real, max 15 results
+2022-10-20 21:55:40.016017 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1E4Bl8cN3fVy7i.
+2022-10-20 21:55:40.621888 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 50 tracks from playlist that contains 50 tracks.
+2022-10-20 21:55:40.623501 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4lkion0cIckUSnmcn8H0CO.
+2022-10-20 21:55:41.944105 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 154 tracks from playlist that contains 154 tracks.
+2022-10-20 21:55:41.946105 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0uyOhsIFGSASncg4p6j6J9.
+2022-10-20 21:55:44.061395 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 216 tracks from playlist that contains 216 tracks.
+2022-10-20 21:55:44.062392 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 23TPP4YRkD3hUtO1gQyLUr.
+2022-10-20 21:55:44.698337 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 69 tracks from playlist that contains 69 tracks.
+2022-10-20 21:55:44.699336 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1CyNaABE0mkGG6.
+2022-10-20 21:55:45.824554 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 101 tracks from playlist that contains 101 tracks.
+2022-10-20 21:55:45.825553 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0KGH3YuIo7xH5oQJ11hL2g.
+2022-10-20 21:55:46.445356 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 100 tracks from playlist that contains 100 tracks.
+2022-10-20 21:55:46.446359 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0upKw1mck2K1qWEnny1Gwm.
+2022-10-20 21:55:47.087348 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 90 tracks from playlist that contains 90 tracks.
+2022-10-20 21:55:47.089348 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 005woyBJwwXN7kpR4otxkN.
