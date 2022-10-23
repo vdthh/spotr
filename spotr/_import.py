@@ -157,8 +157,8 @@ def import_main():
 
             '''--> ScrapedTracks'''
             for source_row in cur.execute("SELECT * FROM scraped_from_playlists_track;"):        
-                get_db().execute('INSERT INTO ScrapedTracks (id, spotify_id, album, artists, title, href, popularity, from_playlist, date_added) VALUES (?,?,?,?,?,?,?,?,?)',
-                (source_row[0], source_row[1], source_row[2], source_row[3], source_row[4], source_row[5], source_row[6], source_row[7], source_row[8]))
+                get_db().execute('INSERT INTO ScrapedTracks (id, album, artists, title, href, popularity, from_playlist, found_by_tracks, date_added) VALUES (?,?,?,?,?,?,?,?,?)',
+                (source_row[0], source_row[2], source_row[3], source_row[4], source_row[5], source_row[6], source_row[7], "", source_row[8]))
                 get_db().commit()
 
             logAction("msg - _import.py - import_main load data 70 --> Done ScrapedTracks table")

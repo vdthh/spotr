@@ -152,12 +152,15 @@ def checkIfTrackInDB(trackID, dbName):
 
 
         '''--> check ListenedTrack and ToListenTrack'''
-        if dbName == "ListenedTrack" or dbName == "ToListenTrack":
+        if dbName == "ListenedTrack" or dbName == "ToListenTrack" or dbName == "ScrapedTracks":
+            print("CHECKING TRACKID " + trackID + " for DB " + dbName + ".")
             # https://stackoverflow.com/questions/54659595/checking-for-multiple-values-python-mysql
             cursor.execute('SELECT * FROM ' + dbName + ' WHERE id=? OR artists=? AND title=?', (trackID, artists, title))
             if cursor.fetchone() == None:
+                print("HUH")
                 return False    #not in db
             else:
+                print("HAH")
                 return True     #in db
         elif dbName == "WatchListNewTracks":
             entry = cursor.execute('SELECT * FROM WatchListNewTracks').fetchone()
@@ -759,6 +762,7 @@ def getTrackInfo(trackID, artistsAsList):
     '''Returns a dict containing track info:'''
     '''input artistsAsList returns the artist names as list or only the first name'''
     '''{"trackid": string, "title": string, "artists": list of string, "album": string, "href": string, "popularity": string}'''
+    '''--> upadet 20221023 --> return extra key "artist_matrix". Contains list of dicts {"name": , "id"}'''
     '''Returns empty string in case of error'''
 
 
@@ -789,15 +793,20 @@ def getTrackInfo(trackID, artistsAsList):
 
     '''--> return first artist name or list of all artist names'''
     try:
-        artistNames = []
+        artistNames     = []
+        artistMatrix    = []
         #get list of artist name(s)
         for artist in track_info["response"]["artists"]:
             #create list with artist names
             artistNames.append(artist["name"])
+
+            '''--> artistMatrix'''
+            artistMatrix.append({"name": artist["name"], "id": artist["id"]})
+
         if artistsAsList:
-            return {"trackid": trackID, "title": track_info["response"]["name"], "artists": artistNames, "album": track_info["response"]["album"]["name"], "href": urlLink, "popularity": track_info["response"]["popularity"]}
+            return {"trackid": trackID, "title": track_info["response"]["name"], "artists": artistNames, "album": track_info["response"]["album"]["name"], "href": urlLink, "popularity": track_info["response"]["popularity"], "artist_matrix": artistMatrix}
         else:
-            return {"trackid": trackID, "title": track_info["response"]["name"], "artists": track_info["response"]["artists"][0]["name"], "album": track_info["response"]["album"]["name"], "href": urlLink, "popularity": track_info["response"]["popularity"]}
+            return {"trackid": trackID, "title": track_info["response"]["name"], "artists": track_info["response"]["artists"][0]["name"], "album": track_info["response"]["album"]["name"], "href": urlLink, "popularity": track_info["response"]["popularity"], "artist_matrix": []}
 
     except Exception as ex:
         logAction("err - common.py - getTrackInfo4 --> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
@@ -1370,7 +1379,7 @@ def extractItemsFromGoogleResponse(json_input, maxResults):
 
     '''--> get requested data'''
     resultList      = []
-    logAction("msg - common.py - extractItemsFromGoogleResponse30 --> Starting search job for " + str(returnedSearchTerm) + ", max " + str(maxResults) + " results")
+    # logAction("msg - common.py - extractItemsFromGoogleResponse30 --> Starting search job for " + str(returnedSearchTerm) + ", max " + str(maxResults) + " results")
 
     for i in range(0, maxResults):
         #if (((i % 10) !=0) or (i == 0)) and (i < returnedCountItems):
@@ -1455,7 +1464,7 @@ def checkGoogleResponse(input_json):
             logAction("msg - common.py - checkGoogleResponse30 --> No playlists found!")
             toReturnMessage     = "No playlists found."
 
-            toReturnResult      = False
+            toReturnResult      = True
             toReturn            = {"result": toReturnResult, "message": toReturnMessage}
             return toReturn
         else:
@@ -1464,6 +1473,11 @@ def checkGoogleResponse(input_json):
             return toReturn
 
 ########################################################################################
+
+
+
+    
+
 
 
 

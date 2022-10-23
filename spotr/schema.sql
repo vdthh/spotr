@@ -79,15 +79,15 @@ CREATE TABLE EverynoiseGenre(
     link TEXT
 );
 
-CREATE TABLE ScrapedTracks(
+CREATE TABLE ScrapedTracks(             -- e.g. tracks fro playlists found via autosearch
     id TEXT PRIMARY KEY,
-    spotify_id TEXT,
     album TEXT,
     artists TEXT,
     title TEXT,
     href TEXT,
     popularity INTEGER,
     from_playlist TEXT,                 -- was this track found via a found playlist? which playlist?
+    found_by_tracks TEXT,               -- was this track found by other tracks (e.g. playlist via google custom search)? which tracks?
     date_added TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
