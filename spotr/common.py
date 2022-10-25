@@ -188,6 +188,83 @@ def checkIfTrackInDB(trackID, dbName):
 
 ########################################################################################
 ######################################## FUNCTIONS #####################################
+def checkIfTrackInDB_test(trackID, dbNamesAsList):
+    '''--> check if given track is in certain db'''
+    '''--> return True if in db'''
+    '''--> return False if not in db'''
+    '''--> difference compared to checkIfTrackInDB is that dbNames input is a list'''
+    '''--> This is an attempt to reduce the call of getTrackInfo only once per track - even if it needs to be checked in multiple db's'''
+
+    try:
+        '''--> db'''
+        cursor              = get_db().cursor()
+
+
+        '''-->track details'''
+        try:
+            trackDetails    = getTrackInfo(trackID, True)
+
+
+            '''--> make check'''
+            if not "artists" in trackDetails.keys():
+                logAction("err - common.py - checkIfTrackInDB000 --> no \"artists\" entry in trackInfo response for track " + trackID)
+                return False
+
+            artistsList     = []
+            artistsList     = trackDetails["artists"]
+            artists         = ', '.join(artistsList) #create one string with all artist names in the list, seperated by a whitespace
+            title           = trackDetails["title"]
+        except Exception as ex:
+            logAction("err - common.py - checkIfTrackInDB00 --> error while runnin 'getTrackInfo' for " + trackID + "--> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
+            logAction("TRACEBACK --> " + traceback.format_exc())
+            return False
+
+
+        '''--> loop'''
+        for dbName in dbNamesAsList:
+
+            '''--> check ListenedTrack and ToListenTrack'''
+            if dbName == "ListenedTrack" or dbName == "ToListenTrack" or dbName == "ScrapedTracks":
+                print("CHECKING TRACKID " + trackID + " for DB " + dbName + ".")
+                # https://stackoverflow.com/questions/54659595/checking-for-multiple-values-python-mysql
+                cursor.execute('SELECT * FROM ' + dbName + ' WHERE id=? OR artists=? AND title=?', (trackID, artists, title))
+                if cursor.fetchone() == None:
+                    print("NOT IN DB")
+                    # return False    #not in db
+                    pass
+                else:
+                    print("IN DB")
+                    return True     #in db
+            elif dbName == "WatchListNewTracks":
+                entry = cursor.execute('SELECT * FROM WatchListNewTracks').fetchone()
+                if entry != None:
+                    trackList = json.loads(entry["trackList"])
+                    if trackID in trackList:
+                        return True
+                    else:
+                        # return False
+                        pass
+                else:
+                    #no valid data in table yet
+                    pass
+            else:
+                logAction("err - common.py - checkIfTrackInDB0 --> no valid table selected for id " + trackID)
+                return False
+
+        '''--> passed everything, so not in db'''
+        return False
+            
+
+    except Exception as ex:
+        logAction("err - common.py - checkIfTrackInDB1 --> error while checking trackID " + trackID + " in table " + dbName + " --> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
+        logAction("TRACEBACK --> " + traceback.format_exc())
+        return False
+
+########################################################################################
+
+
+########################################################################################
+######################################## FUNCTIONS #####################################
 def checkSourceAndCreatePlaylist(input):
     '''--> 20220921 - create general procedure for the following:'''
     '''--> Check a given source for tracks'''
@@ -708,6 +785,7 @@ def getNewAccessToken():
 
             if retryCnt >= 10:
                 logAction("err - common.py - getNewAccessToken4 --> too many retries requesting acces token.")
+                return ''
 
             response = requests.post(url, data=body_params, auth=(spotify_client_id, spotify_client_secret), verify=False)
             retryCnt+=1
@@ -715,7 +793,7 @@ def getNewAccessToken():
             '''--> save last result for debugging'''
             with open (ROOT_DIR + "/logs/spotify_getNewAccessToken_LAST.json", 'w', encoding="utf-8") as fi:
                 fi.write(json.dumps(response.json(), indent = 4))
-            return ''
+            
     except Exception as ex:
         logAction("err - common.py - getNewAccessToken4.5 --> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
         logAction("TRACEBACK --> " + traceback.format_exc())
@@ -1415,6 +1493,9 @@ def extractItemsFromGoogleResponse(json_input, maxResults):
                 playlistLink        = result_json["items"][i % 10]["link"]
                 # playlistName = r_json["items"][i % 10]["title"]
                 resultList.append(playlistLink)
+            elif int(result_json["searchInformation"]["totalResults"]) == 0:
+                #no search results     
+                continue
             else:
                 logAction("err - common.py - googleSearchApiRequest40 --> 'items' was not found in gcs response for searchterm " + str(returnedSearchTerm) + ", startIndex: " + str(returnedStartIndex) + ", count: " + str(returnedCountItems))
                 toReturnMessage     = "Fault code " + str(result_json["error"]["code"])

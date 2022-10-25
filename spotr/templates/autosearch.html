@@ -10,13 +10,12 @@ Store playlist and tracks in db.
 {% block content %}
 <div class="container">
     <!-- update db with saved tracks -->
-    <a class="btn btn-primary" href="/autosearch/updateSavedTracksDB" role="button">Update saved tracks</a>
     <a class="btn btn-primary" href="/autosearch/startSearchJob" role="button">Start search job</a>
 
-    <!-- Show list with all tracks in 'liked songs' -->
+    <!-- Show tracks in ToAnalyzeTracks db / spotr_ToAnalyze playlist -->
     <div class="row">
         <div class="col">
-            <h6>Liked tracks: {{ likedTracksList|length }}</h6>
+            <h6>To analyze tracks: {{ likedTracksList|length }}</h6>
                 {% if likedTracksList %}
                     <table class="table table-striped table-hover table-sm table-responsive">
                         <!-- Show track artist - title headers-->
@@ -39,6 +38,36 @@ Store playlist and tracks in db.
                 {% endif %}
         </div>      
     </div>
+
+    <!-- Show found playlists after finished search job -->
+    <div class="row">
+        {% if searchResult %}
+            <h6>Search job result: found playlists</h6>
+            <table class="table table-striped table-hover table-sm table-responsive">
+                <tr>
+                    <th>Track 1</th>
+                    <th>Track 2</th>
+                    <th>Found playlist</th>
+                    <th># Tracks</th>
+                    <th></th>
+                    <td></td>
+                </tr>
+
+                {% for item in searchResult %}  <!-- list of {"playlistid":, "foundbytrack1":, "foundbytrack2":...} -->
+                    <tr>
+                        <td>{{ item.foundbytrack1 }}</td>
+                        <td>{{ item.foundbytrack2 }}</td>
+                        <td><a href="https://open.spotify.com/playlist/{{ item.playlistid }}" target="_blank">{{ item.playlistid }}</a></td>
+                        <td>{{ item.nooftracks }}</td>
+                        <td><a class="btn btn-primary btn-sm mb-2 w-100" href="/autosearch?addTracksToDb={{ item.playlistid }}" role="button">Add to DB</a></td>
+                        <td><a class="btn btn-primary btn-sm mb-2 w-100" href="/autosearch?createCopyOfPlaylist={{ item.playlistid }}" role="button">Create playlist</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+
+
 </div>
 
 {% endblock %}

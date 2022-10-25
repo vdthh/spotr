@@ -9,10 +9,11 @@
 ######################################### IMPORTS ######################################
 ########################################################################################
 from unittest import result
+from urllib import response
 from flask import Blueprint, render_template, redirect, request, flash
 # from numpy import int256
 from .db import get_db
-from .common import checkIfTrackInDB, logAction, getTracksFromPlaylist, getTrackInfo, googleSearchApiRequest, extractItemsFromGoogleResponse, checkIfTracksInPlaylist
+from .common import checkIfTrackInDB, logAction, getTracksFromPlaylist, getTrackInfo, googleSearchApiRequest, extractItemsFromGoogleResponse, checkIfTracksInPlaylist, checkIfTrackInDB_test
 import traceback
 from datetime import datetime
 import json
@@ -33,6 +34,7 @@ bp_autosearch = Blueprint('autosearch', __name__, url_prefix="/autosearch")
 gv_actdbTracks                  = []                        #list of {"id": , "title": , "artists": , "times_searched": }
 gv_actPlaylistTracks            = []                        #list of {"id": , "title": , "artists": , "times_searched": }
 gv_playlistToAnalyseID          = "4wC748pDf0gHnJRFyzb4l9"  
+gv_searchResults                = []                        #list of {"playlistid":, "foundbytrack1":, "foundbytrack2":...}
 
 ########################################################################################
 
@@ -48,6 +50,7 @@ def autosearch_main():
     global gv_actdbTracks
     global gv_actPlaylistTracks
     global gv_playlistToAnalyseID
+    global gv_searchResults
 
 
     '''--> read query parameters'''
@@ -55,17 +58,121 @@ def autosearch_main():
 
 
     #--> PAGE LOAD #
-    if request.method == "GET":
+    if request.method == "GET" and not ("addTracksToDb" in args) and not ("createCopyOfPlaylist" in args):
+        '''--> page load'''
+
         '''--> db'''
         cursor = get_db().cursor()
 
+
+        '''--> refresh ToAnalyzeTracks db'''
         syncToAnalyzeTracks()
 
         '''--> return html'''
         logAction("msg - autosearch.py - autosearch_main load page --> autosearch.html page loaded.")
+        return render_template('autosearch.html', 
+                                likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
+                                searchResult            = gv_searchResults)
 
-        return render_template('autosearch.html', likedTracksList = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall())
+    elif request.method == "GET" and ("addTracksToDb" in args) and not ("createCopyOfPlaylist" in args):
+        '''--> add playlist tracks to ScrapedTracks db - button press'''
+        print('JAAAA')
+        try:
+            '''--> initialize variables'''
+            getPlaylistTracksResponse       = []        #list of track IDs
+            track_count                     = 0 
 
+
+            '''--> Get user input'''
+            playlistID = args["addTracksToDb"]
+
+
+            '''--> playlist tracks'''
+            getPlaylistTracksResponse       = getTracksFromPlaylist(playlistID, False)      #returns list with track IDs
+
+
+            '''--> check response'''
+            if getPlaylistTracksResponse == "":
+                logAction("err - autosearch.py - addTracksToDb 10 --> Faulty response from getTracksFromPlaylist().")
+                flash("Faulty response from getTracksFromPlaylist().", category="error")
+                raise Exception("Faulty response from getTracksFromPlaylist().")
+
+
+            '''--> add tracks to db'''
+            for track in getPlaylistTracksResponse:
+                track_count     +=1
+                track_info      = getTrackInfo(track, True)
+
+                '''--> check before add'''
+                if not checkIfTrackInDB_test(track, ["ListenedTrack", "ToListenTrack", "ScrapedTracks"]):
+                    #not in db yet, add
+                    get_db().execute(
+                            'INSERT INTO ScrapedTracks (id, album, artists, title, href, popularity, from_playlist, found_by_tracks) VALUES (?,?,?,?,?,?,?,?)', 
+                            (track, track_info["album"], ', '.join(track_info["artists"]), track_info["title"], track_info["href"], track_info["popularity"], "False", 0)
+                        )
+                    get_db().commit()
+
+                else: 
+                    #in db, don't add
+                    pass
+
+
+            '''--> return html'''
+            logAction("msg - autosearch.py - addTracksToDb 20 --> Finished, added " + str(track_count) + " tracks to ScrapedTracks db."))
+            return render_template('autosearch.html', 
+                                    likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
+                                    searchResult            = gv_searchResults)
+
+
+        except Exception as ex:
+            logAction("err - autosearch.py - addTracksToDb 100 --> error while adding playlist tracks to ScrapedTracks db --> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
+            logAction("TRACEBACK --> " + traceback.format_exc())
+            flash("Error while adding playlist tracks to ScrapedTracks db. See log for details.", category="error")
+
+            return render_template('autosearch.html', 
+                        likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
+                        searchResult            = gv_searchResults)
+
+
+
+########################################################################################
+@bp_autosearch.route('/startSearchJob', methods=['GET', 'POST'])
+def autosearch_startSearchJob():
+        '''--> search for playlists with tracks from ToAnalyzeTracks'''
+        logAction("msg - autosearch.py - autosearch_main start searchjob --> starting searchForPlaylistsContainingTracks().")
+
+        '''--> initialize variables'''
+        response        = {}
+        global gv_searchResults
+
+
+        '''--> db'''
+        cursor = get_db().cursor()
+
+
+        '''--> call'''
+        response        = searchForPlaylistsContainingTracks()  # {"result": True/False, "message": e.g. "Found 10 playlists.", "response": list of {"playlistid":, "foundbytrack1":, "foundbytrack2":, "nooftracks":...}
+
+
+        '''--> check response'''
+        if response["result"] == False:
+            logAction("err - autosearch.py - autosearch_main start searchjob 100 --> error while performing searchForPlaylistsContainingTracks().")
+            flash("error while performing searchForPlaylistsContainingTracks(). See log for details.", category="error")
+            return render_template('autosearch.html', 
+                                    likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
+                                    searchResult            = gv_searchResults)
+
+
+        '''--> update gv'''
+        gv_searchResults        = response["response"]
+
+
+        '''--> return html'''
+        logAction("msg - autosearch.py - autosearch_main start searchjob 150 --> finished searchForPlaylistsContainingTracks()! Found " + str(len(response["response"])) + " playlists.")
+        flash("Finished searchForPlaylistsContainingTracks()! Found " + str(len(response["response"])) + " playlists.", category="message")
+        return render_template('autosearch.html', 
+                                likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
+                                searchResult            = gv_searchResults)
 
 ########################################################################################
 
@@ -131,34 +238,6 @@ def syncToAnalyzeTracks():
         for item in cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall():
             gv_actdbTracks.append({"id": item["id"], "title": item["title"], "artists": item["artists"], "times_searched": item["times_searched"]})
 
-
-        '''--> search job'''
-        searchJobResult         = searchForPlaylistsContainingTracks()
-
-        if searchJobResult["result"] == True:
-            print("FINISHED WITH SUCCESS!! FOUND " + str(len(searchJobResult["response"])) + " playlists.")
-            '''--> add tracks from found playlists to ScrapedTracks db'''
-            for playlist in searchJobResult["response"]:
-                print("Playlist " + playlist["playlistid"])
-                for track in getTracksFromPlaylist(playlist["playlistid"], False):
-                    # print("TRACK FROM PLAYLIST: " + track)
-                    track_info      = getTrackInfo(track, True)
-
-                    '''--> check before add'''
-                    if not checkIfTrackInDB(track, "ListenedTrack") and not checkIfTrackInDB(track, "ToListenTrack") and not checkIfTrackInDB(track, "ScrapedTracks"):
-                        # print("TSJAKKE")
-                        cursor.execute(
-                                'INSERT INTO ScrapedTracks (id, album, artists, title, href, popularity, from_playlist, found_by_tracks) VALUES (?,?,?,?,?,?,?,?)', 
-                                (track, track_info["album"], ', '.join(track_info["artists"]), track_info["title"], track_info["href"], track_info["popularity"], "False", 0)
-                            )
-                        get_db().commit()
-                    else:
-                        pass
-                        # print("NOT TSJAKKA")
-
-        else:
-            print("FINISHED WITHOUT SUCCES")
-
                     
     except Exception as ex:
         logAction("err - autosearch.py - syncToAnalyzeTracks() 100 --> error while performing autosearch --> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
@@ -166,7 +245,6 @@ def syncToAnalyzeTracks():
         flash("Error performing autosearch job. See log for details.", category="error")
 
                         #TODO 20221020 --> 
-                        # syncToAnalyzeTracks() opsplitsen, is te lang
                         # eventueel getTrackInfo() updaten, zodat extra key in response dict wordt teruggegeven: lijst met per artiestnaam van dat nummer een dict {"artistName": , "artistID": }
                         # kan gebruikt worden om artiesten met eenzelfde naam te onderscheiden adhv artiest ID! Eventueel met terugwerkende kracht in discover.py,...
 
@@ -174,13 +252,14 @@ def syncToAnalyzeTracks():
 
 
 ########################################################################################
+######################################## FUNCTIONS #####################################
 ########################################################################################
 def searchForPlaylistsContainingTracks():
     '''--> search for playlists that contain tracks from toAnalyzeTracks db'''
     '''--> 2 tracks are being searched for each time'''
     '''--> so a valid playlist contains at least 2 tracks of toAnalyzeTracks db'''
-    '''--> returns the following dict: {"result": True/False, "message": e.g. "Found 10 playlists.", "response": list of {"playlistid": ,"trackid1": ,"trackid2":}}'''
-    '''--> '''
+    '''--> returns the following dict: {"result": True/False, "message": e.g. "Found 10 playlists.", "response": list of {"playlistid":, "foundbytrack1":, "foundbytrack2": ,"nooftracks": }'''
+
 
     '''--> initialize variables'''
     resultSuccess           = False
@@ -191,11 +270,15 @@ def searchForPlaylistsContainingTracks():
     item1                   = {}
     item1_timessearched     = 0
     item2                   = ""
+    trackid1                = ""
+    trackid2                = ""
     times_counter           = 0
     search_string           = ""
     gcs_response            = ""
     gcs_result              = []
+    playlists_valid         = []
     playlist_tracks         = []
+    track_count             = 0
 
     logAction("msg - autosearch.py - searchForPlaylistsContainingTracks() 0 --> Started.")
 
@@ -206,13 +289,13 @@ def searchForPlaylistsContainingTracks():
             logAction("err - autosearch.py - searchForPlaylistsContainingTracks() 10 --> Source tracklist contains 0 tracks.")
             resultSuccess       = False
             resultMessage       = "Source tracklist has no tracks."
-            toReturn = {"result": resultSuccess, "message": resultMessage, "response": resultResponse}
+            toReturn            = {"result": resultSuccess, "message": resultMessage, "response": resultResponse}
             return toReturn
 
 
         '''--> perform search job'''
         for i1 in range(0, len(gv_actdbTracks)):
-            item1       = gv_actdbTracks[i1]    
+            item1       = gv_actdbTracks[i1]  
 
             if (item1["times_searched"] == None):
                 #value not initialized yet
@@ -236,12 +319,12 @@ def searchForPlaylistsContainingTracks():
                     '''--> create searchstring'''
                     search_string = item1["artists"] + " " + item1["title"] + " " + item2["artists"] + " " + item2["title"]
                     logAction("msg - autosearch.py - searchForPlaylistsContainingTracks() 20 --> start google search job for searchterm: " + str(search_string) + ", i1=" + str(i1) + ", i2=" +str(i2) + ", item1_timessearched=" + str(item1_timessearched) + ".")
-                    print("start google search job for searchterm: " + str(search_string) + ", i1=" + str(i1) + ", i2=" +str(i2) + ", item1_timessearched=" + str(item1_timessearched) + ".")
+                    print("start gcs for searchterm: " + str(search_string) + ", i1=" + str(i1) + ", i2=" +str(i2) + ", item1_timessearched=" + str(item1_timessearched) + ".")
 
                     '''--> actual search job'''
                     gcs_response      = googleSearchApiRequest(search_string, startIndex = 0)
-                    gcs_result        = extractItemsFromGoogleResponse(gcs_response, maxResults = 15)  #response: {"result": True/False, "response": list of playlistlinks, "message": ...}"
-
+                    gcs_result        = extractItemsFromGoogleResponse(gcs_response, maxResults = 3)  #response: {"result": True/False, "response": list of playlistlinks, "message": ...}"
+                    
 
                     '''--> check response'''
                     if gcs_result["result"] == False:  
@@ -252,7 +335,7 @@ def searchForPlaylistsContainingTracks():
                         toReturn = {"result": resultSuccess, "message": resultMessage, "response": resultResponse}
                         return toReturn
 
-                    
+                    print('Found results for ' + str(search_string) + ': ' + str(len(gcs_result['response'])))
                     '''--> check if found playlists contains the 2 searched tracks'''
                     for playlist_link in gcs_result["response"]:
 
@@ -267,11 +350,11 @@ def searchForPlaylistsContainingTracks():
                         if response_check == True:
                             #playlists contains the 2 tracks
                             print("Playlist " + playlistID + " contains all tracks in list: " + str([item1["id"], item2["id"]]) + ".")
-                            resultResponse.append({"playlistid": playlistID, "trackid1": item1["id"], "trackid2": item2["id"]})
-
+                            playlists_valid.append({"playlistid": playlistID, "track1": item1["artists"] + " - " + item1["title"], "track2": item2["artists"] + " - " + item2["title"]})
                         else:
                             #playlists does not contain both tracks
                             print("Playlist " + playlistID + " does NOT contain all tracks in list: " + str([item1["id"], item2["id"]]) + ".")
+                            pass
 
 
                     '''--> increase times_searched value for item1 and save'''
@@ -280,10 +363,36 @@ def searchForPlaylistsContainingTracks():
                     get_db().commit()
 
 
+        '''--> add tracks from found playlists to ScrapedTracks db'''
+        for playlist in playlists_valid:
+            print("Getting tracks from valid playlist: " + playlist["playlistid"])
+            for track in getTracksFromPlaylist(playlist["playlistid"], False):
+                track_count     +=1
+            #     track_info      = getTrackInfo(track, True)
+
+            #     '''--> check before add'''
+            #     # if not checkIfTrackInDB_test(track, "ListenedTrack") and not checkIfTrackInDB(track, "ToListenTrack") and not checkIfTrackInDB(track, "ScrapedTracks"):
+            #     if not checkIfTrackInDB_test(track, ["ListenedTrack", "ToListenTrack", "ScrapedTracks"]):
+            #         #not in db yet, add
+            #         get_db().execute(
+            #                 'INSERT INTO ScrapedTracks (id, album, artists, title, href, popularity, from_playlist, found_by_tracks) VALUES (?,?,?,?,?,?,?,?)', 
+            #                 (track, track_info["album"], ', '.join(track_info["artists"]), track_info["title"], track_info["href"], track_info["popularity"], "False", 0)
+            #             )
+            #         get_db().commit()
+
+            #     else: 
+            #         #in db, don't add
+            #         pass
+
+            '''--> update response'''   #{"playlistid":, "foundbytrack1":, "foundbytrack2":...}
+            playlistName        = playlist
+            resultResponse.append({"playlistid": playlist["playlistid"], "foundbytrack1": playlist["track1"], "foundbytrack2": playlist["track2"], "nooftracks": track_count}) 
+
+
         '''--> finished, return response'''
         resultSuccess       = True
         resultMessage       = "Finished searchForPlaylistsContainingTracks()."
-        toReturn = {"result": resultSuccess, "message": resultMessage, "response": resultResponse}  
+        toReturn            = {"result": resultSuccess, "message": resultMessage, "response": resultResponse}  
         return toReturn   
 
 
@@ -293,5 +402,5 @@ def searchForPlaylistsContainingTracks():
 
         resultSuccess       = False
         resultMessage       = "Error while performing searchForPlaylistsContainingTracks(). See log for details"
-        toReturn = {"result": resultSuccess, "message": resultMessage, "response": resultResponse}
+        toReturn            = {"result": resultSuccess, "message": resultMessage, "response": resultResponse}
         return toReturn
