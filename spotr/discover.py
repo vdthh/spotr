@@ -448,7 +448,7 @@ def discover_main():
 
 
             '''--> get playlist name'''
-            playlistName         = apiGetSpotify("playlists/" + playlistID)["name"]
+            playlistName         = apiGetSpotify("playlists/" + playlistID)["response"]["name"]
 
 
             '''--> fill gv'''

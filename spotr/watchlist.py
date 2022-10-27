@@ -144,8 +144,8 @@ def watchlist_main():
 
 
             '''--> initialize variables'''
-            gv_artistList   = [] #(re-)initialize global artist list
-            gv_watchlistItems = []
+            gv_artistList       = [] #(re-)initialize global artist list
+            gv_watchlistItems   = []
 
 
             '''--> (re)load watchlist items'''
@@ -168,7 +168,7 @@ def watchlist_main():
 
             '''--> api request'''
             logAction("msg - watchlist.py - watchlist_main3 --> searching for artist " + gv_searchTerm)
-            response = searchSpotify(gv_searchTerm, gv_searchType, gv_limit, gv_offset)
+            response             = searchSpotify(gv_searchTerm, gv_searchType, gv_limit, gv_offset)
             
 
             '''--> check response before continuing'''
@@ -614,15 +614,15 @@ def watchlist_main():
 ########################################################################################
 @bp_watchlist.route('/checkForNewTracks', methods=['GET', 'POST'])
 def watchlist_checkForNewTracks():
-    '''--> Check watchlist items for new track initiated from html page - button press'''
-    logAction("msg - watchlist.py - watchlist_checkForNewTracks() --> started via button press.") 
+    '''--> Check watchlist items for new track initiated from html page (button press) OR automatically initiated by external .py script (via crontab)'''
+    logAction("msg - watchlist.py - watchlist_checkForNewTracks() --> started via button press/automatically initiated.") 
 
     if not checkWatchlistItems():
         logAction("err - watchlist.py - watchlist_checkForNewTracks2() --> failed! --> false returned.") 
-        flash("checkForNewTracks - manually initiated - failed!", category="error")
+        flash("checkForNewTracks - failed!", category="error")
     else:
         logAction("msg - watchlist.py - watchlist_checkForNewTracks3() --> finished succefully.") 
-        flash("checkForNewTracks - manually initiated - finished!", category="success")
+        flash("checkForNewTracks - finished!", category="success")
 
 
     '''--> (re)load watchlist items'''

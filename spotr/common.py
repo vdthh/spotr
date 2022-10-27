@@ -594,7 +594,7 @@ def getDBTracks(whichDB):
 def apiGetSpotify(urlExtension):
     '''--> general procedure for every Spotify API request <--'''
     '''--> as of 20221013 - returns a dict with a response and list of links'''
-    '''--> response: {"result": True/False, "response": list of playlistlinks, "message": ...}'''
+    '''--> response: {"result": True/False, "response": json response, "message": ...}'''
 
     '''--> initialize variables'''
     toReturn                = {}

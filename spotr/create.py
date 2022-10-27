@@ -8,7 +8,7 @@
 ######################################### IMPORTS ######################################
 ########################################################################################
 from flask import Blueprint, render_template, redirect, request, flash, current_app
-from .common import addTracksToPlaylist, apiGetSpotify, changePlaylistDetails, checkIfTrackInDB, getTracksFromArtist, getTracksFromPlaylist, searchSpotify, getTrackInfo, createPlaylist, waitForGivenTimeIns, logAction, createPlaylistDescription, checkSourceAndCreatePlaylist, checkIfTracksInPlaylist, getDBTracks
+from .common import addTracksToPlaylist, apiGetSpotify, changePlaylistDetails, checkIfTrackInDB, getTracksFromArtist, getTracksFromPlaylist, searchSpotify, getTrackInfo, createPlaylist, waitForGivenTimeIns, logAction, createPlaylistDescription, checkSourceAndCreatePlaylist, checkIfTracksInPlaylist, getDBTracks, checkIfTrackInDB_test
 from .db import get_db
 import json
 import re
@@ -79,7 +79,7 @@ def create_main():
 
     
     elif (request.method == "POST") and ("frm_create_playlist_from_db" in request.form) and not ("frm_create_playlist_from_id" in request.form):
-        '''--> tracks from ToListenDB'''
+        '''--> create playlist with  tracks from ToListenDB'''
 
         try:
             '''--> initialize variables'''
@@ -130,18 +130,19 @@ def create_main():
 
 
             '''--> remove tracks from ToListenTrack, add tracks to ListenedTrack'''
-            for trackID in gv_ToListenTracks:
-                cursor.execute('DELETE FROM ToListenTrack WHERE id = ?', (trackID,))
-                get_db().commit()
+            if gv_checkboxMoveToListenedDB:
+                for trackID in gv_ToListenTracks:
+                    cursor.execute('DELETE FROM ToListenTrack WHERE id = ?', (trackID,))
+                    get_db().commit()
 
-                '''--> get track info'''
-                trackInfo       = getTrackInfo(trackID, True)
+                    '''--> get track info'''
+                    trackInfo       = getTrackInfo(trackID, True)
 
-                cursor.execute(
-                        'INSERT INTO ListenedTrack (id, spotify_id, album, artists, title, href, popularity, from_playlist, how_many_times_double) VALUES (?,?,?,?,?,?,?,?,?)', 
-                        (trackID, trackID, trackInfo["album"], ', '.join(trackInfo["artists"]), trackInfo["title"], trackInfo["href"], trackInfo["popularity"], "False", 0)
-                    )
-                get_db().commit()
+                    cursor.execute(
+                            'INSERT INTO ListenedTrack (id, spotify_id, album, artists, title, href, popularity, from_playlist, how_many_times_double) VALUES (?,?,?,?,?,?,?,?,?)', 
+                            (trackID, trackID, trackInfo["album"], ', '.join(trackInfo["artists"]), trackInfo["title"], trackInfo["href"], trackInfo["popularity"], "False", 0)
+                        )
+                    get_db().commit()
 
 
             '''--> log '''
@@ -175,7 +176,7 @@ def create_main():
 
 
     elif (request.method == "POST") and ("frm_create_playlist_from_id" in request.form) and not ("frm_create_playlist_from_db" in request.form):
-        '''--> tracks from given playlistID'''
+        '''--> create playlist with tracks from given playlistID'''
 
         try:
             '''--> initialize variables'''
@@ -192,7 +193,7 @@ def create_main():
 
             '''--> retrieve user input'''
             gv_givenPlaylistName            = request.form["input_name"]    
-            gv_checkboxMoveToListenedDB     = request.form.get("moveToListeneddb")      #checkbox value 'Move tracks to Listened DB'
+            gv_checkboxMoveToListenedDB     = request.form.get("saveTodb")      #checkbox value 'Move tracks to Listened DB'
             playlistID                      = request.form["input_playlistid"]
 
 
@@ -205,35 +206,53 @@ def create_main():
             tracksList                      = getTracksFromPlaylist(playlistID, True)       #list of {id: trackid, artists: list with artists, title: title}
 
 
-            '''--> check tracks'''
-            response        = getDBTracks("ListenedTrack")
-            response2       = getDBTracks("ToListenTrack")
-            response3       = getDBTracks("WatchListNewTracks")
-            dbTracks        = []
+            # '''--> check tracks'''
+            # response        = getDBTracks("ListenedTrack")
+            # response2       = getDBTracks("ToListenTrack")
+            # response3       = getDBTracks("WatchListNewTracks")
+            # dbTracks        = []
 
-            if (response["result"] == True) and (response2["result"] == True) and (response3["result"] == True):
-                dbTracks    = response["response"].copy()
-                dbTracks.extend(response2["response"])
-                dbTracks.extend(response3["response"])
-                logAction("msg - create.py - create_main tracks from playlist ID 5 --> " + response["message"] + ", " + response2["message"] + ", " + response3["message"])
-            else:
-                logAction("err - create.py - create_main tracks from playlist ID 7 --> " + response["message"] + ", " + response2["message"] + ", " + response3["message"])
-                raise Exception("No valid trackID list received from DB.")
+            # if (response["result"] == True) and (response2["result"] == True) and (response3["result"] == True):
+            #     dbTracks    = response["response"].copy()
+            #     dbTracks.extend(response2["response"])
+            #     dbTracks.extend(response3["response"])
+            #     logAction("msg - create.py - create_main tracks from playlist ID 5 --> " + response["message"] + ", " + response2["message"] + ", " + response3["message"])
+            # else:
+            #     logAction("err - create.py - create_main tracks from playlist ID 7 --> " + response["message"] + ", " + response2["message"] + ", " + response3["message"])
+            #     raise Exception("No valid trackID list received from DB.")
+
+            
+            # for item in tracksList:
+            #     if not item["id"] in dbTracks:
+            #         gv_ToListenTracks.append(item["id"])
+
+            #         if gv_checkboxMoveToListenedDB:
+            #             '''--> Add tracks to ListenedTrack'''
+            #             '''--> get track info'''
+            #             trackInfo       = getTrackInfo(item["id"], True)
+
+            #             cursor.execute(
+            #                     'INSERT INTO ListenedTrack (id, spotify_id, album, artists, title, href, popularity, from_playlist, how_many_times_double) VALUES (?,?,?,?,?,?,?,?,?)', 
+            #                     (item["id"], item["id"], trackInfo["album"], ', '.join(trackInfo["artists"]), trackInfo["title"], trackInfo["href"], trackInfo["popularity"], "False", 0)
+            #                 )
+            #             get_db().commit()
 
 
+            '''--> add tracks'''
             for item in tracksList:
-                if not item["id"] in dbTracks:
+                if not checkIfTrackInDB_test(item["id"], ["ListenedTrack", "ToListenTrack", "WatchListNewTracks"]):
                     gv_ToListenTracks.append(item["id"])
 
-                    '''--> Add tracks to ListenedTrack'''
-                    '''--> get track info'''
-                    trackInfo       = getTrackInfo(item["id"], True)
+                    if gv_checkboxMoveToListenedDB:
+                        '''--> Add tracks to ListenedTrack'''
+                        '''--> get track info'''
+                        trackInfo       = getTrackInfo(item["id"], True)
 
-                    cursor.execute(
-                            'INSERT INTO ListenedTrack (id, spotify_id, album, artists, title, href, popularity, from_playlist, how_many_times_double) VALUES (?,?,?,?,?,?,?,?,?)', 
-                            (item["id"], item["id"], trackInfo["album"], ', '.join(trackInfo["artists"]), trackInfo["title"], trackInfo["href"], trackInfo["popularity"], "False", 0)
-                        )
-                    get_db().commit()
+                        cursor.execute(
+                                'INSERT INTO ListenedTrack (id, spotify_id, album, artists, title, href, popularity, from_playlist, how_many_times_double) VALUES (?,?,?,?,?,?,?,?,?)', 
+                                (item["id"], item["id"], trackInfo["album"], ', '.join(trackInfo["artists"]), trackInfo["title"], trackInfo["href"], trackInfo["popularity"], "False", 0)
+                            )
+                        get_db().commit()
 
 
             '''--> remove duplicates (if any) from list'''
@@ -242,17 +261,18 @@ def create_main():
            
             '''--> check for empty list'''
             if len(gv_ToListenTracks) == 0:
+                print("HOHOHO")
                 logAction("err - create.py - create_main tracks from playlist ID 10 --> No tracks in given playlist " + playlistID + ".")
                 raise TypeError("No tracks in given playlist " + playlistID + ".")
 
 
             '''--> get source playlist name'''
             playlistName         = ""
-            playlistName         = apiGetSpotify("playlists/" + playlistID)["name"]
+            playlistName         = apiGetSpotify("playlists/" + playlistID)["response"]["name"]
 
 
             '''--> create playlist, check response'''
-            createPlaylistResponse      = createPlaylist(gv_givenPlaylistName , "Generated by spotr. contains " + str(len(gv_ToListenTracks) + " tracks from playlist '" + playlistName + "'. Original playlist contains " + str(len(tracksList))) + ".")        #returns dict {result: True/false, response: {playlistid: }, message:...}
+            createPlaylistResponse      = createPlaylist(gv_givenPlaylistName , "Generated by spotr. contains " + str(len(gv_ToListenTracks)) + " tracks from playlist '" + playlistName + "'. Original playlist contains " + str(len(tracksList)) + ".")        #returns dict {result: True/false, response: {playlistid: }, message:...}
 
             if createPlaylistResponse["result"] == False:
                 logAction("err - create.py - create_main tracks from playlist ID 20 --> Negative feedback from createPlaylist: " + createPlaylistResponse["message"])

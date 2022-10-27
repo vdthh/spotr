@@ -10,7 +10,8 @@ Store playlist and tracks in db.
 {% block content %}
 <div class="container">
     <!-- update db with saved tracks -->
-    <a class="btn btn-primary" href="/autosearch/startSearchJob" role="button">Start search job</a>
+    <!-- <a class="btn btn-primary" href="/autosearch/startSearchJob" role="button">Start search job</a> -->
+    <a class="btn btn-primary" href="/autosearch/startAutosearchJob" role="button">Start search job</a>
 
     <!-- Show tracks in ToAnalyzeTracks db / spotr_ToAnalyze playlist -->
     <div class="row">
@@ -60,7 +61,7 @@ Store playlist and tracks in db.
                         <td><a href="https://open.spotify.com/playlist/{{ item.playlistid }}" target="_blank">{{ item.playlistid }}</a></td>
                         <td>{{ item.nooftracks }}</td>
                         <td><a class="btn btn-primary btn-sm mb-2 w-100" href="/autosearch?addTracksToDb={{ item.playlistid }}" role="button">Add to DB</a></td>
-                        <td><a class="btn btn-primary btn-sm mb-2 w-100" href="/autosearch?createCopyOfPlaylist={{ item.playlistid }}" role="button">Create playlist</a></td>
+                        <td><a class="btn btn-primary btn-sm mb-2 w-100" href="/autosearch?createCopyOfPlaylist={{ item.playlistid }}&foundbytrack1={{ item.foundbytrack1 }}&foundbytrack2={{ item.foundbytrack2 }}" role="button">Create playlist</a></td>
                     </tr>
                 {% endfor %}
             </table>

@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS LikedTrack;
 DROP TABLE IF EXISTS EverynoiseGenre;
 DROP TABLE IF EXISTS ScrapedTracks;
 DROP TABLE IF EXISTS ToAnalyzeTracks;               -- tracks used to perform autosearch jobs
+DROP TABLE IF EXISTS ToAnalyzeResults;
 
 
 CREATE TABLE ListenedTrack (
@@ -100,4 +101,13 @@ CREATE TABLE ToAnalyzeTracks(   --these tracks are used to perform automated pla
     date_added TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     times_searched INTEGER
     --('INSERT INTO ToAnalyzeTracks (id, album, artists, title, href, times_searched) VALUES (?,?,?,?,?,?,?)',(...,...,...,)))
+);
+
+CREATE TABLE ToAnalyzeResults(   --found playlists from ToAnalyzeTracks searchjobs
+    playlistid TEXT PRIMARY KEY,
+    foundbytrack1 TEXT,
+    foundbytrack2 TEXT,
+    name_ TEXT,
+    date_added TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    --('INSERT INTO ToAnalyzeResults (playlistid, foundbytrack1, foundbytrack2, name_) VALUES (?,?,?,?)',(...,...,...,)))
 );
