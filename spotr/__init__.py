@@ -34,7 +34,7 @@ def create_app():
     DATABASE=os.path.join(app.instance_path, 'spotr.sqlite'),
     )
 
-    #overrides default configuration with values written in 'config.py'.
+    #overrides default configuration with values written in 'config.py'.gi
     app.config.from_pyfile('config.py', silent=True)
 
     #initialize plugins

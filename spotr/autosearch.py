@@ -14,6 +14,7 @@ from flask import Blueprint, render_template, redirect, request, flash
 # from numpy import int256
 from .db import get_db
 from .common import checkIfTrackInDB, logAction, getTracksFromPlaylist, getTrackInfo, googleSearchApiRequest, extractItemsFromGoogleResponse, checkIfTracksInPlaylist, checkIfTrackInDB_test, apiGetSpotify, createPlaylist, addTracksToPlaylist
+from .watchlist import checkWatchlistItems
 import traceback
 from datetime import datetime
 import json
@@ -299,45 +300,69 @@ def autosearch_startAutosearchJob():
         '''--> start autosearch for playlists with tracks from ToAnalyzeTracks'''
         logAction("msg - autosearch.py - autosearch_main start autosearchjob --> automatically initiated, starting searchForPlaylistsContainingTracks().")
 
-        '''--> initialize variables'''
-        response                = {}
-        playlistName            = ""
-        count_new_playlists     = 0
+        try:
+            '''--> initialize variables'''
+            response                = {}
+            playlistName            = ""
+            count_new_playlists     = 0
 
 
-        '''--> db'''
-        cursor = get_db().cursor()
+            '''--> db'''
+            cursor = get_db().cursor()
 
 
-        '''--> call'''
-        response        = searchForPlaylistsContainingTracks(15)  # {"result": True/False, "message": e.g. "Found 10 playlists.", "response": list of {"playlistid":, "foundbytrack1":, "foundbytrack2":, "nooftracks":...}
+            '''--> call'''
+            response        = searchForPlaylistsContainingTracks(15)  # {"result": True/False, "message": e.g. "Found 10 playlists.", "response": list of {"playlistid":, "foundbytrack1":, "foundbytrack2":, "nooftracks":...}
 
 
-        '''--> check response'''
-        if response["result"] == False:
-            logAction("err - autosearch.py - autosearch_main start autosearchjob 100 --> error while performing searchForPlaylistsContainingTracks().")
-            flash("error while performing auto triggered searchForPlaylistsContainingTracks(). See log for details.", category="error")
-            return render_template('autosearch.html', 
-                                    likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
-                                    searchResult            = gv_searchResults)
+            '''--> check response'''
+            if response["result"] == False:
+                logAction("err - autosearch.py - autosearch_main start autosearchjob 100 --> error while performing searchForPlaylistsContainingTracks().")
+                flash("error while performing auto triggered searchForPlaylistsContainingTracks(). See log for details.", category="error")
+                return render_template('autosearch.html', 
+                                        likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
+                                        searchResult            = gv_searchResults)
 
 
-        '''--> save results'''
-        
-        for entry in response["response"]:
-
-            '''--> playlistName'''
-            playlistName         = apiGetSpotify("playlists/" + entry["playlistid"])["response"]["name"]     #returns {"result": True/False, "response": json response, "message": ...}
+            '''--> save results'''
             
-            cursor.execute('SELECT * FROM ToAnalyzeResults WHERE playlistid=?', (entry["playlistid"],))
-            if cursor.fetchone() == None:
-                cursor.execute(
-                    'INSERT INTO ToAnalyzeResults (playlistid, foundbytrack1, foundbytrack2, name_) VALUES (?,?,?,?)', 
-                    (entry["playlistid"], entry["foundbytrack1"], entry["foundbytrack2"], playlistName)
-                )
-                get_db().commit()
+            for entry in response["response"]:
 
-                count_new_playlists     +=1
+                '''--> playlistName'''
+                playlistName         = apiGetSpotify("playlists/" + entry["playlistid"])["response"]["name"]     #returns {"result": True/False, "response": json response, "message": ...}
+                
+                cursor.execute('SELECT * FROM ToAnalyzeResults WHERE playlistid=?', (entry["playlistid"],))
+                if cursor.fetchone() == None:
+                    cursor.execute(
+                        'INSERT INTO ToAnalyzeResults (playlistid, foundbytrack1, foundbytrack2, name_) VALUES (?,?,?,?)', 
+                        (entry["playlistid"], entry["foundbytrack1"], entry["foundbytrack2"], playlistName)
+                    )
+                    get_db().commit()
+
+                    count_new_playlists     +=1
+
+        except Exception as ex:
+            logAction("err - autosearch.py - autosearch_main start autosearchjob 40 --> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
+            logAction("TRACEBACK --> " + traceback.format_exc())
+            flash("Error performing searchForPlaylistsContainingTracks(). See log for details.", category="error")
+            return render_template('autosearch.html', 
+                        likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
+                        searchResult            = gv_searchResults)
+
+
+        '''--> check watchlist items'''
+        try:
+            if not checkWatchlistItems():
+                #error
+                pass
+                
+        except Exception as ex:
+            logAction("err - autosearch.py - autosearch_main start autosearchjob 50 --> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
+            logAction("TRACEBACK --> " + traceback.format_exc())
+            flash("Error performing checkWatchlistItems(). See log for details.", category="error")
+            return render_template('autosearch.html', 
+                        likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
+                        searchResult            = gv_searchResults)
 
 
         '''--> return html'''
