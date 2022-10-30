@@ -354,7 +354,11 @@ def autosearch_startAutosearchJob():
         try:
             if not checkWatchlistItems():
                 #error
-                pass
+                logAction("err - autosearch.py - autosearch_main start autosearchjob 40 --> Faulty response from checkwatchlistItems.")
+                flash("Faulty response from checkWatchlistItems(). See log for details.", category="error")
+            else:
+                #success
+                logAction("msg - autosearch.py - autosearch_main start autosearchjob 45 --> Finished checkwatchlistItems() with success!.")
                 
         except Exception as ex:
             logAction("err - autosearch.py - autosearch_main start autosearchjob 50 --> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
@@ -366,8 +370,8 @@ def autosearch_startAutosearchJob():
 
 
         '''--> return html'''
-        logAction("msg - autosearch.py - autosearch_main start autosearchjob 150 --> finished searchForPlaylistsContainingTracks()! Found " + str(len(response["response"])) + " playlists, " + str(count_new_playlists) + " new playlists were saved.")
-        flash("Finished searchForPlaylistsContainingTracks()! Found " + str(len(response["response"])) + " playlists, " + str(count_new_playlists) + " new playlists were saved.", category="message")
+        logAction("msg - autosearch.py - autosearch_main start autosearchjob 150 --> finished searchForPlaylistsContainingTracks() and checkWatchlistItems! Found " + str(len(response["response"])) + " playlists, " + str(count_new_playlists) + " new playlists were saved.")
+        flash("Finished searchForPlaylistsContainingTracks() and checkWatchlistItems! Found " + str(len(response["response"])) + " playlists, " + str(count_new_playlists) + " new playlists were saved.", category="message")
         return render_template('autosearch.html', 
                                 likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
                                 searchResult            = gv_searchResults)
