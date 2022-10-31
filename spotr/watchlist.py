@@ -10,6 +10,7 @@
 from asyncio import wait_for
 from cgi import test
 import functools
+from ssl import ALERT_DESCRIPTION_DECODE_ERROR, ALERT_DESCRIPTION_UNKNOWN_PSK_IDENTITY
 from unittest import result
 # from tabnanny import check
 # from tarfile import LENGTH_NAME
@@ -134,7 +135,7 @@ def watchlist_main():
         
 
     #--> SEARCH ARTIST - BUTTON PRESSED - PAGINATION # 
-    if (request.method == "POST" and  ("artist_search" in request.form)) or (request.method == "GET" and not ("addArtist" in args) and ("offs" in args) and ("lim" in args) and ("searchTerm" in args) and ("searchType" in args)):
+    if (request.method == "POST" and  (("artist_search" in request.form) or ("artistid_search" in request.form))) or (request.method == "GET" and not ("addArtist" in args) and ("offs" in args) and ("lim" in args) and ("searchTerm" in args) and ("searchType" in args)):
         try:
             '''--> pagination or search button press?'''
             if (request.method == "GET" and not ("addArtist" in args) and ("offs" in args) and ("lim" in args) and ("searchTerm" in args) and ("searchType" in args)):
@@ -159,20 +160,28 @@ def watchlist_main():
                 gv_offset       = int(args["offs"])
                 gv_limit        = int(args["lim"])
             else:
-                print("SEARCH BUTTON PRESS")
-                gv_searchTerm   = request.form["searchartistinput"] #searchterm entered in page
-                gv_searchType   = "artist"
-                gv_offset       = 0
-                gv_limit        = 10
+                #search button press
+                if "artist_search" in request.form:
+                    gv_searchTerm       = request.form["searchartistinput"] #searchterm entered in page
+                elif "artistid_search" in request.form:
+                    gv_searchTerm       = request.form["searchartistidinput"]
+                else:
+                    gv_searchTerm       = ""
+                gv_searchType           = "artist"
+                gv_offset               = 0
+                gv_limit                = 10
 
 
             '''--> api request'''
             logAction("msg - watchlist.py - watchlist_main3 --> searching for artist " + gv_searchTerm)
-            response             = searchSpotify(gv_searchTerm, gv_searchType, gv_limit, gv_offset)
+            if "artist_search" in request.form:
+                response             = searchSpotify(gv_searchTerm, gv_searchType, gv_limit, gv_offset)
+            else:
+                response             = apiGetSpotify("artists/" + gv_searchTerm)   #{"result": True/False, "response": json response, "message": ...}
             
 
             '''--> check response before continuing'''
-            if response == '':
+            if "artist_search" in request.form and response == '':
                 logAction("err - watchlist.py - watchlist_main4 --> empty api response for searching artist.")
                 flash("Error when searching for artist " + gv_searchTerm + ", empty response.", category="error")
                 return render_template('watchlist.html', 
@@ -185,16 +194,39 @@ def watchlist_main():
                         status_general      = globalvariables.general_status,
                         show_spinner        = globalvariables.general_status_show_spinner)
 
+            elif "artistid_search" in request.form and response["result"] == False:      
+                logAction("err - watchlist.py - watchlist_main5 --> empty api response for searching artistID " + gv_searchTerm + ".")
+                flash("Error when searching for artistID " + gv_searchTerm + ". See log for details", category="error")
 
-            '''--> retrieve pagination'''
-            total       = response[gv_searchType  + 's']['total']
-            gv_limit    = response[gv_searchType  + 's']['limit']
-            gv_offset   = response[gv_searchType  + 's']['offset']
+                return render_template('watchlist.html', 
+                        showArtistBtn       = "active", 
+                        showArtistTab       = "show active", 
+                        showPlaylistBtn     = "" , 
+                        showPlaylistTab     = "", 
+                        showUserBtn         = "", 
+                        showUserTab         = "",
+                        status_general      = globalvariables.general_status,
+                        show_spinner        = globalvariables.general_status_show_spinner)
 
 
-            '''--> fill artistList'''
-            for item in returnSearchResults(response, "artist"):  #{"artist": , "id": , "popularity": , "image": }
-                gv_artistList.append({"artist": item["artist"], "id": item['id'], "popularity": item['popularity'], "image": item['imageurl']})
+            if "artist_search" in request.form:
+                '''--> retrieve pagination'''
+                total       = response[gv_searchType  + 's']['total']
+                gv_limit    = response[gv_searchType  + 's']['limit']
+                gv_offset   = response[gv_searchType  + 's']['offset']
+
+
+                '''--> fill artistList'''
+                for item in returnSearchResults(response, "artist"):  #{"artist": , "id": , "popularity": , "image": }
+                    gv_artistList.append({"artist": item["artist"], "id": item['id'], "popularity": item['popularity'], "image": item['imageurl']})
+
+            elif "artistid_search" in request.form:
+                #single entry in search results, as ID should lead to 1 search result
+                '''--> retrieve pagination'''
+                total       = 1
+                gv_limit    = 1
+                gv_offset   = 1
+                gv_artistList.append({"artist": response['response']['name'], "id": response["response"]['id'], "popularity": response['response']['popularity'], "image": response['response']['images'][0]['url']})
 
 
             '''--> return html'''
@@ -702,7 +734,7 @@ def checkWatchlistItems():
     try:
         for wl_item in cursor.execute('SELECT * FROM WatchList').fetchall():
             actTracks = []  #track ids on spotify
-            dbTracks  = []  #track ids in db
+            dbTracks  = []  #track ids in dbgit add
 
             if wl_item["_type"] == "artist":
                 actTracks   = getTracksFromArtist(wl_item["id"], False)

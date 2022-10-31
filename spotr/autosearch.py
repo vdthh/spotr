@@ -325,7 +325,6 @@ def autosearch_startAutosearchJob():
 
 
             '''--> save results'''
-            
             for entry in response["response"]:
 
                 '''--> playlistName'''
@@ -348,25 +347,6 @@ def autosearch_startAutosearchJob():
             return render_template('autosearch.html', 
                         likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
                         searchResult            = gv_searchResults)
-
-
-        # '''--> check watchlist items'''
-        # try:
-        #     if not checkWatchlistItems():
-        #         #error
-        #         logAction("err - autosearch.py - autosearch_main start autosearchjob 40 --> Faulty response from checkwatchlistItems.")
-        #         flash("Faulty response from checkWatchlistItems(). See log for details.", category="error")
-        #     else:
-        #         #success
-        #         logAction("msg - autosearch.py - autosearch_main start autosearchjob 45 --> Finished checkwatchlistItems() with success!.")
-                
-        # except Exception as ex:
-        #     logAction("err - autosearch.py - autosearch_main start autosearchjob 50 --> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
-        #     logAction("TRACEBACK --> " + traceback.format_exc())
-        #     flash("Error performing checkWatchlistItems(). See log for details.", category="error")
-        #     return render_template('autosearch.html', 
-        #                 likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
-        #                 searchResult            = gv_searchResults)
 
 
         '''--> return html'''
@@ -488,7 +468,6 @@ def searchForPlaylistsContainingTracks(maxResultsPerSearch):
             toReturn            = {"result": resultSuccess, "message": resultMessage, "response": resultResponse}
             return toReturn
 
-
         '''--> perform search job'''
         for i1 in range(0, len(gv_actdbTracks)):
             item1       = gv_actdbTracks[i1]  
@@ -506,12 +485,10 @@ def searchForPlaylistsContainingTracks(maxResultsPerSearch):
 
             times_counter   = item1_timessearched
 
-
             if item1_timessearched < len(gv_actdbTracks):
                 #for this track, not all searches have been performed yet
                 for i2 in range(item1_timessearched, len(gv_actdbTracks)):
                     item2       = gv_actdbTracks[i2]
-
                     '''--> create searchstring'''
                     search_string = item1["artists"] + " " + item1["title"] + " " + item2["artists"] + " " + item2["title"]
                     logAction("msg - autosearch.py - searchForPlaylistsContainingTracks() 20 --> start google search job for searchterm: " + str(search_string) + ", i1=" + str(i1) + ", i2=" +str(i2) + ", item1_timessearched=" + str(item1_timessearched) + ".")
@@ -530,6 +507,14 @@ def searchForPlaylistsContainingTracks(maxResultsPerSearch):
                         resultMessage       = "Bad response from gcs. See log for details."
                         toReturn = {"result": resultSuccess, "message": resultMessage, "response": resultResponse}
                         return toReturn
+                    elif gcs_result["message"] == "Rate limit exceeded.": 
+                        '''--> special: rate limit exceeded. Don't generate error.'''
+                        logAction("msg - autosearch.py - searchForPlaylistsContainingTracks() 11 --> Bad response from gcs: " + gcs_result["message"])
+                        resultSuccess       = True
+                        resultMessage       = "Rate limit exceeded."
+                        toReturn = {"result": resultSuccess, "message": resultMessage, "response": resultResponse}
+                        return toReturn
+                        
 
                     # print('Found results for ' + str(search_string) + ': ' + str(len(gcs_result['response'])))
                     '''--> check if found playlists contains the 2 searched tracks'''

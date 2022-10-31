@@ -153,14 +153,11 @@ def checkIfTrackInDB(trackID, dbName):
 
         '''--> check ListenedTrack and ToListenTrack'''
         if dbName == "ListenedTrack" or dbName == "ToListenTrack" or dbName == "ScrapedTracks":
-            print("CHECKING TRACKID " + trackID + " for DB " + dbName + ".")
             # https://stackoverflow.com/questions/54659595/checking-for-multiple-values-python-mysql
             cursor.execute('SELECT * FROM ' + dbName + ' WHERE id=? OR artists=? AND title=?', (trackID, artists, title))
             if cursor.fetchone() == None:
-                print("HUH")
                 return False    #not in db
             else:
-                print("HAH")
                 return True     #in db
         elif dbName == "WatchListNewTracks":
             entry = cursor.execute('SELECT * FROM WatchListNewTracks').fetchone()
@@ -1437,8 +1434,14 @@ def extractItemsFromGoogleResponse(json_input, maxResults):
     checkResponse       = checkGoogleResponse(result_json)      #returns dict {result: True/false, message:...}
 
     if checkResponse["result"] == False:
-        toReturnResult      = False
-        toReturn            = {"result": toReturnResult, "response": toReturnResponse, "message": checkResponse["message"]}
+        '''--> when rate limit is exceeded, don't generate error'''
+        if checkResponse["message"] == "Rate limit exceeded.":
+            toReturnResult      = True
+            logAction("msg - common.py - extractItemsFromGoogleResponse18 --> Rate limit exceeded.")
+        else:
+            toReturnResult      = False
+      
+        toReturn                = {"result": toReturnResult, "response": toReturnResponse, "message": checkResponse["message"]}
         return toReturn
 
 
@@ -1535,9 +1538,9 @@ def checkGoogleResponse(input_json):
         else:
             logAction("msg - common.py - checkGoogleResponse20 --> error from api request: " + str(input_json["error"]["code"]))
             toReturnMessage     = "Fault code " + str(input_json["error"]["code"])
-
-        toReturnResult      = False
-        toReturn            = {"result": toReturnResult, "message": toReturnMessage}
+        
+        toReturnResult          = False
+        toReturn                = {"result": toReturnResult, "message": toReturnMessage}
         return toReturn
 
     elif "searchInformation" in input_json.keys():
