@@ -708,8 +708,11 @@ def checkWatchlistItems():
                 actTracks   = getTracksFromArtist(wl_item["id"], False)
             elif wl_item["_type"] == "playlist":
                 actTracks   = getTracksFromPlaylist(wl_item["id"], False)
-            dbTracks = json.loads(wl_item["list_of_current_items"])     #saved as string (json.dumps), converted to list with json.loads
-
+            if not wl_item["list_of_current_items"] == "":
+                dbTracks = json.loads(wl_item["list_of_current_items"])     #saved as string (json.dumps), converted to list with json.loads
+            else:
+                logAction("msg - watchlist.py - checkWatchListItems4 --> No valid list_of_current_items for " + wl_item["_type"] + " - " + wl_item["_name"] + ".")
+                continue
 
             '''--> use crc to check for changes'''
             crcactTracks    = binascii.crc32(json.dumps(actTracks).encode('utf8'))
@@ -725,8 +728,7 @@ def checkWatchlistItems():
                 get_db().execute('UPDATE WatchList SET list_of_current_items=? WHERE id=?',(json.dumps(actTracks), wl_item["id"]))
                 get_db().commit()
                 get_db().execute('UPDATE WatchList SET no_of_items_checked=? WHERE id=?',(len(actTracks), wl_item["id"]))
-                get_db().commit()
-
+                get_db().commit()   
 
                 # '''--> get db tracks for comparison'''
                 # response        = getDBTracks("ListenedTrack")

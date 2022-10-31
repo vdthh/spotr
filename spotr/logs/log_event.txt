@@ -1,59 +1,359 @@
 
-2022-10-27 22:00:14.023093 msg - autosearch.py - syncToAnalyzeTracks()  --> Started
-2022-10-27 22:00:14.025092 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4wC748pDf0gHnJRFyzb4l9.
-2022-10-27 22:00:14.656091 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 3 tracks from playlist that contains 3 tracks.
-2022-10-27 22:00:14.657090 msg - autosearch.py - autosearch_main load page --> autosearch.html page loaded.
-2022-10-27 22:00:16.782930 msg - autosearch.py - autosearch_main start autosearchjob --> automatically initiated, starting searchForPlaylistsContainingTracks().
-2022-10-27 22:00:16.783928 msg - autosearch.py - searchForPlaylistsContainingTracks() 0 --> Started.
-2022-10-27 22:00:16.783928 msg - autosearch.py - searchForPlaylistsContainingTracks() 20 --> start google search job for searchterm: Morgan Delt Some Sunsick Day Real Estate Crime, i1=0, i2=1, item1_timessearched=1.
-2022-10-27 22:00:17.228171 msg - common.py - extractItemsFromGoogleResponse20 --> from google search response: searchTerm=Morgan Delt Some Sunsick Day Real Estate Crime, totalResults=10, counted items=10, start index=1.
-2022-10-27 22:00:17.228171 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 3QrMzCBFsSMkmuWW1sRGAW.
-2022-10-27 22:00:17.792223 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 12 tracks from playlist that contains 12 tracks.
-2022-10-27 22:00:18.691369 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 62WxlXToRifWWxhxU75c2y.
-2022-10-27 22:00:20.011910 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 109 tracks from playlist that contains 109 tracks.
-2022-10-27 22:00:21.033890 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 1RhLjnidUlc3kYE46X5VZu.
-2022-10-27 22:00:21.696889 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 36 tracks from playlist that contains 36 tracks.
-2022-10-27 22:00:22.759073 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 3mjJIiE7IRBQzhWHMXEfMD.
-2022-10-27 22:00:27.051923 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 569 tracks from playlist that contains 569 tracks.
-2022-10-27 22:00:28.153972 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1EMcE6PZxogwvX.
-2022-10-27 22:00:29.033975 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 100 tracks from playlist that contains 100 tracks.
-2022-10-27 22:00:30.076799 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 7atyiGtymG9cN6MnpRKnQe.
-2022-10-27 22:00:31.458914 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 164 tracks from playlist that contains 164 tracks.
-2022-10-27 22:00:32.457696 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1CyJQNRR7lNK8j.
-2022-10-27 22:00:33.665862 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 101 tracks from playlist that contains 101 tracks.
-2022-10-27 22:00:34.672860 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 41zxKuPd6lGOcU06g0X34X.
-2022-10-27 22:00:43.316005 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 1152 tracks from playlist that contains 1152 tracks.
-2022-10-27 22:00:44.261757 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4lXQ5yvQtubcH9VN49QLrJ.
-2022-10-27 22:00:45.532799 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 118 tracks from playlist that contains 118 tracks.
-2022-10-27 22:00:46.504433 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 46dx2jY126Ql4gvhsPM6Bt.
-2022-10-27 22:00:47.687452 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 114 tracks from playlist that contains 114 tracks.
-2022-10-27 22:00:48.729230 msg - autosearch.py - searchForPlaylistsContainingTracks() 20 --> start google search job for searchterm: Morgan Delt Some Sunsick Day Glaciers Winter, i1=0, i2=2, item1_timessearched=1.
-2022-10-27 22:00:49.088767 msg - common.py - checkGoogleResponse30 --> No playlists found!
-2022-10-27 22:00:49.089767 msg - common.py - extractItemsFromGoogleResponse20 --> from google search response: searchTerm=Morgan Delt Some Sunsick Day Glaciers Winter, totalResults=0, counted items=10, start index=1.
-2022-10-27 22:00:49.223350 msg - autosearch.py - searchForPlaylistsContainingTracks() 20 --> start google search job for searchterm: Real Estate Crime Glaciers Winter, i1=1, i2=2, item1_timessearched=2.
-2022-10-27 22:00:49.572233 msg - common.py - checkGoogleResponse30 --> No playlists found!
-2022-10-27 22:00:49.572233 msg - common.py - extractItemsFromGoogleResponse20 --> from google search response: searchTerm=Real Estate Crime Glaciers Winter, totalResults=0, counted items=10, start index=1.
-2022-10-27 22:00:49.672239 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 62WxlXToRifWWxhxU75c2y.
-2022-10-27 22:00:50.897722 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 109 tracks from playlist that contains 109 tracks.
-2022-10-27 22:00:50.898721 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 1RhLjnidUlc3kYE46X5VZu.
-2022-10-27 22:00:51.524583 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 36 tracks from playlist that contains 36 tracks.
-2022-10-27 22:00:51.525583 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 3mjJIiE7IRBQzhWHMXEfMD.
-2022-10-27 22:00:55.721308 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 569 tracks from playlist that contains 569 tracks.
-2022-10-27 22:00:55.723312 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1EMcE6PZxogwvX.
-2022-10-27 22:00:56.490609 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 100 tracks from playlist that contains 100 tracks.
-2022-10-27 22:00:56.492608 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4lXQ5yvQtubcH9VN49QLrJ.
-2022-10-27 22:00:57.816691 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 118 tracks from playlist that contains 118 tracks.
-2022-10-27 22:00:57.817691 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 46dx2jY126Ql4gvhsPM6Bt.
-2022-10-27 22:00:59.021308 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 114 tracks from playlist that contains 114 tracks.
-2022-10-27 22:01:03.278689 msg - autosearch.py - autosearch_main start autosearchjob 150 --> finished searchForPlaylistsContainingTracks()! Found 6 playlists.
-2022-10-27 22:13:43.518285 msg - _import.py - import_main load page --> import.html page loaded.
-2022-10-27 22:13:55.708962 msg - _import.py - import_main load data --> button load access table pressed :E:\docs\python projects\database.db.
-2022-10-28 00:11:03.095309 Done ListenedTrack table
-2022-10-28 00:46:05.895228 msg - _import.py - import_main load data 20 --> Done ToListenTrack table
-2022-10-28 00:46:16.251756 msg - _import.py - import_main load data 30 --> Done WatchList table
-2022-10-28 00:46:39.094021 msg - _import.py - import_main load data 40 --> Done FavoriteTrack table
-2022-10-28 00:56:08.864410 msg - _import.py - import_main load data 50 --> Done LikedTrack table
-2022-10-28 00:56:21.854549 msg - _import.py - import_main load data 60 --> Done EverynoiseGenre table
-2022-10-29 12:54:17.911398 msg - _import.py - import_main load data 70 --> Done ScrapedTracks table
-2022-10-30 21:18:11.125235 msg - search.py - search_main --> search button pressed: , track
-2022-10-30 21:18:11.978167 msg - common.py - searchSpotify3 --> Succesfully returning search results for track jantje smit.
+2022-10-31 11:39:42.484529 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:39:42.486528 msg - watchlist.py - watchlist_main50 --> searching for playlist khruangbin
+2022-10-31 11:39:43.224714 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist khruangbin.
+2022-10-31 11:39:51.942324 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:39:51.943582 msg - watchlist.py - watchlist_main3 --> searching for artist kruanghbin
+2022-10-31 11:39:52.499156 msg - common.py - searchSpotify3 --> Succesfully returning search results for artist kruanghbin.
+2022-10-31 11:39:55.522124 msg - watchlist.py - watchlist_main80 --> add artist 2mVVjNmdjXZZDvhgQWiakk to watchlist --> starting.
+2022-10-31 11:39:55.523123 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:39:55.524124 msg - common.py - getTracksFromArtist --> requesting albums from artist 2mVVjNmdjXZZDvhgQWiakk.
+2022-10-31 11:40:17.731944 msg - common.py - getTracksFromArtist6 --> Succesfully returned list of 339 tracks from artist 2mVVjNmdjXZZDvhgQWiakk
+2022-10-31 11:40:17.731944 msg - watchlist.py - watchlist_main82 --> grabbed artist 2mVVjNmdjXZZDvhgQWiakk's tracks: 339
+2022-10-31 11:40:17.912614 msg - watchlist.py - watchlist_main84 --> artist Khruangbin added to watchlist.
+2022-10-31 11:42:31.084612 msg - common.py - apiGetSpotify5 --> bad response status_code: 503
+2022-10-31 11:42:31.085610 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 503, 'message': 'Service unavailable'}. Retrying request #0
+2022-10-31 11:43:20.659505 msg - watchlist.py - watchlist_main85 --> Finished - tracks in tracklist before adding artist 2mVVjNmdjXZZDvhgQWiakk: 0, length after adding tracks: 0.
+2022-10-31 11:43:20.659505 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:46:16.429425 msg - watchlist.py - watchlist_checkForNewTracks() --> started via button press/automatically initiated.
+2022-10-31 11:46:16.430427 msg - watchlist.py - checkWatchListItems --> starting.
+2022-10-31 11:46:16.431425 msg - common.py - getTracksFromArtist --> requesting albums from artist 2mVVjNmdjXZZDvhgQWiakk.
+2022-10-31 11:46:39.965183 msg - common.py - getTracksFromArtist6 --> Succesfully returned list of 339 tracks from artist 2mVVjNmdjXZZDvhgQWiakk
+2022-10-31 11:46:40.186966 msg - common.py - checkSourceAndCreatePlaylist60 --> ended --> total of 0 playlists created.
+2022-10-31 11:46:40.187964 msg - watchlist.py - checkWatchListItems5.1 --> Succesfully finished checkSourceAndCreatePlaylist(): 0 tracks in 0 playlist(s) created.
+2022-10-31 11:46:40.187964 msg - watchlist.py - watchlist_checkForNewTracks3() --> finished succefully.
+2022-10-31 11:46:40.187964 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:46:40.236968 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:47:31.023117 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:47:31.025118 msg - watchlist.py - watchlist_main3 --> searching for artist woven in hiatus
+2022-10-31 11:47:31.607808 msg - common.py - searchSpotify3 --> Succesfully returning search results for artist woven in hiatus.
+2022-10-31 11:47:44.169428 msg - watchlist.py - watchlist_main80 --> add artist 605gPp803tctd6QXg6pOR2 to watchlist --> starting.
+2022-10-31 11:47:44.169428 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:47:44.170431 msg - common.py - getTracksFromArtist --> requesting albums from artist 605gPp803tctd6QXg6pOR2.
+2022-10-31 11:48:03.836924 msg - common.py - getTracksFromArtist6 --> Succesfully returned list of 128 tracks from artist 605gPp803tctd6QXg6pOR2
+2022-10-31 11:48:03.836924 msg - watchlist.py - watchlist_main82 --> grabbed artist 605gPp803tctd6QXg6pOR2's tracks: 128
+2022-10-31 11:48:04.143685 msg - watchlist.py - watchlist_main84 --> artist Woven in Hiatus added to watchlist.
+2022-10-31 11:49:11.542588 msg - watchlist.py - watchlist_main85 --> Finished - tracks in tracklist before adding artist 605gPp803tctd6QXg6pOR2: 0, length after adding tracks: 0.
+2022-10-31 11:49:11.542588 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:49:25.351219 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:49:25.352217 msg - watchlist.py - watchlist_main3 --> searching for artist darand land
+2022-10-31 11:49:25.940661 msg - common.py - searchSpotify3 --> Succesfully returning search results for artist darand land.
+2022-10-31 11:49:29.036155 msg - watchlist.py - watchlist_main80 --> add artist 5Zq6V7nSFriWYdO1zWU6Ot to watchlist --> starting.
+2022-10-31 11:49:29.036155 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:49:29.037152 msg - common.py - getTracksFromArtist --> requesting albums from artist 5Zq6V7nSFriWYdO1zWU6Ot.
+2022-10-31 11:49:34.000804 msg - common.py - getTracksFromArtist6 --> Succesfully returned list of 72 tracks from artist 5Zq6V7nSFriWYdO1zWU6Ot
+2022-10-31 11:49:34.001808 msg - watchlist.py - watchlist_main82 --> grabbed artist 5Zq6V7nSFriWYdO1zWU6Ot's tracks: 72
+2022-10-31 11:49:34.210001 msg - watchlist.py - watchlist_main84 --> artist DaRand Land added to watchlist.
+2022-10-31 11:50:13.441768 msg - watchlist.py - watchlist_main85 --> Finished - tracks in tracklist before adding artist 5Zq6V7nSFriWYdO1zWU6Ot: 0, length after adding tracks: 0.
+2022-10-31 11:50:13.442772 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:50:29.088112 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:50:29.089108 msg - watchlist.py - watchlist_main50 --> searching for playlist radio1 wonderland
+2022-10-31 11:50:29.779563 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist radio1 wonderland.
+2022-10-31 11:50:36.681791 msg - watchlist.py - watchlist_main80 --> add playlist 2ZjYdntfOlz3SQFhqGXJJb to watchlist --> starting.
+2022-10-31 11:50:36.682793 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:50:36.683789 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 2ZjYdntfOlz3SQFhqGXJJb.
+2022-10-31 11:50:37.402969 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 30 tracks from playlist that contains 30 tracks.
+2022-10-31 11:50:37.402969 msg - watchlist.py - watchlist_main82 --> grabbed playlist 2ZjYdntfOlz3SQFhqGXJJb's tracks: 30
+2022-10-31 11:50:37.577970 msg - watchlist.py - watchlist_main84 --> playlist Radio 1 Wonderland: nieuwe muziek added to watchlist.
+2022-10-31 11:51:00.095293 msg - watchlist.py - watchlist_main85 --> Finished - tracks in tracklist before adding playlist 2ZjYdntfOlz3SQFhqGXJJb: 0, length after adding tracks: 5.
+2022-10-31 11:51:00.096296 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:51:36.835105 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:51:36.836104 msg - watchlist.py - watchlist_main50 --> searching for playlist kind of new
+2022-10-31 11:51:37.516367 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist kind of new.
+2022-10-31 11:51:50.819579 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:51:50.820578 msg - watchlist.py - watchlist_main50 --> searching for playlist 3qyGmXGp96vJgwAmewDcRa
+2022-10-31 11:51:51.369603 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist 3qyGmXGp96vJgwAmewDcRa.
+2022-10-31 11:51:59.193733 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:51:59.194732 msg - watchlist.py - watchlist_main50 --> searching for playlist kind of new space daze
+2022-10-31 11:51:59.854939 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist kind of new space daze.
+2022-10-31 11:52:05.587957 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:52:05.588956 msg - watchlist.py - watchlist_main50 --> searching for playlist kind of new
+2022-10-31 11:52:06.205616 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist kind of new.
+2022-10-31 11:53:19.402336 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:53:19.403337 msg - watchlist.py - watchlist_main50 --> searching for playlist Kind of New
+2022-10-31 11:53:20.166829 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist Kind of New.
+2022-10-31 11:54:04.994103 msg - search.py - search_main --> search button pressed: , track
+2022-10-31 11:54:05.618233 msg - common.py - searchSpotify3 --> Succesfully returning search results for artist 3qyGmXGp96vJgwAmewDcRa.
+2022-10-31 11:54:09.668113 msg - search.py - search_main --> search button pressed: 3qyGmXGp96vJgwAmewDcRa, artist
+2022-10-31 11:54:10.118373 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist 3qyGmXGp96vJgwAmewDcRa.
+2022-10-31 11:54:16.989472 msg - search.py - search_main --> search button pressed: 3qyGmXGp96vJgwAmewDcRa, playlist
+2022-10-31 11:54:17.688321 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist kind of new.
+2022-10-31 11:54:34.104757 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist kind of new.
+2022-10-31 11:54:50.239289 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist kind of new.
+2022-10-31 11:55:09.045188 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:55:17.549636 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:55:17.550637 msg - watchlist.py - watchlist_main50 --> searching for playlist stijn van de voorde
+2022-10-31 11:55:18.148523 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist stijn van de voorde.
+2022-10-31 11:55:30.395066 msg - watchlist.py - watchlist_main80 --> add playlist 0kkV2ywyNbnE9BjAhw6Y8Y to watchlist --> starting.
+2022-10-31 11:55:30.396062 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:55:30.397067 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0kkV2ywyNbnE9BjAhw6Y8Y.
+2022-10-31 11:55:31.883744 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 141 tracks from playlist that contains 141 tracks.
+2022-10-31 11:55:31.884744 msg - watchlist.py - watchlist_main82 --> grabbed playlist 0kkV2ywyNbnE9BjAhw6Y8Y's tracks: 141
+2022-10-31 11:55:32.125145 msg - watchlist.py - watchlist_main84 --> playlist Stijn Van de Voorde — StuBru added to watchlist.
+2022-10-31 11:56:49.352075 msg - watchlist.py - watchlist_main85 --> Finished - tracks in tracklist before adding playlist 0kkV2ywyNbnE9BjAhw6Y8Y: 5, length after adding tracks: 0.
+2022-10-31 11:56:49.352075 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:57:12.076306 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:57:12.077303 msg - watchlist.py - watchlist_main50 --> searching for playlist noemi wolfs
+2022-10-31 11:57:12.940349 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist noemi wolfs.
+2022-10-31 11:57:29.234180 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:57:29.235181 msg - watchlist.py - watchlist_main50 --> searching for playlist noémie wolfs
+2022-10-31 11:57:29.808961 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist noémie wolfs.
+2022-10-31 11:57:44.984185 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:57:44.985186 msg - watchlist.py - watchlist_main50 --> searching for playlist noémie wolfs stubru
+2022-10-31 11:57:45.600453 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist noémie wolfs stubru.
+2022-10-31 11:57:50.772906 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:57:50.773919 msg - watchlist.py - watchlist_main50 --> searching for playlist stubru
+2022-10-31 11:57:51.383167 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist stubru.
+2022-10-31 11:58:10.724282 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:58:10.725282 msg - watchlist.py - watchlist_main50 --> searching for playlist tide to-go
+2022-10-31 11:58:11.532378 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist tide to-go.
+2022-10-31 11:58:15.401845 msg - watchlist.py - watchlist_main80 --> add playlist 6Kd2yxg8P99FDjJWpmTBpy to watchlist --> starting.
+2022-10-31 11:58:15.401845 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 11:58:15.402846 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 6Kd2yxg8P99FDjJWpmTBpy.
+2022-10-31 11:58:17.703750 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 277 tracks from playlist that contains 277 tracks.
+2022-10-31 11:58:17.704754 msg - watchlist.py - watchlist_main82 --> grabbed playlist 6Kd2yxg8P99FDjJWpmTBpy's tracks: 277
+2022-10-31 11:58:17.843246 msg - watchlist.py - watchlist_main84 --> playlist tide to-go added to watchlist.
+2022-10-31 11:59:02.648149 msg - common.py - apiGetSpotify5 --> bad response status_code: 503
+2022-10-31 11:59:02.649149 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 503, 'message': 'Service unavailable'}. Retrying request #0
+2022-10-31 12:00:46.686129 msg - watchlist.py - watchlist_main85 --> Finished - tracks in tracklist before adding playlist 6Kd2yxg8P99FDjJWpmTBpy: 5, length after adding tracks: 0.
+2022-10-31 12:00:46.686129 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:00:55.531849 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:00:55.532848 msg - watchlist.py - watchlist_main50 --> searching for playlist dream pop
+2022-10-31 12:00:56.228427 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist dream pop.
+2022-10-31 12:01:18.009736 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:01:18.010735 msg - watchlist.py - watchlist_main50 --> searching for playlist modular minds
+2022-10-31 12:01:18.629026 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist modular minds.
+2022-10-31 12:01:22.251550 msg - watchlist.py - watchlist_main80 --> add playlist 37i9dQZF1DWYWA8YXAAo9Z to watchlist --> starting.
+2022-10-31 12:01:22.252563 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:01:22.253549 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1DWYWA8YXAAo9Z.
+2022-10-31 12:01:22.985290 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 75 tracks from playlist that contains 75 tracks.
+2022-10-31 12:01:22.986290 msg - watchlist.py - watchlist_main82 --> grabbed playlist 37i9dQZF1DWYWA8YXAAo9Z's tracks: 75
+2022-10-31 12:01:23.180236 msg - watchlist.py - watchlist_main84 --> playlist Modular Synths added to watchlist.
+2022-10-31 12:02:02.531488 msg - watchlist.py - watchlist_main85 --> Finished - tracks in tracklist before adding playlist 37i9dQZF1DWYWA8YXAAo9Z: 5, length after adding tracks: 0.
+2022-10-31 12:02:02.531488 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:02:18.805314 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:02:18.806329 msg - watchlist.py - watchlist_main50 --> searching for playlist daily mix 1
+2022-10-31 12:02:19.475985 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist daily mix 1.
+2022-10-31 12:02:48.073882 msg - search.py - search_main --> search button pressed: kind of new, playlist
+2022-10-31 12:02:48.633400 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist 37i9dQZF1E36KvvuHt60X9.
+2022-10-31 12:02:56.419002 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:03:24.993633 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:03:24.994639 msg - watchlist.py - watchlist_main50 --> searching for playlist fresh finds indie
+2022-10-31 12:03:25.622181 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist fresh finds indie.
+2022-10-31 12:03:38.200067 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:03:38.201069 msg - watchlist.py - watchlist_main50 --> searching for playlist fresh finds indie best of 2021
+2022-10-31 12:03:38.876325 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist fresh finds indie best of 2021.
+2022-10-31 12:03:56.844983 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:03:56.845982 msg - watchlist.py - watchlist_main50 --> searching for playlist stijn van de voorde
+2022-10-31 12:03:57.387840 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist stijn van de voorde.
+2022-10-31 12:04:01.144334 msg - watchlist.py - watchlist_main80 --> add playlist 7FrbZN9fJTobEXOz06JXtV to watchlist --> starting.
+2022-10-31 12:04:01.144334 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:04:01.146334 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 7FrbZN9fJTobEXOz06JXtV.
+2022-10-31 12:04:01.717467 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 22 tracks from playlist that contains 22 tracks.
+2022-10-31 12:04:01.717467 msg - watchlist.py - watchlist_main82 --> grabbed playlist 7FrbZN9fJTobEXOz06JXtV's tracks: 22
+2022-10-31 12:04:01.929044 msg - watchlist.py - watchlist_main84 --> playlist Stijn Van de Voorde (latest) added to watchlist.
+2022-10-31 12:04:13.351245 msg - watchlist.py - watchlist_main85 --> Finished - tracks in tracklist before adding playlist 7FrbZN9fJTobEXOz06JXtV: 5, length after adding tracks: 0.
+2022-10-31 12:04:13.352256 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:04:36.329604 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:04:36.330608 msg - watchlist.py - watchlist_main50 --> searching for playlist soft 60s
+2022-10-31 12:04:37.056774 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist soft 60s.
+2022-10-31 12:04:42.400677 msg - watchlist.py - watchlist_main80 --> add playlist 37i9dQZF1DWYzKmy0vGGcY to watchlist --> starting.
+2022-10-31 12:04:42.400677 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:04:42.401677 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1DWYzKmy0vGGcY.
+2022-10-31 12:04:44.059871 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 125 tracks from playlist that contains 125 tracks.
+2022-10-31 12:04:44.060869 msg - watchlist.py - watchlist_main82 --> grabbed playlist 37i9dQZF1DWYzKmy0vGGcY's tracks: 125
+2022-10-31 12:04:44.284713 msg - watchlist.py - watchlist_main84 --> playlist Soft 60s added to watchlist.
+2022-10-31 12:05:51.701490 msg - watchlist.py - watchlist_main85 --> Finished - tracks in tracklist before adding playlist 37i9dQZF1DWYzKmy0vGGcY: 5, length after adding tracks: 0.
+2022-10-31 12:05:51.701490 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:06:04.126624 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:06:04.128623 msg - watchlist.py - watchlist_main50 --> searching for playlist indie treasures
+2022-10-31 12:06:04.876258 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist indie treasures.
+2022-10-31 12:06:16.630877 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:06:16.631880 msg - watchlist.py - watchlist_main50 --> searching for playlist indie treasures 2014
+2022-10-31 12:06:17.333601 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist indie treasures 2014.
+2022-10-31 12:06:25.534147 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:06:25.535149 msg - watchlist.py - watchlist_main50 --> searching for playlist #29: Winter 2014 (Indie Treasures) #PlaylistOfTheDay #GOODMUSIC
+2022-10-31 12:06:26.057554 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:26.058554 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #0
+2022-10-31 12:06:28.003748 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:28.003748 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #1
+2022-10-31 12:06:30.580788 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:30.581789 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #2
+2022-10-31 12:06:32.080808 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:32.080808 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #3
+2022-10-31 12:06:34.433899 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:34.433899 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #4
+2022-10-31 12:06:36.432710 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:36.432710 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #5
+2022-10-31 12:06:38.486946 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:38.486946 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #6
+2022-10-31 12:06:40.372501 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:40.372501 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #7
+2022-10-31 12:06:42.701717 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:42.701717 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #8
+2022-10-31 12:06:44.512831 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:44.513832 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #9
+2022-10-31 12:06:46.752074 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:46.752074 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #10
+2022-10-31 12:06:48.059533 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:48.059533 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #11
+2022-10-31 12:06:49.854246 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:49.854246 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #12
+2022-10-31 12:06:52.261201 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:52.261201 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #13
+2022-10-31 12:06:53.828985 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:53.828985 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #14
+2022-10-31 12:06:56.721207 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:56.721207 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #15
+2022-10-31 12:06:58.278882 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:06:58.278882 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #16
+2022-10-31 12:07:01.351707 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:07:01.351707 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #17
+2022-10-31 12:07:03.904977 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:07:03.904977 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #18
+2022-10-31 12:07:06.770149 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:07:06.770149 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #19
+2022-10-31 12:07:08.410641 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:07:08.411656 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #20
+2022-10-31 12:07:10.496057 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:07:10.496057 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #21
+2022-10-31 12:07:13.170493 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:07:13.170493 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #22
+2022-10-31 12:07:14.474031 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:07:14.475047 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #23
+2022-10-31 12:07:16.144644 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:07:16.144644 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #24
+2022-10-31 12:07:19.294219 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:07:19.294219 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #25
+2022-10-31 12:07:21.974956 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:07:21.974956 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #26
+2022-10-31 12:07:23.905831 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:07:23.906832 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #27
+2022-10-31 12:07:26.480782 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:07:26.481784 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #28
+2022-10-31 12:07:29.294798 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:07:29.295813 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #29
+2022-10-31 12:07:31.417659 msg - common.py - apiGetSpotify5 --> bad response status_code: 400
+2022-10-31 12:07:31.418657 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 400, 'message': 'No search query'}. Retrying request #30
+2022-10-31 12:07:33.805048 err - common.py - apiGetSpotify9 --> too many retries requesting acces token, aborting.
+2022-10-31 12:07:33.822050 common.py - searchSpotify 10 --> Bad response from apiGetSpotify. Message: After 30 requests, still no valid response..
+2022-10-31 12:07:33.823051 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist #29: Winter 2014 (Indie Treasures) #PlaylistOfTheDay #GOODMUSIC.
+2022-10-31 12:07:33.823051 err - watchlist.py - watchlist_main5 --> error while loading page --> <class 'KeyError'> - ('playlists',) - 'playlists'
+2022-10-31 12:07:33.824052 TRACEBACK --> Traceback (most recent call last):
+  File "E:\docs\python projects\SpotifyWebAppV3.0\spotr\watchlist.py", line 289, in watchlist_main
+    total       = response[gv_searchType  + 's']['total']
+KeyError: 'playlists'
+
+2022-10-31 12:07:44.986604 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:07:44.987604 msg - watchlist.py - watchlist_main50 --> searching for playlist  Winter 2014 (Indie Treasures) PlaylistOfTheDay GOODMUSIC
+2022-10-31 12:07:45.804949 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist  Winter 2014 (Indie Treasures) PlaylistOfTheDay GOODMUSIC.
+2022-10-31 12:07:56.047331 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:07:56.049332 msg - watchlist.py - watchlist_main50 --> searching for playlist Rhythm Section International
+2022-10-31 12:07:56.607742 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist Rhythm Section International.
+2022-10-31 12:08:03.946131 msg - watchlist.py - watchlist_main80 --> add playlist 16SYlHXwqWbLEDWmnCk6YY to watchlist --> starting.
+2022-10-31 12:08:03.946131 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:08:03.947131 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 16SYlHXwqWbLEDWmnCk6YY.
+2022-10-31 12:08:06.528849 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 398 tracks from playlist that contains 398 tracks.
+2022-10-31 12:08:06.529849 msg - watchlist.py - watchlist_main82 --> grabbed playlist 16SYlHXwqWbLEDWmnCk6YY's tracks: 398
+2022-10-31 12:08:06.729727 msg - watchlist.py - watchlist_main84 --> playlist Rhythm Section International added to watchlist.
+2022-10-31 12:11:32.640607 msg - watchlist.py - watchlist_main85 --> Finished - tracks in tracklist before adding playlist 16SYlHXwqWbLEDWmnCk6YY: 5, length after adding tracks: 0.
+2022-10-31 12:11:32.640607 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:57:51.867777 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:57:51.881780 msg - watchlist.py - watchlist_main3 --> searching for artist tom churchill
+2022-10-31 12:57:52.536305 msg - common.py - searchSpotify3 --> Succesfully returning search results for artist tom churchill.
+2022-10-31 12:57:59.211160 msg - watchlist.py - watchlist_main80 --> add artist 1GIF5qPbhR6721tIVhkJXT to watchlist --> starting.
+2022-10-31 12:57:59.211160 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:57:59.212160 msg - common.py - getTracksFromArtist --> requesting albums from artist 1GIF5qPbhR6721tIVhkJXT.
+2022-10-31 12:58:06.345022 msg - common.py - getTracksFromArtist6 --> Succesfully returned list of 109 tracks from artist 1GIF5qPbhR6721tIVhkJXT
+2022-10-31 12:58:06.346022 msg - watchlist.py - watchlist_main82 --> grabbed artist 1GIF5qPbhR6721tIVhkJXT's tracks: 109
+2022-10-31 12:58:06.612767 msg - watchlist.py - watchlist_main84 --> artist Tom Churchill added to watchlist.
+2022-10-31 12:59:03.848176 msg - watchlist.py - watchlist_main85 --> Finished - tracks in tracklist before adding artist 1GIF5qPbhR6721tIVhkJXT: 5, length after adding tracks: 0.
+2022-10-31 12:59:03.848176 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:59:34.635592 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:59:34.637594 msg - watchlist.py - watchlist_main3 --> searching for artist hoavi
+2022-10-31 12:59:35.286430 msg - common.py - searchSpotify3 --> Succesfully returning search results for artist hoavi.
+2022-10-31 12:59:40.548125 msg - watchlist.py - watchlist_main80 --> add artist 34ogXgGcq0P9njF9n4aVhy to watchlist --> starting.
+2022-10-31 12:59:40.548125 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 12:59:40.550125 msg - common.py - getTracksFromArtist --> requesting albums from artist 34ogXgGcq0P9njF9n4aVhy.
+2022-10-31 12:59:44.237237 msg - common.py - getTracksFromArtist6 --> Succesfully returned list of 46 tracks from artist 34ogXgGcq0P9njF9n4aVhy
+2022-10-31 12:59:44.237237 msg - watchlist.py - watchlist_main82 --> grabbed artist 34ogXgGcq0P9njF9n4aVhy's tracks: 46
+2022-10-31 12:59:44.533794 msg - watchlist.py - watchlist_main84 --> artist Hoavi added to watchlist.
+2022-10-31 13:00:07.945951 msg - watchlist.py - watchlist_main85 --> Finished - tracks in tracklist before adding artist 34ogXgGcq0P9njF9n4aVhy: 5, length after adding tracks: 0.
+2022-10-31 13:00:07.945951 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 13:01:21.937976 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 13:01:21.939976 msg - watchlist.py - watchlist_main3 --> searching for artist hostom
+2022-10-31 13:01:22.495532 msg - common.py - searchSpotify3 --> Succesfully returning search results for artist hostom.
+2022-10-31 13:01:29.633997 msg - watchlist.py - watchlist_main80 --> add artist 4UEHt9dydpqD88wj3JvJqz to watchlist --> starting.
+2022-10-31 13:01:29.633997 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 13:01:29.635001 msg - common.py - getTracksFromArtist --> requesting albums from artist 4UEHt9dydpqD88wj3JvJqz.
+2022-10-31 13:01:32.000164 msg - common.py - getTracksFromArtist6 --> Succesfully returned list of 9 tracks from artist 4UEHt9dydpqD88wj3JvJqz
+2022-10-31 13:01:32.000164 msg - watchlist.py - watchlist_main82 --> grabbed artist 4UEHt9dydpqD88wj3JvJqz's tracks: 9
+2022-10-31 13:01:32.153798 msg - watchlist.py - watchlist_main84 --> artist Hostom added to watchlist.
+2022-10-31 13:01:37.092722 msg - watchlist.py - watchlist_main85 --> Finished - tracks in tracklist before adding artist 4UEHt9dydpqD88wj3JvJqz: 5, length after adding tracks: 0.
+2022-10-31 13:01:37.093734 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 13:03:21.104515 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 13:03:21.105515 msg - watchlist.py - watchlist_main50 --> searching for playlist jeroen delodder
+2022-10-31 13:03:21.809106 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist jeroen delodder.
+2022-10-31 13:03:28.881806 msg - watchlist.py - watchlist_main80 --> add playlist 2QvPc7uoFUDbuTqnaevgd3 to watchlist --> starting.
+2022-10-31 13:03:28.881806 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 13:03:28.883805 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 2QvPc7uoFUDbuTqnaevgd3.
+2022-10-31 13:03:37.547552 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 1097 tracks from playlist that contains 1097 tracks.
+2022-10-31 13:03:37.548551 msg - watchlist.py - watchlist_main82 --> grabbed playlist 2QvPc7uoFUDbuTqnaevgd3's tracks: 1097
+2022-10-31 13:03:37.822072 msg - watchlist.py - watchlist_main84 --> playlist Jeroen Delodder — StuBru added to watchlist.
+2022-10-31 13:14:40.758137 msg - watchlist.py - watchlist_main85 --> Finished - tracks in tracklist before adding playlist 2QvPc7uoFUDbuTqnaevgd3: 5, length after adding tracks: 70.
+2022-10-31 13:14:40.759139 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 13:18:25.007255 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 13:18:25.008254 msg - watchlist.py - watchlist_main3 --> searching for artist tash sultana
+2022-10-31 13:18:25.658078 msg - common.py - searchSpotify3 --> Succesfully returning search results for artist tash sultana.
+2022-10-31 13:18:30.036541 msg - watchlist.py - watchlist_main80 --> add artist 6zVFRTB0Y1whWyH7ZNmywf to watchlist --> starting.
+2022-10-31 13:18:30.036541 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 13:18:30.037543 msg - common.py - getTracksFromArtist --> requesting albums from artist 6zVFRTB0Y1whWyH7ZNmywf.
+2022-10-31 13:18:46.966110 msg - common.py - getTracksFromArtist6 --> Succesfully returned list of 116 tracks from artist 6zVFRTB0Y1whWyH7ZNmywf
+2022-10-31 13:18:46.966110 msg - watchlist.py - watchlist_main82 --> grabbed artist 6zVFRTB0Y1whWyH7ZNmywf's tracks: 116
+2022-10-31 13:18:47.171436 msg - watchlist.py - watchlist_main84 --> artist Tash Sultana added to watchlist.
+2022-10-31 13:19:46.940556 msg - watchlist.py - watchlist_main85 --> Finished - tracks in tracklist before adding artist 6zVFRTB0Y1whWyH7ZNmywf: 70, length after adding tracks: 0.
+2022-10-31 13:19:46.940556 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 13:21:39.270526 msg - watchlist.py - watchlist_checkForNewTracks() --> started via button press/automatically initiated.
+2022-10-31 13:21:39.270526 msg - watchlist.py - checkWatchListItems --> starting.
+2022-10-31 13:21:39.272525 msg - common.py - getTracksFromArtist --> requesting albums from artist 2mVVjNmdjXZZDvhgQWiakk.
+2022-10-31 13:22:00.947714 msg - common.py - getTracksFromArtist6 --> Succesfully returned list of 339 tracks from artist 2mVVjNmdjXZZDvhgQWiakk
+2022-10-31 13:22:00.949710 msg - common.py - getTracksFromArtist --> requesting albums from artist 605gPp803tctd6QXg6pOR2.
+2022-10-31 13:22:19.464098 msg - common.py - getTracksFromArtist6 --> Succesfully returned list of 128 tracks from artist 605gPp803tctd6QXg6pOR2
+2022-10-31 13:22:19.614144 msg - common.py - getTracksFromArtist --> requesting albums from artist 5Zq6V7nSFriWYdO1zWU6Ot.
+2022-10-31 13:22:24.494421 msg - common.py - getTracksFromArtist6 --> Succesfully returned list of 72 tracks from artist 5Zq6V7nSFriWYdO1zWU6Ot
+2022-10-31 13:22:24.684022 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 2ZjYdntfOlz3SQFhqGXJJb.
+2022-10-31 13:22:25.347233 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 30 tracks from playlist that contains 30 tracks.
+2022-10-31 13:22:25.524672 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0kkV2ywyNbnE9BjAhw6Y8Y.
+2022-10-31 13:22:26.970081 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 141 tracks from playlist that contains 141 tracks.
+2022-10-31 13:22:27.261021 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 6Kd2yxg8P99FDjJWpmTBpy.
+2022-10-31 13:22:29.404767 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 277 tracks from playlist that contains 277 tracks.
+2022-10-31 13:22:29.554121 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1DWYWA8YXAAo9Z.
+2022-10-31 13:22:30.359390 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 75 tracks from playlist that contains 75 tracks.
+2022-10-31 13:22:30.611606 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 7FrbZN9fJTobEXOz06JXtV.
+2022-10-31 13:22:31.329232 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 22 tracks from playlist that contains 22 tracks.
+2022-10-31 13:22:31.568472 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1DWYzKmy0vGGcY.
+2022-10-31 13:22:33.183137 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 125 tracks from playlist that contains 125 tracks.
+2022-10-31 13:22:33.366690 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 16SYlHXwqWbLEDWmnCk6YY.
+2022-10-31 13:22:36.078239 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 398 tracks from playlist that contains 398 tracks.
+2022-10-31 13:22:36.313694 msg - common.py - getTracksFromArtist --> requesting albums from artist 1GIF5qPbhR6721tIVhkJXT.
+2022-10-31 13:22:42.903809 msg - common.py - getTracksFromArtist6 --> Succesfully returned list of 109 tracks from artist 1GIF5qPbhR6721tIVhkJXT
+2022-10-31 13:22:43.090018 msg - common.py - getTracksFromArtist --> requesting albums from artist 34ogXgGcq0P9njF9n4aVhy.
+2022-10-31 13:22:46.807417 msg - common.py - getTracksFromArtist6 --> Succesfully returned list of 46 tracks from artist 34ogXgGcq0P9njF9n4aVhy
+2022-10-31 13:22:47.002731 msg - common.py - getTracksFromArtist --> requesting albums from artist 4UEHt9dydpqD88wj3JvJqz.
+2022-10-31 13:22:49.367711 msg - common.py - getTracksFromArtist6 --> Succesfully returned list of 9 tracks from artist 4UEHt9dydpqD88wj3JvJqz
+2022-10-31 13:22:49.524878 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 2QvPc7uoFUDbuTqnaevgd3.
+2022-10-31 13:22:58.561312 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 1097 tracks from playlist that contains 1097 tracks.
+2022-10-31 13:22:58.765661 msg - common.py - getTracksFromArtist --> requesting albums from artist 6zVFRTB0Y1whWyH7ZNmywf.
+2022-10-31 13:23:16.017668 msg - common.py - getTracksFromArtist6 --> Succesfully returned list of 116 tracks from artist 6zVFRTB0Y1whWyH7ZNmywf
+2022-10-31 13:25:05.574820 msg - common.py - createPlaylist3 --> about to create a new playlist: spotr_watchlistitems__20221031_13h25
+2022-10-31 13:25:05.848468 msg - common.py - createPlaylist7 --> Succesfully created playlist spotr_watchlistitems__20221031_13h25, ID = 4vlHXiMucIP5v8R003dOn3
+2022-10-31 13:25:07.869451 msg - common.py - addTracksToPlaylist3 --> about to add a total of 50 tracks to playlist 4vlHXiMucIP5v8R003dOn3.
+2022-10-31 13:25:08.094060 msg - common.py - addTracksToPlaylist6 --> Succesfully added 50 tracks to playlist 4vlHXiMucIP5v8R003dOn3.
+2022-10-31 13:25:45.539158 msg - common.py - checkSourceAndCreatePlaylist40 --> Tracks left in table WatchListNewTracks: 20
+2022-10-31 13:25:46.122309 msg - common.py - changePlaylistDetails3 --> about to change playlist details for: 4vlHXiMucIP5v8R003dOn3
+2022-10-31 13:25:46.377649 msg - common.py - changePlaylistDetails7 --> Succesfully changed playlist details for 4vlHXiMucIP5v8R003dOn3
+2022-10-31 13:25:46.377649 msg - common.py - checkSourceAndCreatePlaylist60 --> ended --> total of 1 playlists created.
+2022-10-31 13:25:46.378649 msg - watchlist.py - checkWatchListItems5.1 --> Succesfully finished checkSourceAndCreatePlaylist(): 50 tracks in 1 playlist(s) created.
+2022-10-31 13:25:46.378649 msg - watchlist.py - watchlist_checkForNewTracks3() --> finished succefully.
+2022-10-31 13:25:46.378649 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 13:25:46.443652 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
