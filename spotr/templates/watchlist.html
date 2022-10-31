@@ -285,6 +285,14 @@
             </div>                                 
           </form>
 
+          <h6>Search for playlist ID</h6>
+          <form method="post" required>
+            <div class="input-group mb-1">
+              <button class="btn btn-outline-secondary bg-dark" type="submit" id="searchplaylistid_btn" name="playlistid_search">Search</button>
+              <input type="text" class="form-control" id="searchplaylistidinput" name="searchplaylistidinput" placeholder="Enter keywords" required>
+            </div>                                 
+          </form>
+
           <div style="height:800px;overflow:auto;">
             {% if playlistList %}
               {% if playlistList|length != 0 %}

@@ -265,19 +265,19 @@ def watchlist_main():
 
 
     #--> SEARCH PLAYLIST - BUTTON PRESSED - PAGINATION # 
-    if (request.method == "POST" and  ("playlist_search" in request.form)) or (request.method == "GET" and not ("addArtist" in args) and ("offs" in args) and ("lim" in args) and ("searchTerm" in args) and ("searchType" in args)):
+    if (request.method == "POST" and (("playlist_search" in request.form) or ("playlistid_search" in request.form))) or (request.method == "GET" and not ("addArtist" in args) and ("offs" in args) and ("lim" in args) and ("searchTerm" in args) and ("searchType" in args)):
         try:
             '''--> pagination or search button press?'''
             if (request.method == "GET" and not ("addPlaylist" in args) and ("offs" in args) and ("lim" in args) and ("searchTerm" in args) and ("searchType" in args)):
                 paginReq = True
-                print("search playlist - pagination")
             else:
+                #search playlist - button press
                 paginReq = False
-                print("search playlist - button press")
+                
 
             '''--> initialize variables'''
-            gv_playlistList   = [] #(re-)initialize global artist list
-            gv_watchlistItems = []
+            gv_playlistList         = [] #(re-)initialize global artist list
+            gv_watchlistItems       = []
 
 
             '''--> (re)load watchlist items'''
@@ -291,7 +291,12 @@ def watchlist_main():
                 gv_offset       = int(args["offs"])
                 gv_limit        = int(args["lim"])
             else:
-                gv_searchTerm   = request.form["searchplaylistinput"] #searchterm entered in page
+                if "playlist_search" in request.form:
+                    gv_searchTerm       = request.form["searchplaylistinput"] #searchterm entered in page
+                elif "playlistid_search" in request.form:
+                    gv_searchTerm       = request.form["searchplaylistidinput"]
+                else:
+                    gv_searchTerm       = ""
                 gv_searchType   = "playlist"
                 gv_offset       = 0
                 gv_limit        = 10
@@ -299,11 +304,14 @@ def watchlist_main():
 
             '''--> api request'''
             logAction("msg - watchlist.py - watchlist_main50 --> searching for playlist " + gv_searchTerm)
-            response = searchSpotify(gv_searchTerm, gv_searchType, gv_limit, gv_offset)
+            if "playlist_search" in request.form:
+                response        = searchSpotify(gv_searchTerm, gv_searchType, gv_limit, gv_offset)
+            else:
+                response        = apiGetSpotify("playlists/" + gv_searchTerm)   #{"result": True/False, "response": json response, "message": ...}
             
 
             '''--> check response before continuing'''
-            if response == '':
+            if "playlist_search" in request.form and response == '':
                 logAction("err - watchlist.py - watchlist_main51 --> empty api response for searching playlist.")
                 flash("Error when searching for playlist " + gv_searchTerm + ", empty response.", category="error")
                 return render_template('watchlist.html', 
@@ -316,16 +324,40 @@ def watchlist_main():
                         status_general      = globalvariables.general_status,
                         show_spinner        = globalvariables.general_status_show_spinner)
 
+            elif "playlistid_search" in request.form and response["result"] == False:      
+                logAction("err - watchlist.py - watchlist_main52 --> empty api response for searching playlistID " + gv_searchTerm + ".")
+                flash("Error when searching for playlistID " + gv_searchTerm + ". See log for details", category="error")
 
-            '''--> retrieve pagination'''
-            total       = response[gv_searchType  + 's']['total']
-            gv_limit    = response[gv_searchType  + 's']['limit']
-            gv_offset   = response[gv_searchType  + 's']['offset']
+                return render_template('watchlist.html', 
+                        showArtistBtn       = "", 
+                        showArtistTab       = "", 
+                        showPlaylistBtn     = "active" , 
+                        showPlaylistTab     = "show active", 
+                        showUserBtn         = "", 
+                        showUserTab         = "",
+                        status_general      = globalvariables.general_status,
+                        show_spinner        = globalvariables.general_status_show_spinner)
 
 
-            '''--> fill playlistList'''
-            for item in returnSearchResults(response, "playlist"):  #{"name": , "id": , "description": , "image": , "owner": , "totaltracks": }
-                gv_playlistList.append({"name": item["name"], "id": item['id'], "description": item['description'], "image": item['imageurl'], "owner": item['owner'], "totaltracks": item['totaltracks']})
+            if "playlist_search" in request.form:
+                '''--> retrieve pagination'''
+                total       = response[gv_searchType  + 's']['total']
+                gv_limit    = response[gv_searchType  + 's']['limit']
+                gv_offset   = response[gv_searchType  + 's']['offset']
+
+
+                '''--> fill playlistList'''
+                for item in returnSearchResults(response, "playlist"):  #{"name": , "id": , "description": , "image": , "owner": , "totaltracks": }
+                    gv_playlistList.append({"name": item["name"], "id": item['id'], "description": item['description'], "image": item['imageurl'], "owner": item['owner'], "totaltracks": item['totaltracks']})
+
+
+            elif "playlistid_search" in request.form:
+                #single entry in search results, as ID should lead to 1 search result
+                '''--> retrieve pagination'''
+                total       = 1
+                gv_limit    = 1
+                gv_offset   = 1
+                gv_playlistList.append({"name": response['response']['name'], "id": response["response"]['id'], "description": response['response']['description'], "image": response['response']['images'][0]['url'], "owner": response['response']['owner']['display_name'], "totaltracks": response['response']['tracks']['total']})
 
 
             '''--> return html'''

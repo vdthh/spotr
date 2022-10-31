@@ -33,3 +33,169 @@
 2022-10-31 15:18:26.819851 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 341 tracks from playlist that contains 341 tracks.
 2022-10-31 15:18:27.771463 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0pASMPpFZDLRNDMYViJsgR.
 2022-10-31 15:18:28.584308 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 61 tracks from playlist that contains 61 tracks.
+2022-10-31 20:45:52.528345 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:45:59.505849 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:45:59.507849 msg - watchlist.py - watchlist_main3 --> searching for artist jefke
+2022-10-31 20:46:00.150787 msg - common.py - searchSpotify3 --> Succesfully returning search results for artist jefke.
+2022-10-31 20:46:07.666744 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:46:07.668742 msg - watchlist.py - watchlist_main3 --> searching for artist 0BJ02fxaAtkkOGojZvmTBD
+2022-10-31 20:46:18.359894 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:46:18.360894 msg - watchlist.py - watchlist_main50 --> searching for playlist deep hip hop
+2022-10-31 20:46:19.029162 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist deep hip hop.
+2022-10-31 20:46:19.030161 err - watchlist.py - watchlist_main5 --> error while loading page --> <class 'UnboundLocalError'> - ("local variable 'total' referenced before assignment",) - local variable 'total' referenced before assignment
+2022-10-31 20:46:19.031163 TRACEBACK --> Traceback (most recent call last):
+  File "E:\docs\python projects\SpotifyWebAppV3.0\spotr\watchlist.py", line 374, in watchlist_main
+    tot                 = total,
+UnboundLocalError: local variable 'total' referenced before assignment
+
+2022-10-31 20:46:29.517935 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:46:29.519936 msg - watchlist.py - watchlist_main50 --> searching for playlist deep hip hop
+2022-10-31 20:46:30.269384 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist deep hip hop.
+2022-10-31 20:46:30.269384 err - watchlist.py - watchlist_main5 --> error while loading page --> <class 'UnboundLocalError'> - ("local variable 'total' referenced before assignment",) - local variable 'total' referenced before assignment
+2022-10-31 20:46:30.270384 TRACEBACK --> Traceback (most recent call last):
+  File "E:\docs\python projects\SpotifyWebAppV3.0\spotr\watchlist.py", line 374, in watchlist_main
+    tot                 = total,
+UnboundLocalError: local variable 'total' referenced before assignment
+
+2022-10-31 20:47:48.646299 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:47:48.648305 msg - watchlist.py - watchlist_main50 --> searching for playlist deep hip hop
+2022-10-31 20:47:49.366232 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist deep hip hop.
+2022-10-31 20:47:58.573166 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:47:58.575165 msg - watchlist.py - watchlist_main50 --> searching for playlist 4cZldmJqNq42ABtItBu67U 
+2022-10-31 20:47:59.071511 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:47:59.071511 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #0
+2022-10-31 20:48:00.958071 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:48:00.959085 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #1
+2022-10-31 20:48:02.905346 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:48:02.905346 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #2
+2022-10-31 20:48:04.618904 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:48:04.619905 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #3
+2022-10-31 20:48:07.248417 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:48:07.248417 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #4
+2022-10-31 20:48:09.094049 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:48:09.095049 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #5
+2022-10-31 20:48:10.727706 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:48:10.727706 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #6
+2022-10-31 20:49:59.732271 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:49:59.734272 msg - watchlist.py - watchlist_main50 --> searching for playlist 4cZldmJqNq42ABtItBu67U 
+2022-10-31 20:50:00.344897 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:50:00.344897 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #0
+2022-10-31 20:50:03.963756 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:50:03.963756 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #1
+2022-10-31 20:50:06.084802 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:50:06.085801 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #2
+2022-10-31 20:50:15.158420 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:50:20.199105 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:50:20.201108 msg - watchlist.py - watchlist_main50 --> searching for playlist hip hop
+2022-10-31 20:50:21.063375 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist hip hop.
+2022-10-31 20:50:33.535942 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:50:33.536939 msg - watchlist.py - watchlist_main50 --> searching for playlist 37i9dQZF1DWTe5ECpTKzMo
+2022-10-31 20:50:41.800965 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:50:41.801965 msg - watchlist.py - watchlist_main50 --> searching for playlist deep hip hop
+2022-10-31 20:50:42.398940 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist deep hip hop.
+2022-10-31 20:50:52.772156 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:50:52.774154 msg - watchlist.py - watchlist_main50 --> searching for playlist 4cZldmJqNq42ABtItBu67U 
+2022-10-31 20:50:53.274275 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:50:53.274275 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #0
+2022-10-31 20:50:56.211977 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:50:56.211977 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #1
+2022-10-31 20:50:57.645776 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:50:57.646778 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #2
+2022-10-31 20:50:58.847773 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:50:58.848771 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #3
+2022-10-31 20:51:00.963762 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:00.964759 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #4
+2022-10-31 20:51:03.031918 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:03.031918 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #5
+2022-10-31 20:51:04.603139 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:04.604139 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #6
+2022-10-31 20:51:06.254427 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:06.255426 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #7
+2022-10-31 20:51:08.499744 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:08.499744 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #8
+2022-10-31 20:51:09.845838 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:51:10.426842 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:10.426842 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #9
+2022-10-31 20:51:12.159096 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:12.160097 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #10
+2022-10-31 20:51:14.348032 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:14.348032 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #11
+2022-10-31 20:51:14.680368 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:51:14.681365 msg - watchlist.py - watchlist_main50 --> searching for playlist 7tYUPZugHlGwGjvBSQebSt 
+2022-10-31 20:51:15.193333 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:15.193333 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #0
+2022-10-31 20:51:16.381461 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:16.382458 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #12
+2022-10-31 20:51:16.782978 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:16.782978 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #1
+2022-10-31 20:51:18.228575 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:51:18.669572 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:18.670573 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #13
+2022-10-31 20:51:19.311153 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:19.312167 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #2
+2022-10-31 20:51:20.748746 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:20.749746 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #14
+2022-10-31 20:51:22.153187 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:22.153187 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #15
+2022-10-31 20:51:22.189165 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:22.190165 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #3
+2022-10-31 20:51:23.490293 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:23.491308 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #4
+2022-10-31 20:51:24.460604 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:24.461605 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #16
+2022-10-31 20:51:26.354480 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:51:26.355481 msg - watchlist.py - watchlist_main50 --> searching for playlist indie rock
+2022-10-31 20:51:26.563477 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:26.563477 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:26.563477 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #17
+2022-10-31 20:51:26.563477 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #5
+2022-10-31 20:51:26.892494 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:26.893497 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #0
+2022-10-31 20:51:27.744225 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:27.744225 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #18
+2022-10-31 20:51:28.057155 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:28.058169 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #6
+2022-10-31 20:51:29.687856 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:29.687856 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #7
+2022-10-31 20:51:29.716857 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:51:29.717855 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #1
+2022-10-31 20:51:44.902452 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:51:51.812443 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:51:51.813445 msg - watchlist.py - watchlist_main50 --> searching for playlist deep house
+2022-10-31 20:51:52.518277 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist deep house.
+2022-10-31 20:52:01.524783 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:52:01.526780 msg - watchlist.py - watchlist_main50 --> searching for playlist 37i9dQZF1DX5xiztvBdlUf 
+2022-10-31 20:52:02.008719 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:52:02.008719 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #0
+2022-10-31 20:52:04.930272 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:52:04.931272 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #1
+2022-10-31 20:52:06.184263 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:52:06.184263 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #2
+2022-10-31 20:52:07.725605 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:52:07.725605 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #3
+2022-10-31 20:52:09.196951 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:52:09.196951 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #4
+2022-10-31 20:52:10.857636 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:52:10.857636 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #5
+2022-10-31 20:52:12.813963 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:52:12.814963 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #6
+2022-10-31 20:52:15.631885 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:52:15.632888 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #7
+2022-10-31 20:52:17.786225 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:52:17.786225 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #8
+2022-10-31 20:52:19.386447 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:52:19.387450 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #9
+2022-10-31 20:52:20.777497 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:52:20.778498 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #10
+2022-10-31 20:52:22.492564 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:52:22.492564 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #11
+2022-10-31 20:52:23.715911 msg - common.py - apiGetSpotify5 --> bad response status_code: 404
+2022-10-31 20:52:23.715911 msg - common.py - apiGetSpotify7 --> error details:  error: {'status': 404, 'message': 'Invalid playlist Id'}. Retrying request #12
+2022-10-31 20:53:26.994084 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:54:12.376397 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:54:12.378401 msg - watchlist.py - watchlist_main50 --> searching for playlist 37i9dQZF1E36KvvuHt60X9
+2022-10-31 20:54:23.128006 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:54:23.130005 msg - watchlist.py - watchlist_main50 --> searching for playlist deep hip hop
+2022-10-31 20:54:23.693838 msg - common.py - searchSpotify3 --> Succesfully returning search results for playlist deep hip hop.
+2022-10-31 20:54:32.879996 msg - watchlist.py - watchlist_main40 --> (re)loading watchlist items
+2022-10-31 20:54:32.881996 msg - watchlist.py - watchlist_main50 --> searching for playlist 4cZldmJqNq42ABtItBu67U
