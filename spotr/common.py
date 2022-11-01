@@ -341,7 +341,10 @@ def checkSourceAndCreatePlaylist(input):
                 #listened track
                 pass
 
-    print("INPUT TRACKS LENGTH: " + str(len(newTracksList)))
+
+    '''--> check for and remove ducplicates in created list'''
+    newTracksList       = list(dict.fromkeys(newTracksList))
+
 
     '''--> how many playlists to create?'''
     tempA = len(newTracksList) // input["noOfTracksPerCreatedPlaylist"]     # mod division
