@@ -443,7 +443,6 @@ def checkSourceAndCreatePlaylist(input):
 
                 '''--> delete tracks/update db before continuing loop'''
                 del newTracksList[:input["noOfTracksPerCreatedPlaylist"]]  
-                logAction("-------------- TEMP --> newTracksList length AFTER DELETE: : " + str(len(newTracksList)) + ", items: " +  ', '.join(newTracksList) + ".")
                 if lSource == "watchlist":
                         get_db().execute('UPDATE WatchListNewTracks SET trackList=? WHERE id=?',(json.dumps(newTracksList), "newTracks"))
                         get_db().commit()
