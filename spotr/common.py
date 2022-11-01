@@ -369,12 +369,9 @@ def checkSourceAndCreatePlaylist(input):
 
     '''--> loop: generate playlists'''
     while len(newTracksList) >= loopMin:
-        logAction("-------------- TEMP --> newTracksList length: " + str(len(newTracksList)) + ", items: " +  ', '.join(newTracksList) + ".")
         loopCnt                 = loopCnt + 1
         toCreateList            = newTracksList[:input["noOfTracksPerCreatedPlaylist"]]    #grab first 50 items --> https://stackoverflow.com/questions/10897339/python-fetch-first-10-results-from-a-list
-        logAction("-------------- TEMP --> toCreatelist length: " + str(len(toCreateList)) + ", items: " +  ', '.join(toCreateList) + ".")
 
-        print("toCREATELIST LENGHT: " + str(len(toCreateList)))
 
         '''--> create new empty playlist'''
         plstName                = input["nameCreatedPlaylist"] + "_" + str(datetime.now().year).zfill(4) + str(datetime.now().month).zfill(2) + str(datetime.now().day).zfill(2) + "_" + str(datetime.now().hour).zfill(2) + "h" + str(datetime.now().minute).zfill(2)
