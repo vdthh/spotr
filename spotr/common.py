@@ -350,8 +350,6 @@ def checkSourceAndCreatePlaylist(input):
     else:
         noOfPlaylistsToCreate = tempA
 
-    print("PLSYLSTS TO CREATE: " + str(noOfPlaylistsToCreate))
-
 
     '''--> loop parameters'''
     if lSource == "watchlist":
@@ -359,13 +357,13 @@ def checkSourceAndCreatePlaylist(input):
     elif lSource == "trackIdList":
         loopMin      = 1
 
-    print('LOOPMIN: ' + str(loopMin))
-
 
     '''--> loop: generate playlists'''
     while len(newTracksList) >= loopMin:
+        logAction("-------------- TEMP --> newTracksList length: " + str(len(newTracksList)) + ", items: " +  ', '.join(newTracksList) + ".")
         loopCnt                 = loopCnt + 1
         toCreateList            = newTracksList[:input["noOfTracksPerCreatedPlaylist"]]    #grab first 50 items --> https://stackoverflow.com/questions/10897339/python-fetch-first-10-results-from-a-list
+        logAction("-------------- TEMP --> toCreatelist length: " + str(len(toCreateList)) + ", items: " +  ', '.join(toCreateList) + ".")
 
         print("toCREATELIST LENGHT: " + str(len(toCreateList)))
 
@@ -412,8 +410,6 @@ def checkSourceAndCreatePlaylist(input):
             addTracksResponse   = addTracksToPlaylist(createdPlaylistID, id_list)
             resultTotalTracks   = resultTotalTracks + len(toCreateList)
 
-            print("APPENDED TRACKS: " + str(len(id_list)))
-
 
             '''--> check response'''
             if addTracksResponse["result"] == False:
@@ -441,6 +437,7 @@ def checkSourceAndCreatePlaylist(input):
 
                 '''--> delete tracks/update db before continuing loop'''
                 del newTracksList[:input["noOfTracksPerCreatedPlaylist"]]  
+                logAction("-------------- TEMP --> newTracksList length AFTER DELETE: : " + str(len(newTracksList)) + ", items: " +  ', '.join(newTracksList) + ".")
                 if lSource == "watchlist":
                         get_db().execute('UPDATE WatchListNewTracks SET trackList=? WHERE id=?',(json.dumps(newTracksList), "newTracks"))
                         get_db().commit()
