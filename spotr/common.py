@@ -294,8 +294,9 @@ def checkSourceAndCreatePlaylist(input):
     resultSuccess           = True
     resultMessage           = ""
     resultResponse          = ""
-    createPlaylistResponse      = {}
-    addTracksResponse           = {}
+    createPlaylistResponse  = {}
+    addTracksResponse       = {}
+    tempIDList              = []
     
 
     '''--> check input'''
@@ -327,7 +328,11 @@ def checkSourceAndCreatePlaylist(input):
             if not checkIfTrackInDB_test(item["id"], ["ListenedTrack", "ToListenTrack", "WatchListNewTracks"]):
                 #unlistened track
                 logAction("err - common.py - checkSourceAndCreatePlaylist10 --> TEMP -------------- Adding track " + str(item["id"]) + " to newTrackList.")
-                newTracksList.append(item)
+
+                if not item["id"] in tempIDList:        #20221101 attempt to avoid fatal duplicates in newTrackList
+                    tempIDList.append(item["id"])
+                    newTracksList.append(item)
+            
             else:
                 #listened track
                 pass
@@ -343,7 +348,8 @@ def checkSourceAndCreatePlaylist(input):
 
 
     '''--> check for and remove ducplicates in created list'''
-    newTracksList       = list(dict.fromkeys(newTracksList))
+    if lSource == "trackIdList":
+        newTracksList       = list(dict.fromkeys(newTracksList))
 
 
     '''--> how many playlists to create?'''
