@@ -464,6 +464,10 @@ def createPlaylistDescription(input_list):
     '''add number & type in description'''
     '''for example: playlist Daily Mix 1: 5 tracks, playlist Daily Mix 3: 2 tracks, artist Jefke: 1 track, ...'''
     '''input_list contains 2 lists: [[from_type],[from_name]]'''
+
+    '''--> log'''
+    logAction("msg - common.py - createPlaylistDescription00 --> starting.")
+
     resultString = ""
     tempList = [[],[],[]]   #from_type, from_name, sum of appearance
     for i in range(len(input_list[0])):    
@@ -484,6 +488,8 @@ def createPlaylistDescription(input_list):
             resultString = str(tempList[2][i]) + " tracks from " + tempList[0][i] + " " + tempList[1][i]
         else:
             resultString = resultString + ", " + str(tempList[2][i]) + " tracks from " + tempList[0][i] + " " + tempList[1][i]
+
+    logAction("msg - common.py - createPlaylistDescription10 --> result: " + resultString)
 
     return resultString
 ########################################################################################
