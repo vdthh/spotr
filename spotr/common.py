@@ -322,15 +322,19 @@ def checkSourceAndCreatePlaylist(input):
     if lSource == "watchlist":
         data                = get_db().execute('SELECT * FROM WatchlistNewTracks WHERE id=?',("newTracks",)).fetchone() 
         for item in json.loads(data[1]):           #data = first (and only) row of db table WatchListNewTracks, data[0] = id, data[1] = trackList
-            if not checkIfTrackInDB(item["id"],"ListenedTrack") and not checkIfTrackInDB(item["id"],"ToListenTrack") and not checkIfTrackInDB(item["id"],"WatchListNewTracks"):
+            # if not checkIfTrackInDB(item["id"],"ListenedTrack") and not checkIfTrackInDB(item["id"],"ToListenTrack") and not checkIfTrackInDB(item["id"],"WatchListNewTracks"):
+            logAction("err - common.py - checkSourceAndCreatePlaylist10 --> TEMP -------------- Checking track " + str(item["id"]) + " before adding to newTrackList.")
+            if not checkIfTrackInDB_test(item["id"], ["ListenedTrack", "ToListenTrack", "WatchListNewTracks"]):
                 #unlistened track
+                logAction("err - common.py - checkSourceAndCreatePlaylist10 --> TEMP -------------- Adding track " + str(item["id"]) + " to newTrackList.")
                 newTracksList.append(item)
             else:
                 #listened track
                 pass
     elif lSource == "trackIdList":
         for trckID in input["sourceTracklist"]:  
-            if not checkIfTrackInDB(trckID,"ListenedTrack") and not checkIfTrackInDB(trckID,"ToListenTrack") and not checkIfTrackInDB(trckID,"WatchListNewTracks"):
+            # if not checkIfTrackInDB(trckID,"ListenedTrack") and not checkIfTrackInDB(trckID,"ToListenTrack") and not checkIfTrackInDB(trckID,"WatchListNewTracks"):
+            if not checkIfTrackInDB_test(item["id"], ["ListenedTrack", "ToListenTrack", "WatchListNewTracks"]):
                 #unlistened track
                 newTracksList.append(trckID)
             else:
