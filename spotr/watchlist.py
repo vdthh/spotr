@@ -818,31 +818,9 @@ def checkWatchlistItems():
                 #         get_db().execute('UPDATE WatchListNewTracks SET trackList=? WHERE id=?',(json.dumps(currentTrackList), "newTracks"))
                 #         get_db().commit()
 
-                '''--> check act tracks and add to WatchlistNewTracks'''
-                for actTrck in actTracks:
-                    if not actTrck in dbTracks:
-                        #Not in db yet, update tracklist
-                        data                = get_db().execute('SELECT * FROM WatchlistNewTracks WHERE id=?',("newTracks",)).fetchone() 
-                        currentTrackList    = json.loads(data[1])           #data = first (and only) row of db table WatchListNewTracks, data[0] = id, data[1] = trackList
-                        toAdd               = {"id": actTrck, "from_type": wl_item["_type"], "from_name": wl_item["_name"]}  
-                        currentTrackList    = currentTrackList + [toAdd]     #add track to existing tracklist
-                        get_db().execute('UPDATE WatchListNewTracks SET trackList=? WHERE id=?',(json.dumps(currentTrackList), "newTracks"))
-                        get_db().commit()
-
-
-
-
-
-
-
-
-
-
-
-
                 # '''--> check act tracks and add to WatchlistNewTracks'''
                 # for actTrck in actTracks:
-                #     if not checkIfTrackInDB(actTrck,"ListenedTrack") and not checkIfTrackInDB(actTrck, "ToListenTrack") and not checkIfTrackInDB(actTrck, "WatchListNewTracks"):
+                #     if not actTrck in dbTracks:
                 #         #Not in db yet, update tracklist
                 #         data                = get_db().execute('SELECT * FROM WatchlistNewTracks WHERE id=?',("newTracks",)).fetchone() 
                 #         currentTrackList    = json.loads(data[1])           #data = first (and only) row of db table WatchListNewTracks, data[0] = id, data[1] = trackList
@@ -850,6 +828,17 @@ def checkWatchlistItems():
                 #         currentTrackList    = currentTrackList + [toAdd]     #add track to existing tracklist
                 #         get_db().execute('UPDATE WatchListNewTracks SET trackList=? WHERE id=?',(json.dumps(currentTrackList), "newTracks"))
                 #         get_db().commit()
+
+                '''--> check act tracks and add to WatchlistNewTracks'''
+                for actTrck in actTracks:
+                    if not checkIfTrackInDB(actTrck,"ListenedTrack") and not checkIfTrackInDB(actTrck, "ToListenTrack") and not checkIfTrackInDB(actTrck, "WatchListNewTracks"):
+                        #Not in db yet, update tracklist
+                        data                = get_db().execute('SELECT * FROM WatchlistNewTracks WHERE id=?',("newTracks",)).fetchone() 
+                        currentTrackList    = json.loads(data[1])           #data = first (and only) row of db table WatchListNewTracks, data[0] = id, data[1] = trackList
+                        toAdd               = {"id": actTrck, "from_type": wl_item["_type"], "from_name": wl_item["_name"]}  
+                        currentTrackList    = currentTrackList + [toAdd]     #add track to existing tracklist
+                        get_db().execute('UPDATE WatchListNewTracks SET trackList=? WHERE id=?',(json.dumps(currentTrackList), "newTracks"))
+                        get_db().commit()
 
 
                 '''--> Set noOfNewItems (new tracks since last 8h)'''

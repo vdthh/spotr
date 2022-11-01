@@ -156,11 +156,6 @@ def database_main():
                     logAction("TRACEBACK --> " + traceback.format_exc())
 
 
-            elif args["showdb"] == "playlisttracks":
-                pass
-                #TODO
-
-
             elif args["showdb"] == "WatchListNewTracks":
                 try:
                     '''--> show tracks from WatchListNewTracks-trackList'''
@@ -186,6 +181,93 @@ def database_main():
                 except Exception as ex:
                     flash("Error displaying items in WatchlistNewTracks table.", category="error")
                     logAction("err - database.py - database_main65 --> error while displaying items in WatchlistNewTracks table --> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
+                    logAction("TRACEBACK --> " + traceback.format_exc())
+
+
+            elif args["showdb"] == "LikedTrack":
+                try:
+                    '''--> show tracks from LikedTrack-table'''
+                    '''--> update global variables'''
+                    gv_displayedDB = 'LikedTrack'
+                    if gv_displayedDB_prev != gv_displayedDB:
+                        gv_displayedDB_prev = gv_displayedDB
+                        gv_display_offset = 0
+
+
+                    '''--> show tracks'''
+                    # gv_items_list = cursor.execute('SELECT * FROM ListenedTrack LIMIT ' + str(gv_display_limit) + ' OFFSET ' + str(gv_display_offset)).fetchall()
+                    updateItemList("LikedTrack", gv_display_limit, gv_display_offset)
+
+
+                    '''--> return html response'''
+                    return render_template("database.html", 
+                                            itemList    = gv_items_list, 
+                                            showdb      = gv_displayedDB, 
+                                            offs        = gv_display_offset, 
+                                            lim         = gv_display_limit, 
+                                            tot         = gv_display_total)
+
+                except Exception as ex:
+                    flash("Error displaying items in LikedTrack table.", category="error")
+                    logAction("err - database.py - database_main55 --> error while displaying items in LikedTrack table --> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
+                    logAction("TRACEBACK --> " + traceback.format_exc())
+
+
+            elif args["showdb"] == "ScrapedTracks":
+                try:
+                    '''--> show tracks from ScrapedTracks-table'''
+                    '''--> update global variables'''
+                    gv_displayedDB = 'ScrapedTracks'
+                    if gv_displayedDB_prev != gv_displayedDB:
+                        gv_displayedDB_prev = gv_displayedDB
+                        gv_display_offset = 0
+
+
+                    '''--> show tracks'''
+                    # gv_items_list = cursor.execute('SELECT * FROM ListenedTrack LIMIT ' + str(gv_display_limit) + ' OFFSET ' + str(gv_display_offset)).fetchall()
+                    updateItemList("ScrapedTracks", gv_display_limit, gv_display_offset)
+
+
+                    '''--> return html response'''
+                    return render_template("database.html", 
+                                            itemList    = gv_items_list, 
+                                            showdb      = gv_displayedDB, 
+                                            offs        = gv_display_offset, 
+                                            lim         = gv_display_limit, 
+                                            tot         = gv_display_total)
+
+                except Exception as ex:
+                    flash("Error displaying items in ScrapedTracks table.", category="error")
+                    logAction("err - database.py - database_main56 --> error while displaying items in ScrapedTracks table --> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
+                    logAction("TRACEBACK --> " + traceback.format_exc())
+
+
+            elif args["showdb"] == "ToAnalyzeResults":
+                try:
+                    '''--> show tracks from ToAnalyzeResults-table'''
+                    '''--> update global variables'''
+                    gv_displayedDB = 'ToAnalyzeResults'
+                    if gv_displayedDB_prev != gv_displayedDB:
+                        gv_displayedDB_prev = gv_displayedDB
+                        gv_display_offset = 0
+
+
+                    '''--> show tracks'''
+                    # gv_items_list = cursor.execute('SELECT * FROM ListenedTrack LIMIT ' + str(gv_display_limit) + ' OFFSET ' + str(gv_display_offset)).fetchall()
+                    updateItemList("ToAnalyzeResults", gv_display_limit, gv_display_offset)
+
+
+                    '''--> return html response'''
+                    return render_template("database.html", 
+                                            itemList    = gv_items_list, 
+                                            showdb      = gv_displayedDB, 
+                                            offs        = gv_display_offset, 
+                                            lim         = gv_display_limit, 
+                                            tot         = gv_display_total)
+
+                except Exception as ex:
+                    flash("Error displaying items in ToAnalyzeResults table.", category="error")
+                    logAction("err - database.py - database_main57 --> error while displaying items in ToAnalyzeResults table --> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
                     logAction("TRACEBACK --> " + traceback.format_exc())
 
 
@@ -264,7 +346,7 @@ def updateItemList(dbName, lim, offs):
         cursor = get_db().cursor()
 
         '''--> grab tracks'''
-        if dbName == "ListenedTrack" or dbName == "ToListenTrack" or dbName == "WatchList" or dbName == "FavoriteTrack" or dbName == "LikedTrack":
+        if dbName == "ListenedTrack" or dbName == "ToListenTrack" or dbName == "WatchList" or dbName == "FavoriteTrack" or dbName == "LikedTrack" or dbName == "ScrapedTracks":
             gv_display_total = len(cursor.execute('SELECT * FROM ' + dbName).fetchall())
             if lim == 0 and offs == 0:
                 #request without limit or offset 
