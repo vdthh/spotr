@@ -452,7 +452,7 @@ def searchForPlaylistsContainingTracks(maxResultsPerSearch):
     search_string           = ""
     gcs_response            = ""
     gcs_result              = []
-    playlists_valid         = []
+    # playlists_valid         = []
     playlist_tracks         = []
     track_count             = 0
 
@@ -531,7 +531,15 @@ def searchForPlaylistsContainingTracks(maxResultsPerSearch):
                         if response_check == True:
                             #playlists contains the 2 tracks
                             # print("Playlist " + playlistID + " contains all tracks in list: " + str([item1["id"], item2["id"]]) + ".")
-                            playlists_valid.append({"playlistid": playlistID, "track1": item1["artists"] + " - " + item1["title"], "track2": item2["artists"] + " - " + item2["title"]})
+                            # playlists_valid.append({"playlistid": playlistID, "track1": item1["artists"] + " - " + item1["title"], "track2": item2["artists"] + " - " + item2["title"]})
+
+                            track_count = 0
+                            for track in getTracksFromPlaylist(playlistID, False):
+                                track_count     +=1
+
+                                '''--> update response'''   #{"playlistid":, "foundbytrack1":, "foundbytrack2":...}
+                                resultResponse.append({"playlistid": playlistID, "foundbytrack1": item1["artists"] + " - " + item1["title"], "foundbytrack2":item2["artists"] + " - " + item2["title"], "nooftracks": track_count}) 
+
                         else:
                             #playlists does not contain both tracks
                             # print("Playlist " + playlistID + " does NOT contain all tracks in list: " + str([item1["id"], item2["id"]]) + ".")
@@ -544,17 +552,16 @@ def searchForPlaylistsContainingTracks(maxResultsPerSearch):
                     get_db().commit()
 
 
-        '''--> add tracks from found playlists to ScrapedTracks db'''
-        for playlist in playlists_valid:
-            # print("Getting tracks from valid playlist: " + playlist["playlistid"])
-            track_count         = 0
+        # '''--> add tracks from found playlists to ScrapedTracks db'''
+        # for playlist in playlists_valid:
+        #     # print("Getting tracks from valid playlist: " + playlist["playlistid"])
+        #     track_count         = 0
 
-            for track in getTracksFromPlaylist(playlist["playlistid"], False):
-                track_count     +=1
+        #     for track in getTracksFromPlaylist(playlist["playlistid"], False):
+        #         track_count     +=1
 
-            '''--> update response'''   #{"playlistid":, "foundbytrack1":, "foundbytrack2":...}
-            playlistName        = playlist
-            resultResponse.append({"playlistid": playlist["playlistid"], "foundbytrack1": playlist["track1"], "foundbytrack2": playlist["track2"], "nooftracks": track_count}) 
+        #     '''--> update response'''   #{"playlistid":, "foundbytrack1":, "foundbytrack2":...}
+        #     resultResponse.append({"playlistid": playlist["playlistid"], "foundbytrack1": playlist["track1"], "foundbytrack2": playlist["track2"], "nooftracks": track_count}) 
 
 
         '''--> finished, return response'''
