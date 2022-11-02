@@ -260,35 +260,63 @@ def autosearch_startSearchJob():
         '''--> search for playlists with tracks from ToAnalyzeTracks'''
         logAction("msg - autosearch.py - autosearch_main start searchjob --> manually initiated, starting searchForPlaylistsContainingTracks().")
 
-        '''--> initialize variables'''
-        response        = {}
-        global gv_searchResults
+        try:
+            '''--> initialize variables'''
+            response                = {}
+            count_new_playlists     = 0
+            global gv_searchResults
 
 
-        '''--> db'''
-        cursor = get_db().cursor()
+            '''--> db'''
+            cursor = get_db().cursor()
 
 
-        '''--> call'''
-        response        = searchForPlaylistsContainingTracks(15)  # {"result": True/False, "message": e.g. "Found 10 playlists.", "response": list of {"playlistid":, "foundbytrack1":, "foundbytrack2":, "nooftracks":...}
+            '''--> call'''
+            response        = searchForPlaylistsContainingTracks(15)  # {"result": True/False, "message": e.g. "Found 10 playlists.", "response": list of {"playlistid":, "foundbytrack1":, "foundbytrack2":, "nooftracks":...}
 
 
-        '''--> check response'''
-        if response["result"] == False:
-            logAction("err - autosearch.py - autosearch_main start searchjob 100 --> error while performing searchForPlaylistsContainingTracks().")
-            flash("error while performing searchForPlaylistsContainingTracks(). See log for details.", category="error")
+            '''--> check response'''
+            if response["result"] == False:
+                logAction("err - autosearch.py - autosearch_main start searchjob 100 --> error while performing searchForPlaylistsContainingTracks().")
+                flash("error while performing searchForPlaylistsContainingTracks(). See log for details.", category="error")
+                return render_template('autosearch.html', 
+                                        likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
+                                        searchResult            = gv_searchResults)
+
+
+            '''--> save results'''
+            for entry in response["response"]:
+
+                '''--> playlistName'''
+                playlistName         = apiGetSpotify("playlists/" + entry["playlistid"])["response"]["name"]     #returns {"result": True/False, "response": json response, "message": ...}
+                
+                cursor.execute('SELECT * FROM ToAnalyzeResults WHERE playlistid=?', (entry["playlistid"],))
+                if cursor.fetchone() == None:
+                    cursor.execute(
+                        'INSERT INTO ToAnalyzeResults (playlistid, foundbytrack1, foundbytrack2, name_) VALUES (?,?,?,?)', 
+                        (entry["playlistid"], entry["foundbytrack1"], entry["foundbytrack2"], playlistName)
+                    )
+                    get_db().commit()
+
+                    count_new_playlists     +=1
+
+
+            '''--> update gv'''
+            gv_searchResults        = response["response"]
+
+
+        except Exception as ex:
+            logAction("err - autosearch.py - autosearch_main start autosearchjob 140 --> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
+            logAction("TRACEBACK --> " + traceback.format_exc())
+            flash("Error performing searchForPlaylistsContainingTracks() - manually initiated. See log for details.", category="error")
             return render_template('autosearch.html', 
-                                    likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
-                                    searchResult            = gv_searchResults)
-
-
-        '''--> update gv'''
-        gv_searchResults        = response["response"]
+                        likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
+                        searchResult            = gv_searchResults)
 
 
         '''--> return html'''
-        logAction("msg - autosearch.py - autosearch_main start searchjob 150 --> finished searchForPlaylistsContainingTracks()! Found " + str(len(response["response"])) + " playlists.")
-        flash("Finished searchForPlaylistsContainingTracks()! Found " + str(len(response["response"])) + " playlists.", category="message")
+        logAction("msg - autosearch.py - autosearch_main start searchjob 150 --> finished searchForPlaylistsContainingTracks() manually initiated! Found " + str(len(response["response"])) + " playlists, " + str(count_new_playlists) + " new playlists were saved.")
+        flash("Finished searchForPlaylistsContainingTracks() manually initiated! Found " + str(len(response["response"])) + " playlists, " + str(count_new_playlists) + " new playlists were saved.", category="message")
         return render_template('autosearch.html', 
                                 likedTracksList         = cursor.execute('SELECT * FROM ToAnalyzeTracks').fetchall(),
                                 searchResult            = gv_searchResults)
@@ -339,6 +367,10 @@ def autosearch_startAutosearchJob():
                     get_db().commit()
 
                     count_new_playlists     +=1
+
+
+            '''--> update gv'''
+            gv_searchResults        = response["response"]
 
         except Exception as ex:
             logAction("err - autosearch.py - autosearch_main start autosearchjob 40 --> " + str(type(ex)) + " - " + str(ex.args) + " - " + str(ex))
@@ -519,16 +551,18 @@ def searchForPlaylistsContainingTracks(maxResultsPerSearch):
                     # print('Found results for ' + str(search_string) + ': ' + str(len(gcs_result['response'])))
                     '''--> check if found playlists contains the 2 searched tracks'''
                     for playlist_link in gcs_result["response"]:
-
+                        logAction("TEMP --------------------- Playlistlink: " + playlist_link + ".")
                         '''--> grab playlist ID from each link'''       
                         regexResult     = re.search("https:\/\/open.spotify.com\/playlist\/([a-zA-Z0-9]+)", playlist_link) 
                         playlistID      = regexResult.group(1)
+                        logAction("TEMP --------------------- PlaylistID: " + playlistID + ".")
 
                         '''--> get playlist tracks + check'''
                         playlist_tracks     = getTracksFromPlaylist(playlistID, True)
                         response_check      = checkIfTracksInPlaylist([item1["id"], item2["id"]], playlist_tracks, True)
 
                         if response_check == True:
+                            logAction("TEMP --------------------- PlaylistID " + playlistID + " contains both tracks!")
                             #playlists contains the 2 tracks
                             # print("Playlist " + playlistID + " contains all tracks in list: " + str([item1["id"], item2["id"]]) + ".")
                             # playlists_valid.append({"playlistid": playlistID, "track1": item1["artists"] + " - " + item1["title"], "track2": item2["artists"] + " - " + item2["title"]})
@@ -537,10 +571,12 @@ def searchForPlaylistsContainingTracks(maxResultsPerSearch):
                             for track in getTracksFromPlaylist(playlistID, False):
                                 track_count     +=1
 
-                                '''--> update response'''   #{"playlistid":, "foundbytrack1":, "foundbytrack2":...}
-                                resultResponse.append({"playlistid": playlistID, "foundbytrack1": item1["artists"] + " - " + item1["title"], "foundbytrack2":item2["artists"] + " - " + item2["title"], "nooftracks": track_count}) 
+                            '''--> update response'''   #{"playlistid":, "foundbytrack1":, "foundbytrack2":...}
+                            resultResponse.append({"playlistid": playlistID, "foundbytrack1": item1["artists"] + " - " + item1["title"], "foundbytrack2":item2["artists"] + " - " + item2["title"], "nooftracks": track_count}) 
+                            logAction("TEMP --------------------- ADDED PlaylistID " + playlistID + " WITH " + track_count + " tracks to resultResponse.")
 
                         else:
+                            logAction("TEMP --------------------- PlaylistID " + playlistID + " does NOT contain both tracks!")
                             #playlists does not contain both tracks
                             # print("Playlist " + playlistID + " does NOT contain all tracks in list: " + str([item1["id"], item2["id"]]) + ".")
                             pass
