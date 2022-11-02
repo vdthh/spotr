@@ -1493,8 +1493,13 @@ def extractItemsFromGoogleResponse(json_input, maxResults):
             '''--> check response'''
             checkResponse       = checkGoogleResponse(result_json)      #returns dict {result: True/false, message:...}
             if checkResponse["result"] == False:
-                toReturnResult      = False
-                toReturn            = {"result": toReturnResult, "response": toReturnResponse, "message": checkResponse["message"]}
+                if checkResponse["message"] == "Rate limit exceeded.":
+                    toReturnResult      = True
+                    logAction("msg - common.py - extractItemsFromGoogleResponse21 --> Rate limit exceeded.")
+                else:
+                    toReturnResult      = False
+            
+                toReturn                = {"result": toReturnResult, "response": toReturnResponse, "message": checkResponse["message"]}
                 return toReturn
 
 
