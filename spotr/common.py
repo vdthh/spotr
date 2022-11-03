@@ -276,6 +276,9 @@ def checkSourceAndCreatePlaylist(input):
     # "noOfTracksPerCreatedPlaylist": number of tracks in to create playlist(s), 
     # "nameCreatedPlaylist": ..., 
     # "descriptionCreatedPlaylist": , ...}
+
+    '''--> log'''
+    logAction("msg - common.py - checkSourceAndCreatePlaylist0 --> Started.")
     
     
     '''--> initialize variables'''
@@ -308,7 +311,7 @@ def checkSourceAndCreatePlaylist(input):
         lSource     = "trackIdList"   
     else:
         #leave
-        logAction("err - common.py - checkSourceAndCreatePlaylist0 --> No valid source given.")
+        logAction("err - common.py - checkSourceAndCreatePlaylist2 --> No valid source given.")
         resultSuccess       = False
         resultMessage       = "No valid source given."
         toReturn = {"result": resultSuccess, "message": resultMessage, "response": resultResponse, "noOfTracksInNewPlaylist": resultTotalTracks, "noOfCreatedPlaylists": resultTotalPlaylists}
@@ -358,6 +361,7 @@ def checkSourceAndCreatePlaylist(input):
         noOfPlaylistsToCreate = tempA + 1
     else:
         noOfPlaylistsToCreate = tempA
+    logAction("msg - common.py - checkSourceAndCreatePlaylist10AA --> TEMP -------------- to create playlists:  " + str(noOfPlaylistsToCreate) + ".")
 
 
     '''--> loop parameters'''
@@ -369,6 +373,7 @@ def checkSourceAndCreatePlaylist(input):
 
     '''--> loop: generate playlists'''
     while len(newTracksList) >= loopMin:
+        logAction("msg - common.py - checkSourceAndCreatePlaylist10BB --> TEMP -------------- Loop no.:  " + str(loopCnt) + ", len(newTracksList): " + str(len(newTracksList)) + ".")
         loopCnt                 = loopCnt + 1
         toCreateList            = newTracksList[:input["noOfTracksPerCreatedPlaylist"]]    #grab first 50 items --> https://stackoverflow.com/questions/10897339/python-fetch-first-10-results-from-a-list
 
@@ -390,6 +395,7 @@ def checkSourceAndCreatePlaylist(input):
             return toReturn
 
         else:
+            logAction("msg - common.py - checkSourceAndCreatePlaylist10CC --> TEMP -------------- Playlist created, add tracks to it.")
             '''--> grab ID of newly created playlist'''
             createdPlaylistID          = createPlaylistResponse["response"]["playlistid"]      
 
@@ -429,6 +435,7 @@ def checkSourceAndCreatePlaylist(input):
 
             else:
                 '''--> add tracks to ListenedTrack db - check has already happened in a previous step'''
+                logAction("msg - common.py - checkSourceAndCreatePlaylist10DD --> TEMP -------------- Adding tracks to ListenedDB.")
                 if lSource == "watchlist":
                     for item in toCreateList:
                         trck_info = getTrackInfo(item["id"], True)
