@@ -582,7 +582,7 @@ def searchForPlaylistsContainingTracks(maxResultsPerSearch):
 
                             '''--> update response'''   #{"playlistid":, "foundbytrack1":, "foundbytrack2":...}
                             resultResponse.append({"playlistid": playlistID, "foundbytrack1": item1["artists"] + " - " + item1["title"], "foundbytrack2":item2["artists"] + " - " + item2["title"], "nooftracks": track_count}) 
-                            logAction("TEMP --------------------- ADDED PlaylistID " + playlistID + " WITH " + track_count + " tracks to resultResponse.")
+                            logAction("TEMP --------------------- ADDED PlaylistID " + playlistID + " WITH " + str(track_count) + " tracks to resultResponse.")
 
                         else:
                             logAction("TEMP --------------------- PlaylistID " + playlistID + " does NOT contain both tracks!")
