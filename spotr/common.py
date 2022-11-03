@@ -222,15 +222,12 @@ def checkIfTrackInDB_test(trackID, dbNamesAsList):
 
             '''--> check ListenedTrack and ToListenTrack'''
             if dbName == "ListenedTrack" or dbName == "ToListenTrack" or dbName == "ScrapedTracks":
-                print("CHECKING TRACKID " + trackID + " for DB " + dbName + ".")
                 # https://stackoverflow.com/questions/54659595/checking-for-multiple-values-python-mysql
                 cursor.execute('SELECT * FROM ' + dbName + ' WHERE id=? OR artists=? AND title=?', (trackID, artists, title))
                 if cursor.fetchone() == None:
-                    print("NOT IN DB")
                     # return False    #not in db
                     pass
                 else:
-                    print("IN DB")
                     return True     #in db
             elif dbName == "WatchListNewTracks":
                 entry = cursor.execute('SELECT * FROM WatchListNewTracks').fetchone()

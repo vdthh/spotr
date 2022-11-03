@@ -267,6 +267,10 @@ def autosearch_startSearchJob():
             global gv_searchResults
 
 
+            '''--> fill/update toAnalyzeTracks list'''
+            syncToAnalyzeTracks()
+
+
             '''--> db'''
             cursor = get_db().cursor()
 
@@ -333,6 +337,11 @@ def autosearch_startAutosearchJob():
             response                = {}
             playlistName            = ""
             count_new_playlists     = 0
+            global gv_searchResults
+
+
+            '''--> fill/update toAnalyzeTracks list'''
+            syncToAnalyzeTracks()
 
 
             '''--> db'''
