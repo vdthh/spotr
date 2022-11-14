@@ -34,8 +34,8 @@ bp_autosearch = Blueprint('autosearch', __name__, url_prefix="/autosearch")
 ########################################################################################
 gv_actdbTracks                  = []                        #list of {"id": , "title": , "artists": , "times_searched": }
 gv_actPlaylistTracks            = []                        #list of {"id": , "title": , "artists": , "times_searched": }
-# gv_playlistToAnalyseID          = "4wC748pDf0gHnJRFyzb4l9"  #spotr_toAnalyze
-gv_playlistToAnalyseID          = "7rUTMu5Ro26tIKyLYmSIkc"  #spotr_toAnalyze_test
+gv_playlistToAnalyseID          = "4wC748pDf0gHnJRFyzb4l9"  #spotr_toAnalyze
+# gv_playlistToAnalyseID          = "7rUTMu5Ro26tIKyLYmSIkc"  #spotr_toAnalyze_test
 gv_searchResults                = []                        #list of {"playlistid":, "foundbytrack1":, "foundbytrack2":...}
 
 ########################################################################################
