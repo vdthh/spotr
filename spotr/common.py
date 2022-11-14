@@ -324,11 +324,8 @@ def checkSourceAndCreatePlaylist(input):
         data                = get_db().execute('SELECT * FROM WatchlistNewTracks WHERE id=?',("newTracks",)).fetchone() 
         for item in json.loads(data[1]):           #data = first (and only) row of db table WatchListNewTracks, data[0] = id, data[1] = trackList
             # if not checkIfTrackInDB(item["id"],"ListenedTrack") and not checkIfTrackInDB(item["id"],"ToListenTrack") and not checkIfTrackInDB(item["id"],"WatchListNewTracks"):
-            logAction("err - common.py - checkSourceAndCreatePlaylist10 --> TEMP -------------- Checking track " + str(item["id"]) + " before adding to newTrackList.")
             if not checkIfTrackInDB_test(item["id"], ["ListenedTrack", "ToListenTrack", "WatchListNewTracks"]):
                 #unlistened track
-                logAction("err - common.py - checkSourceAndCreatePlaylist10 --> TEMP -------------- Adding track " + str(item["id"]) + " to newTrackList.")
-
                 if not item["id"] in tempIDList:        #20221101 attempt to avoid fatal duplicates in newTrackList
                     tempIDList.append(item["id"])
                     newTracksList.append(item)
@@ -353,12 +350,19 @@ def checkSourceAndCreatePlaylist(input):
 
 
     '''--> how many playlists to create?'''
-    tempA = len(newTracksList) // input["noOfTracksPerCreatedPlaylist"]     # mod division
-    if len(newTracksList) % input["noOfTracksPerCreatedPlaylist"] != 0:     # rest value?          
-        noOfPlaylistsToCreate = tempA + 1
+    if len(newTracksList) >= input["noOfTracksPerCreatedPlaylist"]:
+        #at least 1 playlist to create
+        noOfPlaylistsToCreate           = len(newTracksList) // input["noOfTracksPerCreatedPlaylist"]
+
     else:
-        noOfPlaylistsToCreate = tempA
-    logAction("msg - common.py - checkSourceAndCreatePlaylist10AA --> TEMP -------------- to create playlists:  " + str(noOfPlaylistsToCreate) + ".")
+        noOfPlaylistsToCreate           = 0
+
+    # tempA = len(newTracksList) // input["noOfTracksPerCreatedPlaylist"]     # mod division
+    # if len(newTracksList) % input["noOfTracksPerCreatedPlaylist"] != 0:     # rest value?          
+    #     noOfPlaylistsToCreate = tempA + 1
+    # else:
+    #     noOfPlaylistsToCreate = tempA
+    logAction("msg - common.py - checkSourceAndCreatePlaylist30 --> New tracks after checking watchlist items: " + str(len(newTracksList)) + ", playlists to create: " + str(noOfPlaylistsToCreate) + ".")
 
 
     '''--> loop parameters'''
@@ -1432,6 +1436,7 @@ def googleSearchApiRequest(searchTerm, startIndex):
 ######################################### GOOGLE #######################################
 def extractItemsFromGoogleResponse(json_input, maxResults):
     '''--> extract requested info from a google api search response - json format'''
+    '''--> continue search'''
     '''--> returns a dict with a response and list of links'''
     '''--> response: {"result": True/False, "response": list of playlistlinks, "message": ...}'''
 
@@ -1445,21 +1450,7 @@ def extractItemsFromGoogleResponse(json_input, maxResults):
     returnedCountItems      = 0
     returnedStartIndex      = 0
     result_json             = json_input
-
-    '''--> check if google search api daily rate limit is exceeded'''
-    checkResponse       = checkGoogleResponse(result_json)      #returns dict {result: True/false, message:...}
-
-    if checkResponse["result"] == False:
-        '''--> when rate limit is exceeded, don't generate error'''
-        if checkResponse["message"] == "Rate limit exceeded.":
-            toReturnResult      = True
-            logAction("msg - common.py - extractItemsFromGoogleResponse18 --> Rate limit exceeded.")
-        else:
-            toReturnResult      = False
-      
-        toReturn                = {"result": toReturnResult, "response": toReturnResponse, "message": checkResponse["message"]}
-        return toReturn
-
+    
 
     '''--> get info from response'''
     returnedSearchTerm      = result_json["queries"]["request"][0]["searchTerms"]
@@ -1537,45 +1528,106 @@ def extractItemsFromGoogleResponse(json_input, maxResults):
 
 ########################################################################################
 ######################################### GOOGLE #######################################
-def checkGoogleResponse(input_json):
-    '''--> Check response from a api google custom search response'''
-    '''--> Returns dict: {result: True/false, message:...}'''
-    '''--> If response is ok, result = True'''
+def googleSearchRetryContinueQuit(input_json):
+    '''--> incolming json result from a google api search request'''
+    '''--> check if response if valid (continue) or not (quit or retry, depending on the kind of error)'''
+    '''--> returns {"result": true/false, "response": quit/retry/continue, "message":... }'''
 
     '''--> initialize variables'''
     toReturnMessage     = ""
     toReturnResult      = False
+    toReturnResponse    = 0
     toReturn            = {}
 
 
     '''--> check'''
     if "error" in input_json.keys():
         if input_json["error"]["code"] == 429:
-            logAction("err - common.py - checkGoogleResponse --> daily rate limit exceeded.")
-            toReturnMessage     = "Rate limit exceeded."
+            #quit
+            logAction("err - common.py - googleSearchRetryContinueQuit --> daily rate limit exceeded.")
+            toReturnResult          = False
+            toReturnResponse        = "quit"
+            toReturnMessage         = "Daily rate limit exceeded --> quit."
         elif input_json["error"]["code"] == 503:
-            logAction("err - common.py - checkGoogleResponse10 --> service is currently unavailable.")
-            toReturnMessage     = "Service is currently unavailable."
+            #retry
+            logAction("err - common.py - googleSearchRetryContinueQuit 10 --> service is currently unavailable.")
+            toReturnResult          = True
+            toReturnResponse        = "retry"
+            toReturnMessage         = "Service is currently unavailable --> retry."
         else:
-            logAction("msg - common.py - checkGoogleResponse20 --> error from api request: " + str(input_json["error"]["code"]))
-            toReturnMessage     = "Fault code " + str(input_json["error"]["code"])
+            #quit
+            logAction("msg - common.py - googleSearchRetryContinueQuit 20 --> error from api request: " + str(input_json["error"]["code"]))
+            toReturnResult          = False
+            toReturnResponse        = "quit"
+            toReturnMessage         = "Fault code " + str(input_json["error"]["code"]) + " --> quit."
         
-        toReturnResult          = False
-        toReturn                = {"result": toReturnResult, "message": toReturnMessage}
+        toReturnResponse        = input_json["error"]["code"]
+        toReturn                = {"result": toReturnResult, "response": toReturnResponse, "message": toReturnMessage}
         return toReturn
+
 
     elif "searchInformation" in input_json.keys():
         if input_json["searchInformation"]["totalResults"] == "0":
+            #continue
             logAction("msg - common.py - checkGoogleResponse30 --> No playlists found!")
-            toReturnMessage     = "No playlists found."
-
-            toReturnResult      = True
-            toReturn            = {"result": toReturnResult, "message": toReturnMessage}
+            toReturnResult          = True
+            toReturnResponse        = "continue"
+            toReturnMessage         = "No playlists found --> continue."
+            toReturn                = {"result": toReturnResult, "response": toReturnResponse, "message": toReturnMessage}
             return toReturn
         else:
-            toReturnResult      = True
-            toReturn            = {"result": toReturnResult, "message": toReturnMessage}
+            #continue
+            toReturnResult          = True
+            toReturnResponse        = "continue"
+            toReturnMessage         = "Found " + str(input_json["searchInformation"]["totalResults"]) + " results --> continue."
+            toReturn                = {"result": toReturnResult, "response": toReturnResponse, "message": toReturnMessage}
             return toReturn
+
+########################################################################################
+
+
+########################################################################################
+######################################### GOOGLE #######################################
+# def checkGoogleResponse(input_json):
+#     '''--> Check response from a api google custom search response'''
+#     '''--> Returns dict: {result: True/false, response: error_code, message:...}'''
+#     '''--> If response is ok, result = True'''
+
+#     '''--> initialize variables'''
+#     toReturnMessage     = ""
+#     toReturnResult      = False
+#     toReturnResponse    = 0
+#     toReturn            = {}
+
+
+#     '''--> check'''
+#     if "error" in input_json.keys():
+#         if input_json["error"]["code"] == 429:
+#             logAction("err - common.py - checkGoogleResponse --> daily rate limit exceeded.")
+#             toReturnMessage     = "Rate limit exceeded."
+#         elif input_json["error"]["code"] == 503:
+#             logAction("err - common.py - checkGoogleResponse10 --> service is currently unavailable.")
+#             toReturnMessage     = "Service is currently unavailable."
+#         else:
+#             logAction("msg - common.py - checkGoogleResponse20 --> error from api request: " + str(input_json["error"]["code"]))
+#             toReturnMessage     = "Fault code " + str(input_json["error"]["code"])
+        
+#         toReturnResult          = False
+#         toReturnResponse        = input_json["error"]["code"]
+#         toReturn                = {"result": toReturnResult, "response": toReturnResponse, "message": toReturnMessage}
+#         return toReturn
+
+#     elif "searchInformation" in input_json.keys():
+#         if input_json["searchInformation"]["totalResults"] == "0":
+#             logAction("msg - common.py - checkGoogleResponse30 --> No playlists found!")
+#             toReturnMessage     = "No playlists found."
+#             toReturnResult      = True
+#             toReturn            = {"result": toReturnResult, "response": toReturnResponse, "message": toReturnMessage}
+#             return toReturn
+#         else:
+#             toReturnResult      = True
+#             toReturn            = {"result": toReturnResult, "response": toReturnResponse, "message": toReturnMessage}
+#             return toReturn
 
 ########################################################################################
 

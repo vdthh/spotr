@@ -1,26 +1,403 @@
 
-2022-10-31 22:59:03.005700 msg - autosearch.py - syncToAnalyzeTracks()  --> Started
-2022-10-31 22:59:03.007699 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4wC748pDf0gHnJRFyzb4l9.
-2022-10-31 22:59:03.746339 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 24 tracks from playlist that contains 24 tracks.
-2022-10-31 22:59:03.746339 msg - autosearch.py - autosearch_main load page --> autosearch.html page loaded.
-2022-10-31 23:08:24.485818 err - database.py - database_main57 --> error while displaying items in ToAnalyzeResults table --> <class 'jinja2.exceptions.TemplateSyntaxError'> - ("Expected an expression, got 'end of statement block'",) - Expected an expression, got 'end of statement block'
-2022-10-31 23:08:24.488819 TRACEBACK --> Traceback (most recent call last):
-  File "E:\docs\python projects\SpotifyWebAppV3.0\spotr\database.py", line 261, in database_main
-    return render_template("database.html",
-  File "E:\docs\python projects\SpotifyWebAppV3.0\spotr\venv\lib\site-packages\flask\templating.py", line 146, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-  File "E:\docs\python projects\SpotifyWebAppV3.0\spotr\venv\lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "E:\docs\python projects\SpotifyWebAppV3.0\spotr\venv\lib\site-packages\jinja2\environment.py", line 1010, in get_template
-    return self._load_template(name, globals)
-  File "E:\docs\python projects\SpotifyWebAppV3.0\spotr\venv\lib\site-packages\jinja2\environment.py", line 969, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-  File "E:\docs\python projects\SpotifyWebAppV3.0\spotr\venv\lib\site-packages\jinja2\loaders.py", line 138, in load
-    code = environment.compile(source, name, filename)
-  File "E:\docs\python projects\SpotifyWebAppV3.0\spotr\venv\lib\site-packages\jinja2\environment.py", line 768, in compile
-    self.handle_exception(source=source_hint)
-  File "E:\docs\python projects\SpotifyWebAppV3.0\spotr\venv\lib\site-packages\jinja2\environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "E:\docs\python projects\SpotifyWebAppV3.0\spotr\templates\database.html", line 49, in template
-    {% elif %}
-jinja2.exceptions.TemplateSyntaxError: Expected an expression, got 'end of statement block'
+
+2022-11-14 22:30:43.121174 msg - autosearch.py - syncToAnalyzeTracks()  --> Started
+2022-11-14 22:30:43.122174 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 7rUTMu5Ro26tIKyLYmSIkc.
+2022-11-14 22:30:43.611994 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 4 tracks from playlist that contains 4 tracks.
+2022-11-14 22:30:43.612993 msg - autosearch.py - gcs_createSearchTerms() 10 --> searchTerm created: Morgan Delt Some Sunsick Day Khruangbin Zionsville, i1=0, i2=2, item1_timessearched=1.
+2022-11-14 22:30:43.612993 msg - autosearch.py - gcs_createSearchTerms() 10 --> searchTerm created: Morgan Delt Some Sunsick Day Soccer Mommy Henry, i1=0, i2=3, item1_timessearched=1.
+2022-11-14 22:30:43.612993 msg - autosearch.py - gcs_createSearchTerms() 10 --> searchTerm created: Khruangbin Zionsville Soccer Mommy Henry, i1=2, i2=3, item1_timessearched=0.
+2022-11-14 22:30:43.612993 msg - autosearch.py - gcs_createSearchTerms() 20 --> Searchterms created: 3 terms created in list.
+
+2022-11-14 22:30:43.613996 msg - autosearch.py - gcs_searchPlaylists() 7--> item1_timessearched extracted for 54WIS7qug0Gnt65eD9gg8g: 1
+
+2022-11-14 22:30:43.613996 msg - autosearch.py - gcs_searchPlaylists() 10 --> Starting main loop with search_string Morgan Delt Some Sunsick Day Khruangbin Zionsvil
+
+le
+2022-11-14 22:30:44.155110 msg - autosearch.py - gcs_performSearchJob() 10 --> from google search response: searchTerm=Morgan Delt Some Sunsick Day Khruangbin Zionsville, totalResults=22, counted items=10, start index=1.
+2022-11-14 22:30:44.155110 msg - autosearch.py - gcs_searchPlaylists() 23 --> valid gcs response: Success --> total search results for "Morgan Delt Some Sunsick Day Khruangbin Zionsville": 22, results for this request: 10.. Total results: 22
+2022-11-14 22:30:44.155110 msg - autosearch.py - gcs_searchPlaylists() 24 --> maxsearchResults=0, gcs_check_response["response"]["resultTotal"]=22
+2022-11-14 22:30:44.155110 msg - autosearch.py - gcs_searchPlaylists() 25 --> maxsearchResults=15, gcs_check_response["response"]["resultTotal"]=22
+
+2022-11-14 22:30:44.156112 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=0, returnedCountItems=10, returnedStartIndex=1
+2022-11-14 22:30:44.156112 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+
+2022-11-14 22:30:44.156112 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/3VSAjhEKCZ66SB9rJJBGQF, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 1IVgPGfYxyuOLKOYdEBLOW.
+2022-11-14 22:30:44.157113 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 3VSAjhEKCZ66SB9rJJBGQF.
+2022-11-14 22:30:44.157113 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 3VSAjhEKCZ66SB9rJJBGQF.
+2022-11-14 22:30:54.665246 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 1239 tracks from playlist that contains 1239 tracks.
+2022-11-14 22:30:55.695500 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 3VSAjhEKCZ66SB9rJJBGQF contains both tracks!
+2022-11-14 22:30:55.695500 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 3VSAjhEKCZ66SB9rJJBGQF.
+2022-11-14 22:31:05.325051 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 1239 tracks from playlist that contains 1239 tracks.
+2022-11-14 22:31:06.386686 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 3VSAjhEKCZ66SB9rJJBGQF with 1239 tracks to lstResult.
+2022-11-14 22:31:07.105456 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save Gallery to ToAnalayzeResults
+2022-11-14 22:31:07.105456 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> Gallery NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:31:07.232223 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:31:07.233251 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/3VSAjhEKCZ66SB9rJJBGQF to  db.
+
+2022-11-14 22:31:07.233251 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=1, returnedCountItems=10, returnedStartIndex=1
+2022-11-14 22:31:07.233251 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:31:07.234249 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/0Xhc2oNwwbBaf1zYdJMqet?autoplay=true, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 1IVgPGfYxyuOLKOYdEBLOW.
+2022-11-14 22:31:07.234249 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 0Xhc2oNwwbBaf1zYdJMqet.
+2022-11-14 22:31:07.234249 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0Xhc2oNwwbBaf1zYdJMqet.
+2022-11-14 22:31:10.779405 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 491 tracks from playlist that contains 491 tracks.
+2022-11-14 22:31:11.793346 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 0Xhc2oNwwbBaf1zYdJMqet contains both tracks!
+2022-11-14 22:31:11.795345 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0Xhc2oNwwbBaf1zYdJMqet.
+2022-11-14 22:31:15.289130 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 491 tracks from playlist that contains 491 tracks.
+2022-11-14 22:31:16.195186 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 0Xhc2oNwwbBaf1zYdJMqet with 491 tracks to lstResult.
+2022-11-14 22:31:16.855782 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save I want to ride my bicycle to ToAnalayzeResults
+2022-11-14 22:31:16.856784 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> I want to ride my bicycle NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:31:17.047783 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:31:17.048783 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/0Xhc2oNwwbBaf1zYdJMqet?autoplay=true to  db.
+
+2022-11-14 22:31:17.048783 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=2, returnedCountItems=10, returnedStartIndex=1
+2022-11-14 22:31:17.049785 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:31:17.050782 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/5mXISoEPf19cFEq6RoNMRe?gclid=CO2zpvXXw60CFSsvmAodhl5xAg, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 1IVgPGfYxyuOLKOYdEBLOW.
+2022-11-14 22:31:17.051782 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 5mXISoEPf19cFEq6RoNMRe.
+2022-11-14 22:31:17.052783 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 5mXISoEPf19cFEq6RoNMRe.
+2022-11-14 22:31:18.465493 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 167 tracks from playlist that contains 167 tracks.
+2022-11-14 22:31:19.573492 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 5mXISoEPf19cFEq6RoNMRe contains both tracks!
+2022-11-14 22:31:19.573492 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 5mXISoEPf19cFEq6RoNMRe.
+2022-11-14 22:31:20.994548 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 167 tracks from playlist that contains 167 tracks.
+2022-11-14 22:31:21.951794 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 5mXISoEPf19cFEq6RoNMRe with 167 tracks to lstResult.
+2022-11-14 22:31:22.638604 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save Going Right to ToAnalayzeResults
+2022-11-14 22:31:22.638604 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> Going Right NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:31:22.749500 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:31:22.749500 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/5mXISoEPf19cFEq6RoNMRe?gclid=CO2zpvXXw60CFSsvmAodhl5xAg to  db.
+
+2022-11-14 22:31:22.750501 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=3, returnedCountItems=10, returnedStartIndex=1
+2022-11-14 22:31:22.750501 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:31:22.751499 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/23Tgd863hP4wlHMcpZZM2H?play=true&utm_source=open.spotify.com&utm_medium=open&xid=25657%2C15700019%2C15700124%2C15700149%2C15700168%2C15700186%2C15700189%2C15700201&_php=1, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 1IVgPGfYxyuOLKOYdEBLOW.
+2022-11-14 22:31:22.751499 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 23Tgd863hP4wlHMcpZZM2H.
+2022-11-14 22:31:22.751499 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 23Tgd863hP4wlHMcpZZM2H.
+2022-11-14 22:31:30.921036 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 1030 tracks from playlist that contains 1030 tracks.
+2022-11-14 22:31:31.817072 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 23Tgd863hP4wlHMcpZZM2H contains both tracks!
+2022-11-14 22:31:31.817072 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 23Tgd863hP4wlHMcpZZM2H.
+2022-11-14 22:31:39.485885 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 1030 tracks from playlist that contains 1030 tracks.
+2022-11-14 22:31:40.480112 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 23Tgd863hP4wlHMcpZZM2H with 1030 tracks to lstResult.
+2022-11-14 22:31:41.147633 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save Tuinmuziek to ToAnalayzeResults
+2022-11-14 22:31:41.148632 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> Tuinmuziek NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:31:41.305156 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:31:41.305156 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/23Tgd863hP4wlHMcpZZM2H?play=true&utm_source=open.spotify.com&utm_medium=open&xid=25657%2C15700019%2C15700124%2C15700149%2C15700168%2C15700186%2C15700189%2C15700201&_php=1 to  db.
+
+2022-11-14 22:31:41.306162 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=4, returnedCountItems=10, returnedStartIndex=1
+2022-11-14 22:31:41.306162 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:31:41.306162 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/5L59HadQeMChQw07Kam2Si?play=true&utm_source=open.spotify.com&utm_medium=open&0=, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 1IVgPGfYxyuOLKOYdEBLOW.
+2022-11-14 22:31:41.306162 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 5L59HadQeMChQw07Kam2Si.
+2022-11-14 22:31:41.307155 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 5L59HadQeMChQw07Kam2Si.
+2022-11-14 22:31:47.318889 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 828 tracks from playlist that contains 828 tracks.
+2022-11-14 22:31:48.320173 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 5L59HadQeMChQw07Kam2Si contains both tracks!
+2022-11-14 22:31:48.320173 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 5L59HadQeMChQw07Kam2Si.
+2022-11-14 22:31:54.409820 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 828 tracks from playlist that contains 828 tracks.
+2022-11-14 22:31:55.382109 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 5L59HadQeMChQw07Kam2Si with 828 tracks to lstResult.
+2022-11-14 22:31:56.164106 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save Journey Into: The Culture Void to ToAnalayzeResults
+2022-11-14 22:31:56.164106 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> Journey Into: The Culture Void NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:31:56.281107 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+
+2022-11-14 22:31:56.282109 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/5L59HadQeMChQw07Kam2Si?play=true&utm_source=open.spotify.com&utm_medium=open&0= to  db.
+2022-11-14 22:31:56.282109 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=5, returnedCountItems=10, returnedStartIndex=1
+2022-11-14 22:31:56.282109 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:31:56.283106 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/0XQNgQ5xb5UVHbkqGDzJ3Y, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 1IVgPGfYxyuOLKOYdEBLOW.
+2022-11-14 22:31:56.283106 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 0XQNgQ5xb5UVHbkqGDzJ3Y.
+2022-11-14 22:31:56.284108 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0XQNgQ5xb5UVHbkqGDzJ3Y.
+2022-11-14 22:31:58.598018 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 232 tracks from playlist that contains 232 tracks.
+2022-11-14 22:31:59.518196 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 0XQNgQ5xb5UVHbkqGDzJ3Y contains both tracks!
+2022-11-14 22:31:59.518196 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0XQNgQ5xb5UVHbkqGDzJ3Y.
+2022-11-14 22:32:01.607978 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 232 tracks from playlist that contains 232 tracks.
+2022-11-14 22:32:02.606514 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 0XQNgQ5xb5UVHbkqGDzJ3Y with 232 tracks to lstResult.
+2022-11-14 22:32:03.273289 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save A G N E S to ToAnalayzeResults
+2022-11-14 22:32:03.273289 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> A G N E S NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:32:03.439547 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+
+2022-11-14 22:32:03.440549 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/0XQNgQ5xb5UVHbkqGDzJ3Y to  db.
+2022-11-14 22:32:03.440549 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=6, returnedCountItems=10, returnedStartIndex=1
+2022-11-14 22:32:03.440549 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:32:03.441550 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/1Rajvc3Cxf4YLLBabdF923, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 1IVgPGfYxyuOLKOYdEBLOW.
+2022-11-14 22:32:03.441550 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 1Rajvc3Cxf4YLLBabdF923.
+2022-11-14 22:32:03.441550 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 1Rajvc3Cxf4YLLBabdF923.
+2022-11-14 22:32:04.679484 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 107 tracks from playlist that contains 107 tracks.
+2022-11-14 22:32:05.650480 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 1Rajvc3Cxf4YLLBabdF923 contains both tracks!
+2022-11-14 22:32:05.650480 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 1Rajvc3Cxf4YLLBabdF923.
+2022-11-14 22:32:06.885946 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 107 tracks from playlist that contains 107 tracks.
+2022-11-14 22:32:07.858717 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 1Rajvc3Cxf4YLLBabdF923 with 107 tracks to lstResult.
+2022-11-14 22:32:08.503303 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save Indie Psychedelic 🌈 to ToAnalayzeResults
+2022-11-14 22:32:08.504304 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> Indie Psychedelic 🌈 NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:32:08.642828 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:32:08.642828 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/1Rajvc3Cxf4YLLBabdF923 to  db.
+
+2022-11-14 22:32:08.642828 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=7, returnedCountItems=10, returnedStartIndex=1
+2022-11-14 22:32:08.642828 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:32:08.643829 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/3jdT8jKusnCkBeTCy0D5Eu?play=true&utm_source=open.spotify.com&utm_medium=open&fb_action_ids=10152602910971506%2C10152602898881506%2C10152602898076506%2C10152602884576506&fb_action_types=music.listens&fb_ref=Default&fb_source=other_multiline&action_object_map=%5B388932297917112%2C430483203681987%2C505779206205485%2C511008792244955%5D&action_type_map=%5B%22music.listens%22%2C%22music.listens%22%2C%22music.listens%22%2C%22music.listens%22%5D&action_ref_map=%5B%22Default%22%5D, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 1IVgPGfYxyuOLKOYdEBLOW.
+2022-11-14 22:32:08.643829 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 3jdT8jKusnCkBeTCy0D5Eu.
+2022-11-14 22:32:08.643829 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 3jdT8jKusnCkBeTCy0D5Eu.
+2022-11-14 22:32:10.081074 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 158 tracks from playlist that contains 158 tracks.
+2022-11-14 22:32:11.042308 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 3jdT8jKusnCkBeTCy0D5Eu contains both tracks!
+2022-11-14 22:32:11.042308 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 3jdT8jKusnCkBeTCy0D5Eu.
+2022-11-14 22:32:12.389086 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 158 tracks from playlist that contains 158 tracks.
+2022-11-14 22:32:13.305013 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 3jdT8jKusnCkBeTCy0D5Eu with 158 tracks to lstResult.
+2022-11-14 22:32:13.981897 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save elevate to ToAnalayzeResults
+2022-11-14 22:32:13.982897 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> elevate NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:32:14.161946 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:32:14.163948 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/3jdT8jKusnCkBeTCy0D5Eu?play=true&utm_source=open.spotify.com&utm_medium=open&fb_action_ids=10152602910971506%2C10152602898881506%2C10152602898076506%2C10152602884576506&fb_action_types=music.listens&fb_ref=Default&fb_source=other_multiline&action_object_map=%5B388932297917112%2C430483203681987%2C505779206205485%2C511008792244955%5D&action_type_map=%5B%22music.listens%22%2C%22music.listens%22%2C%22music.listens%22%2C%22music.listens%22%5D&action_ref_map=%5B%22Default%22%5D to  db.
+
+2022-11-14 22:32:14.163948 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=8, returnedCountItems=10, returnedStartIndex=1
+2022-11-14 22:32:14.164947 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:32:14.164947 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/6Zd17c5yOXPaJheCvFhwp4?, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 1IVgPGfYxyuOLKOYdEBLOW.
+2022-11-14 22:32:14.164947 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 6Zd17c5yOXPaJheCvFhwp4.
+2022-11-14 22:32:14.165949 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 6Zd17c5yOXPaJheCvFhwp4.
+2022-11-14 22:32:14.836427 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 73 tracks from playlist that contains 73 tracks.
+2022-11-14 22:32:15.831075 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 6Zd17c5yOXPaJheCvFhwp4 contains both tracks!
+2022-11-14 22:32:15.831075 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 6Zd17c5yOXPaJheCvFhwp4.
+2022-11-14 22:32:16.569036 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 73 tracks from playlist that contains 73 tracks.
+2022-11-14 22:32:17.565405 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 6Zd17c5yOXPaJheCvFhwp4 with 73 tracks to lstResult.
+2022-11-14 22:32:18.280912 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save Psychedelic Elevator to ToAnalayzeResults
+2022-11-14 22:32:18.281912 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> Psychedelic Elevator NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:32:18.432876 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:32:18.432876 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/6Zd17c5yOXPaJheCvFhwp4? to  db.
+
+2022-11-14 22:32:18.432876 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=9, returnedCountItems=10, returnedStartIndex=1
+2022-11-14 22:32:18.433881 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:32:18.433881 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/6jeI2ur617QxswzbeTsnFX, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 1IVgPGfYxyuOLKOYdEBLOW.
+2022-11-14 22:32:18.433881 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 6jeI2ur617QxswzbeTsnFX.
+2022-11-14 22:32:18.433881 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 6jeI2ur617QxswzbeTsnFX.
+2022-11-14 22:32:19.716012 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 114 tracks from playlist that contains 114 tracks.
+2022-11-14 22:32:20.702679 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 6jeI2ur617QxswzbeTsnFX contains both tracks!
+2022-11-14 22:32:20.702679 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 6jeI2ur617QxswzbeTsnFX.
+2022-11-14 22:32:21.975449 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 114 tracks from playlist that contains 114 tracks.
+2022-11-14 22:32:23.033862 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 6jeI2ur617QxswzbeTsnFX with 114 tracks to lstResult.
+2022-11-14 22:32:23.898352 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save Psychedelia  to ToAnalayzeResults
+2022-11-14 22:32:23.898352 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> Psychedelia  NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:32:24.042819 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:32:24.042819 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/6jeI2ur617QxswzbeTsnFX to  db.
+2022-11-14 22:32:24.043841 msg - autosearch.py -  gcs_searchPlaylists() 40 --> new request for loop 10 ,startIndex: 1, total: 22
+2022-11-14 22:32:24.454353 msg - autosearch.py - gcs_performSearchJob() 10 --> from google search response: searchTerm=Morgan Delt Some Sunsick Day Khruangbin Zionsville, totalResults=19, counted items=9, start index=11.
+2022-11-14 22:32:24.454353 msg - autosearch.py - gcs_searchPlaylists() 50 --> valid gcs response: Success --> total search results for "Morgan Delt Some Sunsick Day Khruangbin Zionsville": 19, results for this request: 9..
+2022-11-14 22:32:26.154973 msg - autosearch.py - gcs_searchPlaylists() 51 --> saving results to db.
+2022-11-14 22:32:26.154973 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/3hInajULe3Zni0zZ2NNNng?liad=, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 1IVgPGfYxyuOLKOYdEBLOW.
+2022-11-14 22:32:26.155962 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 3hInajULe3Zni0zZ2NNNng.
+2022-11-14 22:32:26.155962 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 3hInajULe3Zni0zZ2NNNng.
+2022-11-14 22:32:28.229499 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 258 tracks from playlist that contains 258 tracks.
+2022-11-14 22:32:29.142965 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 3hInajULe3Zni0zZ2NNNng contains both tracks!
+2022-11-14 22:32:29.142965 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 3hInajULe3Zni0zZ2NNNng.
+2022-11-14 22:32:31.136589 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 258 tracks from playlist that contains 258 tracks.
+2022-11-14 22:32:32.162373 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 3hInajULe3Zni0zZ2NNNng with 258 tracks to lstResult.
+2022-11-14 22:32:32.832778 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save Fall 2016 to ToAnalayzeResults
+2022-11-14 22:32:32.833777 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> Fall 2016 NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:32:32.991835 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:32:32.992849 msg - autosearch.py - gcs_searchPlaylists() 52 --> successfully saved playlist https://open.spotify.com/playlist/3hInajULe3Zni0zZ2NNNng?liad= to  db.
+
+2022-11-14 22:32:32.992849 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=11, returnedCountItems=9, returnedStartIndex=11
+2022-11-14 22:32:32.992849 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:32:32.992849 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/4EyCJdJA6oDW9UH8rIn4UC, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 1IVgPGfYxyuOLKOYdEBLOW.
+2022-11-14 22:32:32.993853 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 4EyCJdJA6oDW9UH8rIn4UC.
+2022-11-14 22:32:32.993853 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4EyCJdJA6oDW9UH8rIn4UC.
+2022-11-14 22:32:33.595700 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 72 tracks from playlist that contains 72 tracks.
+2022-11-14 22:32:34.521381 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 4EyCJdJA6oDW9UH8rIn4UC contains both tracks!
+2022-11-14 22:32:34.522374 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 4EyCJdJA6oDW9UH8rIn4UC.
+2022-11-14 22:32:35.178906 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 72 tracks from playlist that contains 72 tracks.
+2022-11-14 22:32:36.042926 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 4EyCJdJA6oDW9UH8rIn4UC with 72 tracks to lstResult.
+2022-11-14 22:32:36.670741 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save PELE | Psych & Indie to ToAnalayzeResults
+2022-11-14 22:32:36.671741 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> PELE | Psych & Indie NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:32:36.821155 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:32:36.821155 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/4EyCJdJA6oDW9UH8rIn4UC to  db.
+2022-11-14 22:32:36.822167 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=12, returnedCountItems=9, returnedStartIndex=11
+2022-11-14 22:32:36.822167 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:32:36.822167 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/2D6TggzG1VdplZ88XsCSi3, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 1IVgPGfYxyuOLKOYdEBLOW.
+2022-11-14 22:32:36.822167 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 2D6TggzG1VdplZ88XsCSi3.
+2022-11-14 22:32:36.823168 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 2D6TggzG1VdplZ88XsCSi3.
+2022-11-14 22:32:38.095629 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 118 tracks from playlist that contains 118 tracks.
+2022-11-14 22:32:39.063014 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 2D6TggzG1VdplZ88XsCSi3 contains both tracks!
+2022-11-14 22:32:39.064014 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 2D6TggzG1VdplZ88XsCSi3.
+2022-11-14 22:32:40.379321 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 118 tracks from playlist that contains 118 tracks.
+2022-11-14 22:32:41.366919 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 2D6TggzG1VdplZ88XsCSi3 with 118 tracks to lstResult.
+2022-11-14 22:32:42.129228 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save fermenting and photosynthesizing to ToAnalayzeResults
+2022-11-14 22:32:42.129228 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> fermenting and photosynthesizing NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:32:42.273611 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:32:42.273611 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/2D6TggzG1VdplZ88XsCSi3 to  db.
+2022-11-14 22:32:42.274580 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=13, returnedCountItems=9, returnedStartIndex=11
+2022-11-14 22:32:42.274580 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:32:42.274580 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/57NoXrtI1F84gOm7SxYVrW, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 1IVgPGfYxyuOLKOYdEBLOW.
+2022-11-14 22:32:42.275579 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 57NoXrtI1F84gOm7SxYVrW.
+2022-11-14 22:32:42.275579 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 57NoXrtI1F84gOm7SxYVrW.
+2022-11-14 22:32:43.566808 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 109 tracks from playlist that contains 109 tracks.
+2022-11-14 22:32:44.556241 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 57NoXrtI1F84gOm7SxYVrW contains both tracks!
+2022-11-14 22:32:44.556241 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 57NoXrtI1F84gOm7SxYVrW.
+2022-11-14 22:32:45.876911 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 109 tracks from playlist that contains 109 tracks.
+2022-11-14 22:32:46.824803 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 57NoXrtI1F84gOm7SxYVrW with 109 tracks to lstResult.
+2022-11-14 22:32:47.618635 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save Aur0r b0r3al to ToAnalayzeResults
+2022-11-14 22:32:47.618635 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> Aur0r b0r3al NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:32:47.826653 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:32:47.826653 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/57NoXrtI1F84gOm7SxYVrW to  db.
+
+2022-11-14 22:32:47.826653 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=14, returnedCountItems=9, returnedStartIndex=11
+2022-11-14 22:32:47.826653 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:32:47.827657 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/35TsDEiqj6NWf3V9fMWW37?autoplay=true, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 1IVgPGfYxyuOLKOYdEBLOW.
+2022-11-14 22:32:47.827657 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 35TsDEiqj6NWf3V9fMWW37.
+2022-11-14 22:32:47.827657 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 35TsDEiqj6NWf3V9fMWW37.
+2022-11-14 22:32:56.903363 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 1175 tracks from playlist that contains 1175 tracks.
+2022-11-14 22:32:57.850403 msg - autosearch.py - gcs_checkAndSaveResults() 20 --> PlaylistID 35TsDEiqj6NWf3V9fMWW37 does NOT contain both tracks!
+2022-11-14 22:32:57.850403 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 0 playlists saved to ToAnalyzeResults.
+2022-11-14 22:32:57.851404 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/35TsDEiqj6NWf3V9fMWW37?autoplay=true to  db.
+2022-11-14 22:32:57.852404 msg - autosearch.py -  gcs_searchPlaylists() 55 --> Updating times_counter to value 2
+2022-11-14 22:32:57.986444 msg - autosearch.py - gcs_searchPlaylists() 7--> item1_timessearched extracted for 54WIS7qug0Gnt65eD9gg8g: 2
+
+
+2022-11-14 22:32:57.986444 msg - autosearch.py - gcs_searchPlaylists() 10 --> Starting main loop with search_string Morgan Delt Some Sunsick Day Soccer Mommy Henry
+2022-11-14 22:32:58.415446 msg - autosearch.py - gcs_performSearchJob() 10 --> from google search response: searchTerm=Morgan Delt Some Sunsick Day Soccer Mommy Henry, totalResults=2, counted items=2, start index=1.
+2022-11-14 22:32:58.415446 msg - autosearch.py - gcs_searchPlaylists() 23 --> valid gcs response: Success --> total search results for "Morgan Delt Some Sunsick Day Soccer Mommy Henry": 2, results for this request: 2.. Total results: 2
+2022-11-14 22:32:58.416445 msg - autosearch.py - gcs_searchPlaylists() 24 --> maxsearchResults=15, gcs_check_response["response"]["resultTotal"]=2
+2022-11-14 22:32:58.416445 msg - autosearch.py - gcs_searchPlaylists() 25 --> maxsearchResults=2, gcs_check_response["response"]["resultTotal"]=2
+
+2022-11-14 22:32:58.416445 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=0, returnedCountItems=2, returnedStartIndex=1
+2022-11-14 22:32:58.416445 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:32:58.416445 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/6fXG1yiVq8Jd43r1iaa8pa?lf=, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 7nmZGYkdExWt0TvnmDWTLK.
+2022-11-14 22:32:58.417446 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 6fXG1yiVq8Jd43r1iaa8pa.
+2022-11-14 22:32:58.417446 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 6fXG1yiVq8Jd43r1iaa8pa.
+2022-11-14 22:32:59.836690 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 147 tracks from playlist that contains 147 tracks.
+2022-11-14 22:33:00.846719 msg - autosearch.py - gcs_checkAndSaveResults() 20 --> PlaylistID 6fXG1yiVq8Jd43r1iaa8pa does NOT contain both tracks!
+2022-11-14 22:33:00.846719 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 0 playlists saved to ToAnalyzeResults.
+2022-11-14 22:33:00.846719 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/6fXG1yiVq8Jd43r1iaa8pa?lf= to  db.
+
+2022-11-14 22:33:00.847719 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=1, returnedCountItems=2, returnedStartIndex=1
+2022-11-14 22:33:00.847719 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:33:00.847719 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/2MHMShexjJGFx3t6fdgF98?utm_campaign=Kindness+Rising&utm_source=hs_email&utm_medium=email&_hsenc=p2ANqtz-8JC6kaKwMhK6NKjX6K4DOnYu8g0AbjvXN9-GWCRosCBnPSrxfnGQWLrHrepJe_ez59Hzxi, trackid1: 54WIS7qug0Gnt65eD9gg8g, trackid2: 7nmZGYkdExWt0TvnmDWTLK.
+2022-11-14 22:33:00.847719 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 2MHMShexjJGFx3t6fdgF98.
+2022-11-14 22:33:00.848718 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 2MHMShexjJGFx3t6fdgF98.
+2022-11-14 22:33:03.657719 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 134 tracks from playlist that contains 134 tracks.
+2022-11-14 22:33:04.629869 msg - autosearch.py - gcs_checkAndSaveResults() 20 --> PlaylistID 2MHMShexjJGFx3t6fdgF98 does NOT contain both tracks!
+2022-11-14 22:33:04.629869 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 0 playlists saved to ToAnalyzeResults.
+2022-11-14 22:33:04.630869 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/2MHMShexjJGFx3t6fdgF98?utm_campaign=Kindness+Rising&utm_source=hs_email&utm_medium=email&_hsenc=p2ANqtz-8JC6kaKwMhK6NKjX6K4DOnYu8g0AbjvXN9-GWCRosCBnPSrxfnGQWLrHrepJe_ez59Hzxi to  db.
+2022-11-14 22:33:04.630869 msg - autosearch.py -  gcs_searchPlaylists() 55 --> Updating times_counter to value 3
+2022-11-14 22:33:04.800213 msg - autosearch.py - gcs_searchPlaylists() 7--> item1_timessearched extracted for 1IVgPGfYxyuOLKOYdEBLOW: 0
+2022-11-14 22:33:04.800213 msg - autosearch.py - gcs_searchPlaylists() 10 --> Starting main loop with search_string Khruangbin Zionsville Soccer Mommy Henry
+
+2022-11-14 22:33:05.288175 msg - autosearch.py - gcs_performSearchJob() 10 --> from google search response: searchTerm=Khruangbin Zionsville Soccer Mommy Henry, totalResults=4, counted items=4, start index=1.
+2022-11-14 22:33:05.288175 msg - autosearch.py - gcs_searchPlaylists() 23 --> valid gcs response: Success --> total search results for "Khruangbin Zionsville Soccer Mommy Henry": 4, results for this request: 4.. Total results: 4
+2022-11-14 22:33:05.288175 msg - autosearch.py - gcs_searchPlaylists() 24 --> maxsearchResults=2, gcs_check_response["response"]["resultTotal"]=4
+2022-11-14 22:33:05.288175 msg - autosearch.py - gcs_searchPlaylists() 25 --> maxsearchResults=4, gcs_check_response["response"]["resultTotal"]=4
+2022-11-14 22:33:05.289175 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=0, returnedCountItems=4, returnedStartIndex=1
+2022-11-14 22:33:05.289175 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:33:05.289175 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/37i9dQZF1EMc1RxfLMWyMX, trackid1: 1IVgPGfYxyuOLKOYdEBLOW, trackid2: 7nmZGYkdExWt0TvnmDWTLK.
+2022-11-14 22:33:05.289175 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 37i9dQZF1EMc1RxfLMWyMX.
+2022-11-14 22:33:05.289175 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1EMc1RxfLMWyMX.
+2022-11-14 22:33:06.030323 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 100 tracks from playlist that contains 100 tracks.
+2022-11-14 22:33:07.020626 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 37i9dQZF1EMc1RxfLMWyMX contains both tracks!
+2022-11-14 22:33:07.020626 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1EMc1RxfLMWyMX.
+2022-11-14 22:33:07.699315 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 100 tracks from playlist that contains 100 tracks.
+2022-11-14 22:33:08.730032 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 37i9dQZF1EMc1RxfLMWyMX with 100 tracks to lstResult.
+2022-11-14 22:33:09.329055 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save Your Top Songs 2020 to ToAnalayzeResults
+2022-11-14 22:33:09.329055 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> Your Top Songs 2020 NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:33:09.428032 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:33:09.429030 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/37i9dQZF1EMc1RxfLMWyMX to  db.
+2022-11-14 22:33:09.429030 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=1, returnedCountItems=4, returnedStartIndex=1
+2022-11-14 22:33:09.429030 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:33:09.430031 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/37i9dQZF1EtrJ5Ycc55CB9?p=472, trackid1: 1IVgPGfYxyuOLKOYdEBLOW, trackid2: 7nmZGYkdExWt0TvnmDWTLK.
+2022-11-14 22:33:09.430031 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 37i9dQZF1EtrJ5Ycc55CB9.
+2022-11-14 22:33:09.430031 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1EtrJ5Ycc55CB9.
+2022-11-14 22:33:10.099946 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 100 tracks from playlist that contains 100 tracks.
+2022-11-14 22:33:11.244157 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 37i9dQZF1EtrJ5Ycc55CB9 contains both tracks!
+2022-11-14 22:33:11.244157 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 37i9dQZF1EtrJ5Ycc55CB9.
+2022-11-14 22:33:11.915675 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 100 tracks from playlist that contains 100 tracks.
+2022-11-14 22:33:12.978421 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 37i9dQZF1EtrJ5Ycc55CB9 with 100 tracks to lstResult.
+2022-11-14 22:33:13.720522 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save Your Top Songs 2019 to ToAnalayzeResults
+2022-11-14 22:33:13.720522 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> Your Top Songs 2019 NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:33:13.874053 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:33:13.874053 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/37i9dQZF1EtrJ5Ycc55CB9?p=472 to  db.
+2022-11-14 22:33:13.875056 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=2, returnedCountItems=4, returnedStartIndex=1
+2022-11-14 22:33:13.875056 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:33:13.875056 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/35pIKnDO2N47wgG9Ylfllj, trackid1: 1IVgPGfYxyuOLKOYdEBLOW, trackid2: 7nmZGYkdExWt0TvnmDWTLK.
+2022-11-14 22:33:13.875056 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 35pIKnDO2N47wgG9Ylfllj.
+2022-11-14 22:33:13.875056 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 35pIKnDO2N47wgG9Ylfllj.
+2022-11-14 22:33:15.326360 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 179 tracks from playlist that contains 179 tracks.
+2022-11-14 22:33:16.265926 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 35pIKnDO2N47wgG9Ylfllj contains both tracks!
+2022-11-14 22:33:16.266927 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 35pIKnDO2N47wgG9Ylfllj.
+2022-11-14 22:33:17.787400 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 179 tracks from playlist that contains 179 tracks.
+2022-11-14 22:33:18.808610 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 35pIKnDO2N47wgG9Ylfllj with 179 tracks to lstResult.
+2022-11-14 22:33:19.627743 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save dazies. to ToAnalayzeResults
+2022-11-14 22:33:19.627743 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> dazies. NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:33:19.783898 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:33:19.784896 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/35pIKnDO2N47wgG9Ylfllj to  db.
+2022-11-14 22:33:19.784896 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=3, returnedCountItems=4, returnedStartIndex=1
+2022-11-14 22:33:19.784896 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:33:19.785898 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/6G7cYveBkl66OzxbAuJ0Ct, trackid1: 1IVgPGfYxyuOLKOYdEBLOW, trackid2: 7nmZGYkdExWt0TvnmDWTLK.
+2022-11-14 22:33:19.785898 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 6G7cYveBkl66OzxbAuJ0Ct.
+2022-11-14 22:33:19.785898 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 6G7cYveBkl66OzxbAuJ0Ct.
+2022-11-14 22:33:21.175395 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 153 tracks from playlist that contains 153 tracks.
+2022-11-14 22:33:22.206910 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 6G7cYveBkl66OzxbAuJ0Ct contains both tracks!
+2022-11-14 22:33:22.206910 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 6G7cYveBkl66OzxbAuJ0Ct.
+2022-11-14 22:33:23.517772 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 153 tracks from playlist that contains 153 tracks.
+2022-11-14 22:33:24.462610 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 6G7cYveBkl66OzxbAuJ0Ct with 153 tracks to lstResult.
+2022-11-14 22:33:25.169015 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save If I Was an Elevator DJ to ToAnalayzeResults
+2022-11-14 22:33:25.170020 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> If I Was an Elevator DJ NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:33:25.336629 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:33:25.337644 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/6G7cYveBkl66OzxbAuJ0Ct to  db.
+2022-11-14 22:33:25.337644 msg - autosearch.py -  gcs_searchPlaylists() 55 --> Updating times_counter to value 1
+2022-11-14 22:33:25.602974 msg - autosearch.py - gcs_searchPlaylists() 80 --> Finished  gcs_searchPlaylists: saved 18 playlists.
+
+
+
+================================================================================
+2022-11-14 22:38:06.289628 msg - autosearch.py - autosearch_main start autosearchjob --> automatically initiated, starting searchForPlaylistsContainingTracks().
+2022-11-14 22:38:06.290628 msg - autosearch.py - syncToAnalyzeTracks()  --> Started
+2022-11-14 22:38:06.290628 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 7rUTMu5Ro26tIKyLYmSIkc.
+2022-11-14 22:38:06.857421 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 4 tracks from playlist that contains 4 tracks.
+2022-11-14 22:38:06.858421 msg - autosearch.py - gcs_createSearchTerms() 20 --> Searchterms created: 0 terms created in list.
+2022-11-14 22:38:06.858421 err - autosearch.py - gcs_searchPlaylists() 5 --> Input list 'iSearchterms' contains 0 items.
+2022-11-14 22:38:26.266034 msg - autosearch.py - syncToAnalyzeTracks()  --> Started
+2022-11-14 22:38:26.267033 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 7rUTMu5Ro26tIKyLYmSIkc.
+2022-11-14 22:38:26.850743 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 5 tracks from playlist that contains 5 tracks.
+2022-11-14 22:38:27.451287 msg - autosearch.py - autosearch_main load page --> autosearch.html page loaded.
+2022-11-14 22:38:34.420893 msg - autosearch.py - autosearch_main start autosearchjob --> automatically initiated, starting searchForPlaylistsContainingTracks().
+2022-11-14 22:38:34.421893 msg - autosearch.py - syncToAnalyzeTracks()  --> Started
+2022-11-14 22:38:34.422896 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 7rUTMu5Ro26tIKyLYmSIkc.
+2022-11-14 22:38:34.912694 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 5 tracks from playlist that contains 5 tracks.
+2022-11-14 22:38:34.913694 msg - autosearch.py - gcs_createSearchTerms() 10 --> searchTerm created: Morgan Delt Some Sunsick Day Vetiver Confiding, i1=0, i2=4, item1_timessearched=3.
+2022-11-14 22:38:34.913694 msg - autosearch.py - gcs_createSearchTerms() 10 --> searchTerm created: RALPH TV Superfood Vetiver Confiding, i1=1, i2=4, item1_timessearched=2.
+2022-11-14 22:38:34.913694 msg - autosearch.py - gcs_createSearchTerms() 10 --> searchTerm created: Khruangbin Zionsville Vetiver Confiding, i1=2, i2=4, item1_timessearched=1.
+2022-11-14 22:38:34.913694 msg - autosearch.py - gcs_createSearchTerms() 10 --> searchTerm created: Soccer Mommy Henry Vetiver Confiding, i1=3, i2=4, item1_timessearched=0.
+2022-11-14 22:38:34.914694 msg - autosearch.py - gcs_createSearchTerms() 20 --> Searchterms created: 4 terms created in list.
+2022-11-14 22:38:34.914694 msg - autosearch.py - gcs_searchPlaylists() 7--> item1_timessearched extracted for 54WIS7qug0Gnt65eD9gg8g: 3
+2022-11-14 22:38:34.914694 msg - autosearch.py - gcs_searchPlaylists() 10 --> Starting main loop with search_string Morgan Delt Some Sunsick Day Vetiver Confiding
+2022-11-14 22:38:35.316333 msg - common.py - checkGoogleResponse30 --> No playlists found!
+2022-11-14 22:38:35.317334 msg - autosearch.py - gcs_performSearchJob() 10 --> from google search response: searchTerm=Morgan Delt Some Sunsick Day Vetiver Confiding, totalResults=0, counted items=10, start index=1.
+2022-11-14 22:38:35.317334 msg - autosearch.py - gcs_searchPlaylists() 23 --> valid gcs response: Success --> total search results for "Morgan Delt Some Sunsick Day Vetiver Confiding": 0, results for this request: 10.. Total results: 0
+2022-11-14 22:38:35.317334 msg - autosearch.py - gcs_searchPlaylists() 24 --> maxsearchResults=0, gcs_check_response["response"]["resultTotal"]=0
+2022-11-14 22:38:35.317334 msg - autosearch.py - gcs_searchPlaylists() 25 --> maxsearchResults=0, gcs_check_response["response"]["resultTotal"]=0
+2022-11-14 22:38:35.317334 msg - autosearch.py -  gcs_searchPlaylists() 55 --> Updating times_counter to value 4
+2022-11-14 22:38:35.468339 msg - autosearch.py - gcs_searchPlaylists() 7--> item1_timessearched extracted for 5upVtIuHTk2xijNn6yXlYN: 2
+2022-11-14 22:38:35.468339 msg - autosearch.py - gcs_searchPlaylists() 10 --> Starting main loop with search_string RALPH TV Superfood Vetiver Confiding
+2022-11-14 22:38:35.832374 msg - common.py - checkGoogleResponse30 --> No playlists found!
+2022-11-14 22:38:35.832374 msg - autosearch.py - gcs_performSearchJob() 10 --> from google search response: searchTerm=RALPH TV Superfood Vetiver Confiding, totalResults=0, counted items=10, start index=1.
+2022-11-14 22:38:35.833372 msg - autosearch.py - gcs_searchPlaylists() 23 --> valid gcs response: Success --> total search results for "RALPH TV Superfood Vetiver Confiding": 0, results for this request: 10.. Total results: 0
+2022-11-14 22:38:35.833372 msg - autosearch.py - gcs_searchPlaylists() 24 --> maxsearchResults=0, gcs_check_response["response"]["resultTotal"]=0
+2022-11-14 22:38:35.833372 msg - autosearch.py - gcs_searchPlaylists() 25 --> maxsearchResults=0, gcs_check_response["response"]["resultTotal"]=0
+2022-11-14 22:38:35.833372 msg - autosearch.py -  gcs_searchPlaylists() 55 --> Updating times_counter to value 3
+2022-11-14 22:38:36.025378 msg - autosearch.py - gcs_searchPlaylists() 7--> item1_timessearched extracted for 1IVgPGfYxyuOLKOYdEBLOW: 1
+2022-11-14 22:38:36.026384 msg - autosearch.py - gcs_searchPlaylists() 10 --> Starting main loop with search_string Khruangbin Zionsville Vetiver Confiding
+2022-11-14 22:38:36.428684 msg - autosearch.py - gcs_performSearchJob() 10 --> from google search response: searchTerm=Khruangbin Zionsville Vetiver Confiding, totalResults=1, counted items=1, start index=1.
+2022-11-14 22:38:36.428684 msg - autosearch.py - gcs_searchPlaylists() 23 --> valid gcs response: Success --> total search results for "Khruangbin Zionsville Vetiver Confiding": 1, results for this request: 1.. Total results: 1
+2022-11-14 22:38:36.428684 msg - autosearch.py - gcs_searchPlaylists() 24 --> maxsearchResults=0, gcs_check_response["response"]["resultTotal"]=1
+2022-11-14 22:38:36.429684 msg - autosearch.py - gcs_searchPlaylists() 25 --> maxsearchResults=1, gcs_check_response["response"]["resultTotal"]=1
+2022-11-14 22:38:36.429684 msg - autosearch.py - gcs_searchPlaylists() 30 --> i=0, returnedCountItems=1, returnedStartIndex=1
+2022-11-14 22:38:36.429684 msg - autosearch.py - gcs_searchPlaylists() 31 --> saving results to db.
+2022-11-14 22:38:36.429684 msg - autosearch.py - gcs_checkAndSaveResults() 0 --> starting check for playlist link https://open.spotify.com/playlist/0DXvREBHVhJKb87RWMQVp2, trackid1: 1IVgPGfYxyuOLKOYdEBLOW, trackid2: 5lwtjYRtsdU1QOYYK44jTl.
+2022-11-14 22:38:36.430685 msg - autosearch.py - gcs_checkAndSaveResults() 5 --> playlist ID extracted: 0DXvREBHVhJKb87RWMQVp2.
+2022-11-14 22:38:36.430685 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0DXvREBHVhJKb87RWMQVp2.
+2022-11-14 22:38:37.796620 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 193 tracks from playlist that contains 193 tracks.
+2022-11-14 22:38:38.714212 msg - autosearch.py - gcs_checkAndSaveResults() 10 --> playlistID 0DXvREBHVhJKb87RWMQVp2 contains both tracks!
+2022-11-14 22:38:38.714212 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 0DXvREBHVhJKb87RWMQVp2.
+2022-11-14 22:38:40.222164 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 193 tracks from playlist that contains 193 tracks.
+2022-11-14 22:38:41.176348 msg - autosearch.py - gcs_checkAndSaveResults() 15 --> Added PlaylistID 0DXvREBHVhJKb87RWMQVp2 with 193 tracks to lstResult.
+2022-11-14 22:38:41.895603 msg - autosearch.py - gcs_checkAndSaveResults() 25 --> Checkking before save Groove to ToAnalayzeResults
+2022-11-14 22:38:41.895603 msg - autosearch.py - gcs_checkAndSaveResults() 30 --> Groove NOT IN ToAnalyzeResults yet, so addit!
+2022-11-14 22:38:42.028332 msg - autosearch.py - gcs_checkAndSaveResults() 40 --> Finished gcs_checkAndSaveResults: 1 playlists saved to ToAnalyzeResults.
+2022-11-14 22:38:42.028332 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/0DXvREBHVhJKb87RWMQVp2 to  db.
+2022-11-14 22:38:42.028332 msg - autosearch.py -  gcs_searchPlaylists() 55 --> Updating times_counter to value 2
+2022-11-14 22:38:42.202422 msg - autosearch.py - gcs_searchPlaylists() 7--> item1_timessearched extracted for 7nmZGYkdExWt0TvnmDWTLK: 0
+2022-11-14 22:38:42.202422 msg - autosearch.py - gcs_searchPlaylists() 10 --> Starting main loop with search_string Soccer Mommy Henry Vetiver Confiding
+2022-11-14 22:38:42.583551 msg - common.py - checkGoogleResponse30 --> No playlists found!
+2022-11-14 22:38:42.583551 msg - autosearch.py - gcs_performSearchJob() 10 --> from google search response: searchTerm=Soccer Mommy Henry Vetiver Confiding, totalResults=0, counted items=10, start index=1.
+2022-11-14 22:38:42.583551 msg - autosearch.py - gcs_searchPlaylists() 23 --> valid gcs response: Success --> total search results for "Soccer Mommy Henry Vetiver Confiding": 0, results for this request: 10.. Total results: 0
+2022-11-14 22:38:42.583551 msg - autosearch.py - gcs_searchPlaylists() 24 --> maxsearchResults=1, gcs_check_response["response"]["resultTotal"]=0
+2022-11-14 22:38:42.583551 msg - autosearch.py - gcs_searchPlaylists() 25 --> maxsearchResults=0, gcs_check_response["response"]["resultTotal"]=0
+2022-11-14 22:38:42.584552 msg - autosearch.py -  gcs_searchPlaylists() 55 --> Updating times_counter to value 1
+2022-11-14 22:38:42.776738 msg - autosearch.py - gcs_searchPlaylists() 80 --> Finished  gcs_searchPlaylists: saved 1 playlists.

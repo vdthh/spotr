@@ -346,7 +346,7 @@ def updateItemList(dbName, lim, offs):
         cursor = get_db().cursor()
 
         '''--> grab tracks'''
-        if dbName == "ListenedTrack" or dbName == "ToListenTrack" or dbName == "WatchList" or dbName == "FavoriteTrack" or dbName == "LikedTrack" or dbName == "ScrapedTracks":
+        if dbName == "ListenedTrack" or dbName == "ToListenTrack" or dbName == "WatchList" or dbName == "FavoriteTrack" or dbName == "LikedTrack" or dbName == "ScrapedTracks" or dbName == "ToAnalyzeResults":
             gv_display_total = len(cursor.execute('SELECT * FROM ' + dbName).fetchall())
             if lim == 0 and offs == 0:
                 #request without limit or offset 
