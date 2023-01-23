@@ -6,6 +6,7 @@
 # So this can only be ran once after a new sqlite db has been initialized ##############
 ########## This only works when columns of source/target tables are identical ##########
 ########################################################################################
+###test20230123####
 
 
 ########################################################################################
