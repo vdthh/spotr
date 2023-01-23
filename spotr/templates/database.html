@@ -78,8 +78,9 @@
                                 <a class="btn btn-primary" href="/database?showdb={{ showdb }}&toDelID={{ item.spotify_id }}" role="button">Delete</a>
                             </td>
                         {% else %}
-                            <td>{{ item.playlistid }} </td>
-                            <td>{{ item.name_ }} </td>
+                            <!-- <td>{{ item.playlistid }} </td> -->
+                            <td> <a href="open.spotify.com/playlist/{{ item.playlistid }}" target="_blank">{{ item.playlistid }}</a></td>
+                            <td>{{ item.name_ }} </td>        
                             <td>{{ item.foundbytrack1 }} </td>
                             <td>{{ item.foundbytrack2 }} </td>
                             <td>{{ item.date_added }} </td>
