@@ -348,6 +348,9 @@ le
 2022-11-14 22:38:27.451287 msg - autosearch.py - autosearch_main load page --> autosearch.html page loaded.
 2022-11-14 22:38:34.420893 msg - autosearch.py - autosearch_main start autosearchjob --> automatically initiated, starting searchForPlaylistsContainingTracks().
 2022-11-14 22:38:34.421893 msg - autosearch.py - syncToAnalyzeTracks()  --> Started
+
+
+
 2022-11-14 22:38:34.422896 msg - common.py - getTracksFromPlaylist --> requesting tracks from playlist 7rUTMu5Ro26tIKyLYmSIkc.
 2022-11-14 22:38:34.912694 msg - common.py - getTracksFromPlaylist6 --> Succesfully returned list of 5 tracks from playlist that contains 5 tracks.
 2022-11-14 22:38:34.913694 msg - autosearch.py - gcs_createSearchTerms() 10 --> searchTerm created: Morgan Delt Some Sunsick Day Vetiver Confiding, i1=0, i2=4, item1_timessearched=3.
@@ -356,6 +359,7 @@ le
 2022-11-14 22:38:34.913694 msg - autosearch.py - gcs_createSearchTerms() 10 --> searchTerm created: Soccer Mommy Henry Vetiver Confiding, i1=3, i2=4, item1_timessearched=0.
 2022-11-14 22:38:34.914694 msg - autosearch.py - gcs_createSearchTerms() 20 --> Searchterms created: 4 terms created in list.
 2022-11-14 22:38:34.914694 msg - autosearch.py - gcs_searchPlaylists() 7--> item1_timessearched extracted for 54WIS7qug0Gnt65eD9gg8g: 3
+
 2022-11-14 22:38:34.914694 msg - autosearch.py - gcs_searchPlaylists() 10 --> Starting main loop with search_string Morgan Delt Some Sunsick Day Vetiver Confiding
 2022-11-14 22:38:35.316333 msg - common.py - checkGoogleResponse30 --> No playlists found!
 2022-11-14 22:38:35.317334 msg - autosearch.py - gcs_performSearchJob() 10 --> from google search response: searchTerm=Morgan Delt Some Sunsick Day Vetiver Confiding, totalResults=0, counted items=10, start index=1.
@@ -364,6 +368,7 @@ le
 2022-11-14 22:38:35.317334 msg - autosearch.py - gcs_searchPlaylists() 25 --> maxsearchResults=0, gcs_check_response["response"]["resultTotal"]=0
 2022-11-14 22:38:35.317334 msg - autosearch.py -  gcs_searchPlaylists() 55 --> Updating times_counter to value 4
 2022-11-14 22:38:35.468339 msg - autosearch.py - gcs_searchPlaylists() 7--> item1_timessearched extracted for 5upVtIuHTk2xijNn6yXlYN: 2
+
 2022-11-14 22:38:35.468339 msg - autosearch.py - gcs_searchPlaylists() 10 --> Starting main loop with search_string RALPH TV Superfood Vetiver Confiding
 2022-11-14 22:38:35.832374 msg - common.py - checkGoogleResponse30 --> No playlists found!
 2022-11-14 22:38:35.832374 msg - autosearch.py - gcs_performSearchJob() 10 --> from google search response: searchTerm=RALPH TV Superfood Vetiver Confiding, totalResults=0, counted items=10, start index=1.
@@ -373,6 +378,7 @@ le
 2022-11-14 22:38:35.833372 msg - autosearch.py -  gcs_searchPlaylists() 55 --> Updating times_counter to value 3
 2022-11-14 22:38:36.025378 msg - autosearch.py - gcs_searchPlaylists() 7--> item1_timessearched extracted for 1IVgPGfYxyuOLKOYdEBLOW: 1
 2022-11-14 22:38:36.026384 msg - autosearch.py - gcs_searchPlaylists() 10 --> Starting main loop with search_string Khruangbin Zionsville Vetiver Confiding
+
 2022-11-14 22:38:36.428684 msg - autosearch.py - gcs_performSearchJob() 10 --> from google search response: searchTerm=Khruangbin Zionsville Vetiver Confiding, totalResults=1, counted items=1, start index=1.
 2022-11-14 22:38:36.428684 msg - autosearch.py - gcs_searchPlaylists() 23 --> valid gcs response: Success --> total search results for "Khruangbin Zionsville Vetiver Confiding": 1, results for this request: 1.. Total results: 1
 2022-11-14 22:38:36.428684 msg - autosearch.py - gcs_searchPlaylists() 24 --> maxsearchResults=0, gcs_check_response["response"]["resultTotal"]=1
@@ -393,6 +399,7 @@ le
 2022-11-14 22:38:42.028332 msg - autosearch.py - gcs_searchPlaylists() 32 --> successfully saved playlist https://open.spotify.com/playlist/0DXvREBHVhJKb87RWMQVp2 to  db.
 2022-11-14 22:38:42.028332 msg - autosearch.py -  gcs_searchPlaylists() 55 --> Updating times_counter to value 2
 2022-11-14 22:38:42.202422 msg - autosearch.py - gcs_searchPlaylists() 7--> item1_timessearched extracted for 7nmZGYkdExWt0TvnmDWTLK: 0
+
 2022-11-14 22:38:42.202422 msg - autosearch.py - gcs_searchPlaylists() 10 --> Starting main loop with search_string Soccer Mommy Henry Vetiver Confiding
 2022-11-14 22:38:42.583551 msg - common.py - checkGoogleResponse30 --> No playlists found!
 2022-11-14 22:38:42.583551 msg - autosearch.py - gcs_performSearchJob() 10 --> from google search response: searchTerm=Soccer Mommy Henry Vetiver Confiding, totalResults=0, counted items=10, start index=1.

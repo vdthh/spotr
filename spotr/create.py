@@ -216,7 +216,7 @@ def create_main():
             #     dbTracks    = response["response"].copy()
             #     dbTracks.extend(response2["response"])
             #     dbTracks.extend(response3["response"])
-            #     logAction("msg - create.py - create_main tracks from playlist ID 5 --> " + response["message"] + ", " + response2["message"] + ", " + response3["message"])
+            #     logAction("msg - create.py - create_main tracks from playlist ID 5 --> " + response["message"] + ", " + response2["message "] + ", " + response3["message"])
             # else:
             #     logAction("err - create.py - create_main tracks from playlist ID 7 --> " + response["message"] + ", " + response2["message"] + ", " + response3["message"])
             #     raise Exception("No valid trackID list received from DB.")

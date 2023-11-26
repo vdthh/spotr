@@ -548,8 +548,10 @@ def watchlist_main():
             initLength          = len(currentTrackList)
             endLength           = 0
 
-
+            tempi = 0
             for trck in tracklist:
+                tempi +=1
+                logAction("------------------CHECKING TRACK " + trck + ", nr " + str(tempi))
                 if not checkIfTrackInDB(trck, "ListenedTrack") and not checkIfTrackInDB(trck, "ToListenTrack") and not checkIfTrackInDB(trck, "WatchListNewTracks"):
                     #Not in db yet, update tracklist
                     data                = get_db().execute('SELECT * FROM WatchlistNewTracks WHERE id=?',("newTracks",)).fetchone() 
