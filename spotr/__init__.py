@@ -68,6 +68,7 @@ def create_app():
         app.register_blueprint(create.bp_create)
         app.register_blueprint(_import.bp_import)
         app.register_blueprint(autosearch.bp_autosearch)
+        
 
     return app
 ########################################################################################
